@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://offerings.api.rackspacecloud.com/v2/offerings?lineOfBusiness=US_CLOUD&status=ACTIVE&limit=100",
+    "headers": {
+      "Accept": "application/json",
+      "X-Auth-Token": "ea85e6ac-baff-4a6c-bf43-848020ea3812"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "offerings": [
+        {
+          "offeringCode": "MANAGED_CLOUD",
+          "offeringVersion": 2,
+          "name": "Rackspace Managed Cloud",
+          "description": "Managed Public Cloud across AWS, Azure, GCP, and Rackspace.",
+          "status": "ACTIVE",
+          "lineOfBusiness": "US_CLOUD",
+          "startDate": "2024-01-01"
+        }
+      ],
+      "links": [
+        { "rel": "next", "href": "https://offerings.api.rackspacecloud.com/v2/offerings?marker=MANAGED_CLOUD" }
+      ]
+    }
+  }
+}

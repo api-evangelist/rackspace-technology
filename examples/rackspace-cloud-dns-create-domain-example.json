@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://dns.api.rackspacecloud.com/v1.0/1234/domains",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "X-Auth-Token": "ea85e6ac-baff-4a6c-bf43-848020ea3812"
+    },
+    "body": {
+      "domains": [
+        {
+          "name": "example.com",
+          "ttl": 3600,
+          "emailAddress": "admin@example.com",
+          "comment": "Production domain",
+          "recordsList": {
+            "records": [
+              { "type": "A", "name": "www.example.com", "data": "192.0.2.10", "ttl": 3600 },
+              { "type": "MX", "name": "example.com", "data": "mail.example.com", "ttl": 3600, "priority": 10 }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 202,
+    "body": {
+      "callbackUrl": "https://dns.api.rackspacecloud.com/v1.0/1234/status/abc-123",
+      "status": "RUNNING",
+      "requestUrl": "https://dns.api.rackspacecloud.com/v1.0/1234/domains",
+      "verb": "POST",
+      "jobId": "abc-123"
+    }
+  }
+}

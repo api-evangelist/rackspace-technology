@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rackspace-technology/main/json-schema/rackspace-customer-service-customer-account-schema.json",
+  "title": "CustomerAccount",
+  "description": "A Rackspace customer account identified by RCN (Rackspace Customer Number).",
+  "type": "object",
+  "properties": {
+    "rcn": { "type": "string", "description": "Rackspace Customer Number." },
+    "name": { "type": "string" },
+    "status": { "type": "string", "enum": ["ACTIVE", "INACTIVE", "SUSPENDED", "CLOSED"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "customerSegment": { "type": "string" },
+    "billingCountry": { "type": "string" }
+  },
+  "required": ["rcn"]
+}

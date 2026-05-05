@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rackspace-technology/main/json-schema/rackspace-cloud-identity-user-schema.json",
+  "title": "User",
+  "description": "A Rackspace Cloud Identity user account.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "username": { "type": "string" },
+    "email": { "type": "string", "format": "email" },
+    "enabled": { "type": "boolean" },
+    "domainId": { "type": "string" },
+    "defaultRegion": { "type": "string" },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "tenantId": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["username", "email"]
+}

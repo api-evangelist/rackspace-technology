@@ -1,0 +1,58 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Rackspace Customer Service"
+  description: "Look up customer accounts (RCN), contacts, and metadata."
+  tags:
+    - Rackspace
+    - Customer
+    - Account
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      RACKSPACE_AUTH_TOKEN: RACKSPACE_AUTH_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: customer-service
+      baseUri: "https://accounts.api.rackspacecloud.com"
+      description: "Rackspace Customer Service v1 API."
+      authentication:
+        type: header
+        header: X-Auth-Token
+        value: "{{env.RACKSPACE_AUTH_TOKEN}}"
+      resources:
+        - name: customer-accounts
+          path: "/v1/customer_accounts"
+          description: "Customer accounts the caller can access."
+          operations:
+            - name: list-customer-accounts
+              method: GET
+              description: "List customer accounts accessible to the caller."
+              outputRawFormat: json
+              outputParameters:
+                - { name: accounts, type: array, value: "$.customer_accounts" }
+            - name: get-customer-account
+              method: GET
+              description: "Get a customer account by RCN."
+              inputParameters:
+                - { name: rcn, in: path, type: string, required: true, description: "Rackspace Customer Number." }
+              outputRawFormat: json
+              outputParameters:
+                - { name: result, type: object, value: "$." }
+        - name: contacts
+          path: "/v1/customer_accounts/{rcn}/contacts"
+          description: "Contacts associated with a customer account."
+          operations:
+            - name: list-contacts
+              method: GET
+              description: "List contacts for a customer account."
+              inputParameters:
+                - { name: rcn, in: path, type: string, required: true, description: "Rackspace Customer Number." }
+              outputRawFormat: json
+              outputParameters:
+                - { name: contacts, type: array, value: "$.contacts" }

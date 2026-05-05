@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rackspace-technology/main/json-schema/rackspace-offer-offering-schema.json",
+  "title": "Offering",
+  "description": "A Rackspace product offering as exposed via the Offer API.",
+  "type": "object",
+  "properties": {
+    "offeringCode": { "type": "string" },
+    "offeringVersion": { "type": "integer" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "status": { "type": "string", "enum": ["ACTIVE", "INACTIVE"] },
+    "lineOfBusiness": { "type": "string" },
+    "startDate": { "type": "string", "format": "date" },
+    "endDate": { "type": "string", "format": "date" }
+  },
+  "required": ["offeringCode", "offeringVersion", "name"]
+}

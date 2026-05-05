@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://accounts.api.rackspacecloud.com/v1/customer_accounts",
+    "headers": {
+      "Accept": "application/json",
+      "X-Auth-Token": "ea85e6ac-baff-4a6c-bf43-848020ea3812"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "customer_accounts": [
+        {
+          "rcn": "RCN-123-456-789",
+          "name": "Acme Corporation",
+          "status": "ACTIVE",
+          "createdAt": "2024-01-12T10:11:12Z",
+          "updatedAt": "2026-04-30T08:42:00Z",
+          "customerSegment": "Mid-Market",
+          "billingCountry": "US"
+        }
+      ],
+      "totalEntries": 1
+    }
+  }
+}

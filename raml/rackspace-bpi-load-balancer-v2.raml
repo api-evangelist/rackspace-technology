@@ -1,0 +1,343 @@
+#%RAML 0.8
+title: BPI - Load Balancer Service
+version: v2.0 <br> <p style="font-size:17px; color:black"><em>Last modified date - Oct 28, 2016 </em></p><hr>
+baseUri: https://bpi.automation.api.rackspacecloud.com/2.0/{tenant_id}/loadbalancers
+documentation:
+- title: API Overview
+  content: |
+    This API exposes methods to view and manage Load Balancer resources
+
+- title: Authentication and Authorization
+  content: |
+    Access to this API is granted through a valid token acquired through the Internal Identity service <pending link>.
+    The token is passed within the *X-Auth-Token* HTTP header.
+
+    ** Roles required to access API : <br>**
+    "bpi_lbs_read" is required for GET calls <br>
+    "bpi_lbs_write" is required for PUT, POST, DELETE calls <br>
+- title: Standard errors
+  content: |
+    - **400**: Bad request.
+    - **401**: Authentication error, the user does not have valid authentication details.
+    - **403**: Forbidden, you are not authorized to view this resource.
+    - **404**: The page or resource requested does not exist.
+    - **500**: An indeterminate error occurred. This is caused by an unexpected error.
+    - **501**: Retrieving a list of details is not supported and/or not implemented.
+    - **510**: An indeterminate error occurred. This is caused by an unexpected error.
+
+baseUriParameters:
+  tenant_id:
+    displayName: Tenant ID
+    description: |
+        The account number associated with the device_id
+    type: integer
+
+mediaType: application/json
+
+securitySchemes:
+  - internalIdentity:
+      description: |
+        Rackspace Internal Identity authentication
+      type: x-auth-token
+      describedBy:
+        headers:
+          X-Auth-Token:
+            description: |
+                Used to send a valid Identity access token.
+            type: string
+        responses:
+          401:
+            description: |
+              Bad or expired token. To fix, you should re-authenticate the user.
+          403:
+            description: |
+              User Doesn't have the required role.
+      settings:
+        identityServiceUri: https://identity-internal.api.rackspacecloud.com/v2.0/
+
+securedBy: [internalIdentity]
+/{device_id}:
+    displayName: Loadbalancer  API Calls
+    get:
+        description: Returns a complete info about loadbalancer
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: !include devices.sample
+                            
+            404:
+                body:
+                    application/json:
+                        example: !include error.sample
+
+    /ha:
+        displayName: Information about High Availability configuration.
+        get:
+            description: High Availability template.
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                  "message": "This is a test template for High Availability"
+                                }
+
+
+    /vips:
+        displayName: VIPs configured to devices
+        get:
+            description: VIPs in a device for the given device id
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: !include vips.sample
+                                
+        post:
+            description: Create a new VIP.
+            body:
+                application/json:
+                    example: !include create_vip.sample
+
+            responses:
+                202:
+                    body:
+                        application/json:
+                            example: !include event.sample
+                                
+
+        /{vip_id}:
+            displayName: VIP Information for given VIP id.
+            get:
+                description: Information about single VIP.
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                example: !include vip.sample
+
+            put:
+                description: Update VIP information.
+                body:
+                    application/json:
+                        example: !include create_vip.sample
+                              
+                responses:
+                    202:
+                        body:
+                            application/json:
+                                example: !include event.sample
+                                    
+            delete:
+                description: Delete VIP.
+                body:
+                    application/json:
+                        example: |
+                            {
+                              "account_number": req"<Account Number>",
+                              "comment": req"comment"
+                            }
+                responses:
+                    202:
+                        body:
+                            application/json:
+                                example: !include event.sample
+                                    
+            
+            /nodes:
+                displayName: Display nodes configured to a given vip id.
+                get:
+                    description: List nodes for single VIP.
+                    responses:
+                        200:
+                            body:
+                                application/json:
+                                    example: !include nodes.sample
+
+                /{node_id}:
+                    displayName: Bind/Unbind given node_id with vip.
+                    post:
+                        description: Bind given node_id with VIP.
+                        body:
+                            application/json:
+                                example: |
+                                    {
+                                      "account_number": req"<Account Number>"
+                                    }
+                        responses:
+                            202:
+                                body:
+                                    application/json:
+                                        example: !include event.sample
+
+            
+                    delete:
+                        description: Unbind given node_id from VIP.
+                        body:
+                            application/json:
+                                example: |
+                                    {
+                                      "account_number": req"<Account Number>"
+                                    }
+                        responses:
+                            202:
+                                body:
+                                    application/json:
+                                        example: !include event.sample
+            
+            /configuration:
+                displayName: Activate/Deactivate VIP.
+                post:
+                    description: Activate the VIP.
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                  "account_number": req"<Account Number>"
+                                }
+                    responses:
+                        202:
+                            body:
+                                application/json:
+                                    example: !include event.sample
+            
+                delete:
+                    description: Deactivate the VIP.
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                  "account_number": req"<Account Number>"
+                                }
+                    responses:
+                        202:
+                            body:
+                                application/json:
+                                    example: !include event.sample
+      
+            /stats:
+                displayName: Display stats for given vip id.
+                get:
+                    description: Statistics for single VIP.
+                    responses:
+                        200:
+                            body:
+                                application/json:
+                                    example: !include stats.sample
+            
+    /nodes:
+        displayName: Information about Nodes.
+        get:
+            description: Nodes in a device for the given device id
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: !include node_device.sample
+
+        post:
+            description: Create a new node.
+            body:
+                application/json:
+                    example: !include create_node.sample
+            responses:
+                202:
+                    body:
+                        application/json:
+                            example: !include event.sample
+
+        /{node_id}:
+            displayName: Information about a particular node.
+            get:
+                description: Node Information
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                example: !include node_info.sample
+
+            put:
+                description: Update node configuration.
+                body:
+                    application/json:
+                        example: !include update_node.sample
+                            
+                responses:
+                    202:
+                        body:
+                            application/json:
+                                example: !include event.sample
+            delete:
+                description: Delete the Node.
+                body:
+                    application/json:
+                        example: |
+                            {
+                              "account_number": req"<Account Number>"
+                            }
+                responses:
+                    202:
+                        body:
+                            application/json:
+                                example: !include event.sample
+            /configuration:
+                displayName: Activate/Deactivate node.
+                post:
+                    description: Activate the node.
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                  "account_number": req"<Account Number>"
+                                }
+                    responses:
+                        202:
+                            body:
+                                application/json:
+                                    example: !include event.sample
+                delete:
+                    description: Deactivate the node.
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                  "account_number": req"<Account Number>"
+                                }
+                    responses:
+                        202:
+                            body:
+                                application/json:
+                                    example: !include event.sample
+
+            /stats:
+                displayName: Statistics for node.
+                get:
+                    description: Display the stats for given node_id
+                    responses:
+                        200:
+                            body:
+                                application/json:
+                                    example: !include node_stat.sample
+
+    /events:
+        displayName: In flight requests (events) for asyncronous calls to create or modify load balancer resources.
+        get:
+            description: Returns a list of events.
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: !include events.sample
+                            
+        /{event_id}:
+            displayName: Details for a specific event.
+
+            get:
+                description: Returns a specfic event info.
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                example: !include event.sample

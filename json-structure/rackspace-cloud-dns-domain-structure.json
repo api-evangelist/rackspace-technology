@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-09/schema",
+  "name": "Domain",
+  "description": "Structural model for a Rackspace Cloud DNS domain (zone). Mirrors the OpenAPI Domain schema.",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "string", "purpose": "identifier", "required": true },
+    { "name": "accountId", "type": "string", "purpose": "tenantReference", "required": true },
+    { "name": "name", "type": "string", "purpose": "fullyQualifiedDomainName", "required": true },
+    { "name": "emailAddress", "type": "string", "format": "email", "purpose": "soaContact", "required": true },
+    { "name": "ttl", "type": "integer", "minimum": 300, "purpose": "defaultTtlSeconds" },
+    { "name": "comment", "type": "string", "purpose": "adminComment" },
+    { "name": "created", "type": "string", "format": "date-time", "purpose": "auditTimestamp" },
+    { "name": "updated", "type": "string", "format": "date-time", "purpose": "auditTimestamp" },
+    {
+      "name": "nameservers",
+      "type": "array",
+      "items": { "type": "object", "fields": [ { "name": "name", "type": "string" } ] }
+    }
+  ]
+}

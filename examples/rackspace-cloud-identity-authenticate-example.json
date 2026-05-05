@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://identity.api.rackspacecloud.com/v2.0/tokens",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "auth": {
+        "RAX-KSKEY:apiKeyCredentials": {
+          "username": "demoauthor",
+          "apiKey": "aaaaa-bbbbb-ccccc-12345678"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "access": {
+        "token": {
+          "id": "ab48a9efdfedb23ty3494",
+          "expires": "2026-05-06T20:00:00.000Z",
+          "tenant": { "id": "1100111", "name": "1100111" }
+        },
+        "user": {
+          "id": "123456",
+          "username": "demoauthor",
+          "email": "demo@example.com",
+          "domainId": "1100111",
+          "defaultRegion": "DFW",
+          "roles": [
+            { "id": "9", "name": "identity:default" },
+            { "id": "5", "name": "object-store:default", "tenantId": "MossoCloudFS_929418" }
+          ]
+        },
+        "serviceCatalog": [
+          {
+            "name": "cloudFiles",
+            "type": "object-store",
+            "endpoints": [
+              {
+                "publicURL": "https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_929418",
+                "internalURL": "https://snet-storage101.dfw1.clouddrive.com/v1/MossoCloudFS_929418",
+                "region": "DFW",
+                "tenantId": "MossoCloudFS_929418"
+              }
+            ]
+          },
+          {
+            "name": "cloudDNS",
+            "type": "rax:dns",
+            "endpoints": [
+              { "publicURL": "https://dns.api.rackspacecloud.com/v1.0/1100111", "tenantId": "1100111" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

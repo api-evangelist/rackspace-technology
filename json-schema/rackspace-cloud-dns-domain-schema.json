@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rackspace-technology/main/json-schema/rackspace-cloud-dns-domain-schema.json",
+  "title": "Domain",
+  "description": "A Rackspace Cloud DNS domain (zone).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Domain identifier." },
+    "accountId": { "type": "string", "description": "Tenant identifier owning the domain." },
+    "name": { "type": "string", "description": "Fully qualified domain name." },
+    "emailAddress": { "type": "string", "format": "email", "description": "SOA contact email address." },
+    "ttl": { "type": "integer", "minimum": 300, "description": "Default record TTL in seconds." },
+    "comment": { "type": "string" },
+    "created": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "nameservers": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "name": { "type": "string" } } }
+    }
+  },
+  "required": ["name", "emailAddress"],
+  "x-schema-source": "documentation",
+  "x-source-url": "https://github.com/rackerlabs/docs-cloud-dns"
+}

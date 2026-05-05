@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rackspace-technology/main/json-schema/rackspace-cloud-dns-record-schema.json",
+  "title": "Record",
+  "description": "A DNS record within a Rackspace Cloud DNS domain.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "type": { "type": "string", "enum": ["A", "AAAA", "MX", "CNAME", "NS", "TXT", "SRV", "PTR"] },
+    "data": { "type": "string" },
+    "ttl": { "type": "integer", "minimum": 300 },
+    "priority": { "type": "integer" },
+    "comment": { "type": "string" },
+    "created": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" }
+  },
+  "required": ["type", "name", "data"]
+}

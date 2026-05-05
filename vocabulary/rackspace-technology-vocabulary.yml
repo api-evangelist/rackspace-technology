@@ -1,0 +1,92 @@
+name: Rackspace Technology Vocabulary
+description: >-
+  Domain vocabulary mapping the operational and capability dimensions of
+  Rackspace Technology APIs. Covers cloud identity, customer accounting,
+  DNS, load balancing, monitoring, metrics, orchestration, billing, events,
+  and the offerings catalog.
+created: '2026-05-05'
+modified: '2026-05-05'
+
+dimensions:
+  - name: Provider
+    description: The Rackspace organization providing the API surface.
+    terms:
+      - { term: Rackspace, definition: 'Rackspace Technology — multicloud solutions provider.' }
+      - { term: RAX, definition: 'Rackspace shorthand prefix used in vendor extensions (RAX-AUTH, RAX-KSKEY, RAX-KSQA).' }
+      - { term: RCN, definition: 'Rackspace Customer Number — the canonical customer-account identifier.' }
+      - { term: tenant, definition: 'A Rackspace Cloud account scope under which Cloud APIs are invoked. Synonymous with accountId in DNS.' }
+      - { term: domainId, definition: 'In Cloud Identity, an identity domain ID; in Cloud DNS, a DNS zone ID.' }
+
+  - name: Authentication
+    description: How callers obtain and present credentials.
+    terms:
+      - { term: 'X-Auth-Token', definition: 'HTTP header carrying the Cloud Identity bearer token.' }
+      - { term: 'RAX-KSKEY:apiKeyCredentials', definition: 'API-key credential type for username + apiKey authentication.' }
+      - { term: passwordCredentials, definition: 'Username + password credential type (less preferred than API key).' }
+      - { term: 'multi-factor authentication', definition: 'Optional second factor required when 401/403 is returned for primary auth.' }
+      - { term: 'phone PIN', definition: 'Verbal verification PIN stored against a user account.' }
+      - { term: 'secret QA', definition: 'Question/answer pair used as a recovery factor.' }
+
+  - name: Service catalog
+    description: How Identity advertises endpoints to authenticated callers.
+    terms:
+      - { term: serviceCatalog, definition: 'List of services and their per-region endpoints returned with the token.' }
+      - { term: publicURL, definition: 'Internet-facing endpoint for a service.' }
+      - { term: internalURL, definition: 'Region-internal (ServiceNet) endpoint for a service.' }
+      - { term: region, definition: 'Datacenter code (DFW, ORD, IAD, LON, SYD, HKG).' }
+      - { term: 'rax:dns', definition: 'Service catalog type for Rackspace Cloud DNS.' }
+      - { term: 'cloudFiles', definition: 'Service catalog name for Rackspace Cloud Files (object-store).' }
+      - { term: 'cloudLoadBalancers', definition: 'Service catalog name for Cloud Load Balancers.' }
+      - { term: 'cloudMonitoring', definition: 'Service catalog name for Cloud Monitoring.' }
+
+  - name: DNS
+    description: Cloud DNS zone and record concepts.
+    terms:
+      - { term: zone, definition: 'A DNS zone (also called domain).' }
+      - { term: record, definition: 'A DNS resource record (A, AAAA, MX, CNAME, NS, TXT, SRV, PTR).' }
+      - { term: PTR, definition: 'Reverse-DNS record managed via the rdns endpoint.' }
+      - { term: TTL, definition: 'Time-to-live in seconds; minimum 300 for Rackspace records.' }
+      - { term: 'BIND_9', definition: 'Zone-import contentType supported for bulk import.' }
+
+  - name: Async pattern
+    description: How long-running mutating DNS operations are completed.
+    terms:
+      - { term: '202 Accepted', definition: 'HTTP status returned for async DNS operations.' }
+      - { term: callbackUrl, definition: 'Polling URL returned in the async response.' }
+      - { term: 'job status', definition: 'INITIALIZED | RUNNING | COMPLETED | ERROR.' }
+
+  - name: Customer
+    description: Customer-service domain.
+    terms:
+      - { term: customer_account, definition: 'A customer account keyed by RCN.' }
+      - { term: contact, definition: 'A person attached to a customer account (primary, billing, technical).' }
+      - { term: metadata, definition: 'Key-value pairs attached to a customer-account or other resource.' }
+      - { term: customerSegment, definition: 'Segmentation label (Enterprise, Mid-Market, SMB).' }
+
+  - name: Offer
+    description: Catalog and pricing concepts.
+    terms:
+      - { term: offering, definition: 'A Rackspace product offering, identified by offeringCode and offeringVersion.' }
+      - { term: product, definition: 'A unit of an offering, with productCode, currency, and listPrice.' }
+      - { term: lineOfBusiness, definition: 'Filter (e.g., US_CLOUD).' }
+      - { term: commitGrid, definition: 'Tiered discount grid based on commit value.' }
+      - { term: volumeGrid, definition: 'Tiered discount grid based on consumption volume.' }
+
+  - name: Operational dimensions
+    description: Cross-cutting operational dimensions.
+    terms:
+      - { term: ticketing, definition: 'Support ticket lifecycle (Rackspace Ticketing API).' }
+      - { term: monitoring, definition: 'Monitoring checks, alarms, and notification plans.' }
+      - { term: metrics, definition: 'Time-series ingestion and query (Rackspace Metrics API).' }
+      - { term: orchestration, definition: 'Cloud stacks and templates (Rackspace Cloud Orchestration / Heat).' }
+      - { term: 'load balancer', definition: 'Dedicated Load Balancer (dlbv3) and Cloud Load Balancers.' }
+      - { term: feeds, definition: 'Atom-style event feeds for cloud product activity.' }
+      - { term: billing, definition: 'Invoices, transactions, and account billing data.' }
+
+  - name: Capabilities
+    description: Capability/workflow groupings exposed by this repo.
+    terms:
+      - { term: 'Cloud Account Operations', definition: 'Workflow combining Cloud Identity, Customer Service, and Cloud DNS for managed-cloud operators.' }
+      - { term: 'Authenticate', definition: 'Capability: obtain a service token via Cloud Identity.' }
+      - { term: 'Manage DNS', definition: 'Capability: list, create, update, and delete DNS zones and records.' }
+      - { term: 'Lookup Customer', definition: 'Capability: list and inspect customer accounts and their contacts.' }
