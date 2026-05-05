@@ -1,0 +1,170 @@
+aid: rackspace-technology
+url: https://raw.githubusercontent.com/api-evangelist/rackspace-technology/refs/heads/main/apis.yml
+name: Rackspace Technology
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Cloud
+  - Managed Services
+  - Multicloud
+  - Infrastructure
+  - DevOps
+description: >-
+  Rackspace Technology is a multicloud solutions provider offering managed
+  services, professional services, and consulting across cloud infrastructure,
+  applications, data, AI, and cybersecurity. The company operates as a trusted
+  operator of the full stack from governed private cloud to AI in production,
+  with offerings spanning private, public, and hybrid cloud, VMware, OpenStack,
+  Kubernetes, Microsoft 365, ERP/CRM, and security services. Rackspace exposes
+  a broad set of public APIs covering ticketing, DNS, load balancing,
+  monitoring, metrics, cloud orchestration, billing, identity, and customer
+  service.
+created: '2026-05-04'
+modified: '2026-05-04'
+specificationVersion: '0.19'
+apis:
+  - aid: rackspace-technology:ticketing-api
+    name: Rackspace Ticketing API
+    humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+    tags:
+      - Ticketing
+      - Support
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+    description: >-
+      The Rackspace Ticketing API (v2.0) lets customers and partners create,
+      read, and manage support tickets programmatically.
+  - aid: rackspace-technology:cloud-dns-api
+    name: Rackspace Cloud DNS API
+    humanURL: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+    tags:
+      - DNS
+      - Networking
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+    description: >-
+      The Rackspace Cloud DNS API (1.0) provides programmatic management of
+      DNS zones and records hosted on the Rackspace Cloud.
+  - aid: rackspace-technology:load-balancers-api
+    name: Rackspace Dedicated Load Balancer API
+    humanURL: https://docs.rackspace.com/reference/load-balancers-api-30-dlbv3
+    tags:
+      - Load Balancing
+      - Networking
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/load-balancers-api-30-dlbv3
+    description: >-
+      The Dedicated Load Balancer V3 (dlbv3) API provisions and manages
+      dedicated load balancers for Rackspace customers.
+  - aid: rackspace-technology:metrics-api
+    name: Rackspace Metrics API
+    humanURL: https://docs.rackspace.com/reference/metrics-getting-started
+    tags:
+      - Metrics
+      - Monitoring
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/metrics-getting-started
+    description: >-
+      The Rackspace Metrics API (2.0) ingests and queries time-series metric
+      data for monitoring infrastructure and applications.
+  - aid: rackspace-technology:monitoring-api
+    name: Rackspace Monitoring API
+    humanURL: https://docs.rackspace.com/reference/getting-started-monitoring
+    tags:
+      - Monitoring
+      - Operations
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/getting-started-monitoring
+    description: >-
+      The Rackspace Monitoring API (1.0) configures monitoring checks, alarms,
+      and notification plans for cloud and dedicated infrastructure.
+  - aid: rackspace-technology:cloud-orchestration-api
+    name: Rackspace Cloud Orchestration API
+    humanURL: https://docs.rackspace.com/reference/rackspace-cloud-orchestration-api-10
+    tags:
+      - Orchestration
+      - Cloud
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/rackspace-cloud-orchestration-api-10
+    description: >-
+      The Rackspace Cloud Orchestration API (1.0) deploys multi-resource cloud
+      stacks via templates.
+  - aid: rackspace-technology:cloud-feeds-api
+    name: Rackspace Cloud Feeds API
+    humanURL: https://docs.rackspace.com/reference/rackspace-cloud-feedstm-api-10
+    tags:
+      - Events
+      - Feeds
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/rackspace-cloud-feedstm-api-10
+    description: >-
+      The Rackspace Cloud Feeds API (1.0) provides Atom-style event feeds for
+      cloud product activity and notifications.
+  - aid: rackspace-technology:billing-api
+    name: Rackspace Billing API
+    humanURL: https://docs.rackspace.com/reference/billing-apiguide-v2
+    tags:
+      - Billing
+      - Account
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/billing-apiguide-v2
+    description: >-
+      The Rackspace Billing API (V2) returns invoices, transactions, and
+      account billing data programmatically.
+  - aid: rackspace-technology:customer-service-api
+    name: Rackspace Customer Service API
+    humanURL: https://docs.rackspace.com/reference/customer-service-v1
+    tags:
+      - Customer
+      - Account
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/customer-service-v1
+    description: >-
+      The Rackspace Customer Service API (4.24.0) manages customer accounts,
+      contacts, and service relationships.
+  - aid: rackspace-technology:customer-identity-api
+    name: Rackspace Customer Identity API
+    humanURL: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+    tags:
+      - Identity
+      - Authentication
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+    description: >-
+      The Rackspace Customer Identity API (Cloud Identity v2) issues
+      authentication tokens and manages users, roles, and tenants for accessing
+      Rackspace cloud APIs.
+  - aid: rackspace-technology:offer-api
+    name: Rackspace Offer API
+    humanURL: https://docs.rackspace.com/reference/rackspace-offer-api-20
+    tags:
+      - Offers
+      - Catalog
+    properties:
+      - type: APIReference
+        url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+    description: >-
+      The Rackspace Offer API (2.0) exposes the catalog of product offers and
+      their metadata.
+common:
+  - type: Website
+    url: https://www.rackspace.com/
+  - type: Documentation
+    url: https://docs.rackspace.com/
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/
+  - type: Support
+    url: https://support.rackspace.com/
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
