@@ -1,230 +1,519 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Rackspace Cloud Account Operations"
-  description: >-
-    Unified workflow for Rackspace cloud account operators: authenticate with
-    Cloud Identity, look up the customer account (RCN) and contacts, and
-    manage DNS zones and records under the tenant. Combines Cloud Identity,
-    Customer Service, and Cloud DNS into a single REST and MCP surface used
-    by managed-cloud operators and platform admins.
+  label: Rackspace Cloud Account Operations
+  description: 'Unified workflow for Rackspace cloud account operators: authenticate with Cloud Identity, look up the customer
+    account (RCN) and contacts, and manage DNS zones and records under the tenant. Combines Cloud Identity, Customer Service,
+    and Cloud DNS into a single REST and MCP surface used by managed-cloud operators and platform admins.'
   tags:
-    - Rackspace
-    - Cloud
-    - Identity
-    - Account
-    - DNS
-  created: "2026-05-05"
-  modified: "2026-05-05"
-
+  - Rackspace
+  - Cloud
+  - Identity
+  - Account
+  - DNS
+  created: '2026-05-05'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      RACKSPACE_USERNAME: RACKSPACE_USERNAME
-      RACKSPACE_API_KEY: RACKSPACE_API_KEY
-      RACKSPACE_AUTH_TOKEN: RACKSPACE_AUTH_TOKEN
-      RACKSPACE_ACCOUNT_ID: RACKSPACE_ACCOUNT_ID
-
+- namespace: env
+  keys:
+    RACKSPACE_USERNAME: RACKSPACE_USERNAME
+    RACKSPACE_API_KEY: RACKSPACE_API_KEY
+    RACKSPACE_AUTH_TOKEN: RACKSPACE_AUTH_TOKEN
+    RACKSPACE_ACCOUNT_ID: RACKSPACE_ACCOUNT_ID
 capability:
   consumes:
-    - import: cloud-identity
-      location: ./shared/cloud-identity.yaml
-    - import: customer-service
-      location: ./shared/customer-service.yaml
-    - import: cloud-dns
-      location: ./shared/cloud-dns.yaml
-
+  - type: http
+    namespace: cloud-identity
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity v2.0 API.
+    authentication:
+      type: header
+      header: X-Auth-Token
+      value: '{{env.RACKSPACE_AUTH_TOKEN}}'
+    resources:
+    - name: tokens
+      path: /v2.0/tokens
+      description: Authentication tokens.
+      operations:
+      - name: authenticate
+        method: POST
+        description: Authenticate with username and API key, return a service token.
+        body:
+          type: json
+          data:
+            auth:
+              RAX-KSKEY:apiKeyCredentials:
+                username: '{{env.RACKSPACE_USERNAME}}'
+                apiKey: '{{env.RACKSPACE_API_KEY}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: token
+          type: string
+          value: $.access.token.id
+        - name: serviceCatalog
+          type: array
+          value: $.access.serviceCatalog
+      - name: validate-token
+        method: GET
+        description: Validate a token and return associated user/roles.
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+          description: Token to validate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /v2.0/users
+      description: Identity users.
+      operations:
+      - name: list-users
+        method: GET
+        description: List users accessible to the caller.
+        outputRawFormat: json
+        outputParameters:
+        - name: users
+          type: array
+          value: $.users
+      - name: get-user
+        method: GET
+        description: Get a user by ID.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.user
+    - name: roles
+      path: /v2.0/users/{userId}/roles
+      description: Role assignments for a user.
+      operations:
+      - name: list-user-roles
+        method: GET
+        description: List global roles assigned to a user.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: roles
+          type: array
+          value: $.roles
+  - type: http
+    namespace: customer-service
+    baseUri: https://accounts.api.rackspacecloud.com
+    description: Rackspace Customer Service v1 API.
+    authentication:
+      type: header
+      header: X-Auth-Token
+      value: '{{env.RACKSPACE_AUTH_TOKEN}}'
+    resources:
+    - name: customer-accounts
+      path: /v1/customer_accounts
+      description: Customer accounts the caller can access.
+      operations:
+      - name: list-customer-accounts
+        method: GET
+        description: List customer accounts accessible to the caller.
+        outputRawFormat: json
+        outputParameters:
+        - name: accounts
+          type: array
+          value: $.customer_accounts
+      - name: get-customer-account
+        method: GET
+        description: Get a customer account by RCN.
+        inputParameters:
+        - name: rcn
+          in: path
+          type: string
+          required: true
+          description: Rackspace Customer Number.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contacts
+      path: /v1/customer_accounts/{rcn}/contacts
+      description: Contacts associated with a customer account.
+      operations:
+      - name: list-contacts
+        method: GET
+        description: List contacts for a customer account.
+        inputParameters:
+        - name: rcn
+          in: path
+          type: string
+          required: true
+          description: Rackspace Customer Number.
+        outputRawFormat: json
+        outputParameters:
+        - name: contacts
+          type: array
+          value: $.contacts
+  - type: http
+    namespace: cloud-dns
+    baseUri: https://dns.api.rackspacecloud.com/v1.0
+    description: Rackspace Cloud DNS API v1.0.
+    authentication:
+      type: header
+      header: X-Auth-Token
+      value: '{{env.RACKSPACE_AUTH_TOKEN}}'
+    resources:
+    - name: domains
+      path: /{accountId}/domains
+      description: DNS zones.
+      operations:
+      - name: list-domains
+        method: GET
+        description: List all DNS domains for the account.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum results (<=100).
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset.
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: Filter by name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-domains
+        method: POST
+        description: Create one or more DNS domains.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        body:
+          type: json
+          data:
+            domains: '{{tools.domains}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: show-domain
+        method: GET
+        description: Get details for a single DNS domain.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        - name: domainId
+          in: path
+          type: string
+          required: true
+          description: Domain ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-domain
+        method: DELETE
+        description: Delete a DNS domain.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        - name: domainId
+          in: path
+          type: string
+          required: true
+          description: Domain ID.
+        - name: deleteSubdomains
+          in: query
+          type: boolean
+          required: false
+          description: Also delete subdomains.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: records
+      path: /{accountId}/domains/{domainId}/records
+      description: DNS records within a domain.
+      operations:
+      - name: list-records
+        method: GET
+        description: List DNS records for a domain.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        - name: domainId
+          in: path
+          type: string
+          required: true
+          description: Domain ID.
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Record type filter.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: add-records
+        method: POST
+        description: Add DNS records to a domain.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Tenant ID.
+        - name: domainId
+          in: path
+          type: string
+          required: true
+          description: Domain ID.
+        body:
+          type: json
+          data:
+            records: '{{tools.records}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: cloud-account-operations-api
-      description: "Unified REST API for Rackspace cloud account operations."
-      resources:
-        - path: /v1/sessions
-          name: sessions
-          description: "Authentication sessions."
-          operations:
-            - method: POST
-              name: create-session
-              description: "Authenticate and obtain a service token."
-              call: "cloud-identity.authenticate"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users
-          name: users
-          description: "Identity user lookups."
-          operations:
-            - method: GET
-              name: list-users
-              description: "List identity users."
-              call: "cloud-identity.list-users"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/customer-accounts
-          name: customer-accounts
-          description: "Customer account lookups."
-          operations:
-            - method: GET
-              name: list-customer-accounts
-              description: "List customer accounts the caller can access."
-              call: "customer-service.list-customer-accounts"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-customer-account
-              description: "Get a customer account by RCN."
-              call: "customer-service.get-customer-account"
-              with:
-                rcn: "rest.rcn"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/contacts
-          name: contacts
-          description: "Customer contact lookups."
-          operations:
-            - method: GET
-              name: list-contacts
-              description: "List contacts for a customer account."
-              call: "customer-service.list-contacts"
-              with:
-                rcn: "rest.rcn"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/dns-zones
-          name: dns-zones
-          description: "DNS zones (domains) under the tenant."
-          operations:
-            - method: GET
-              name: list-dns-zones
-              description: "List DNS zones for the tenant."
-              call: "cloud-dns.list-domains"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-dns-zones
-              description: "Create one or more DNS zones."
-              call: "cloud-dns.create-domains"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-                domains: "rest.domains"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: show-dns-zone
-              description: "Show DNS zone details."
-              call: "cloud-dns.show-domain"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-                domainId: "rest.domainId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-dns-zone
-              description: "Delete a DNS zone."
-              call: "cloud-dns.delete-domain"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-                domainId: "rest.domainId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/dns-records
-          name: dns-records
-          description: "DNS records within a zone."
-          operations:
-            - method: GET
-              name: list-dns-records
-              description: "List records in a DNS zone."
-              call: "cloud-dns.list-records"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-                domainId: "rest.domainId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: add-dns-records
-              description: "Add records to a DNS zone."
-              call: "cloud-dns.add-records"
-              with:
-                accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-                domainId: "rest.domainId"
-                records: "rest.records"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 8082
-      namespace: cloud-account-operations-mcp
-      transport: http
-      description: "MCP server for AI-assisted Rackspace cloud account operations."
-      tools:
-        - name: authenticate-rackspace
-          description: "Authenticate to Rackspace Cloud Identity using configured credentials and obtain a service token."
-          hints: { readOnly: false, openWorld: true }
-          call: "cloud-identity.authenticate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-customer-accounts
-          description: "List Rackspace customer accounts (RCNs) accessible to the caller."
-          hints: { readOnly: true, openWorld: true }
-          call: "customer-service.list-customer-accounts"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-customer-account
-          description: "Get a Rackspace customer account by RCN."
-          hints: { readOnly: true, openWorld: true }
-          call: "customer-service.get-customer-account"
-          with:
-            rcn: "tools.rcn"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-dns-zones
-          description: "List Rackspace Cloud DNS zones for the configured tenant."
-          hints: { readOnly: true, openWorld: true }
-          call: "cloud-dns.list-domains"
-          with:
-            accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-dns-records
-          description: "List records in a Rackspace Cloud DNS zone."
-          hints: { readOnly: true, openWorld: true }
-          call: "cloud-dns.list-records"
-          with:
-            accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-            domainId: "tools.domainId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: add-dns-records
-          description: "Add DNS records to a Rackspace Cloud DNS zone."
-          hints: { readOnly: false, openWorld: true }
-          call: "cloud-dns.add-records"
-          with:
-            accountId: "{{env.RACKSPACE_ACCOUNT_ID}}"
-            domainId: "tools.domainId"
-            records: "tools.records"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: cloud-account-operations-api
+    description: Unified REST API for Rackspace cloud account operations.
+    resources:
+    - path: /v1/sessions
+      name: sessions
+      description: Authentication sessions.
+      operations:
+      - method: POST
+        name: create-session
+        description: Authenticate and obtain a service token.
+        call: cloud-identity.authenticate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users
+      name: users
+      description: Identity user lookups.
+      operations:
+      - method: GET
+        name: list-users
+        description: List identity users.
+        call: cloud-identity.list-users
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customer-accounts
+      name: customer-accounts
+      description: Customer account lookups.
+      operations:
+      - method: GET
+        name: list-customer-accounts
+        description: List customer accounts the caller can access.
+        call: customer-service.list-customer-accounts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-customer-account
+        description: Get a customer account by RCN.
+        call: customer-service.get-customer-account
+        with:
+          rcn: rest.rcn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts
+      name: contacts
+      description: Customer contact lookups.
+      operations:
+      - method: GET
+        name: list-contacts
+        description: List contacts for a customer account.
+        call: customer-service.list-contacts
+        with:
+          rcn: rest.rcn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dns-zones
+      name: dns-zones
+      description: DNS zones (domains) under the tenant.
+      operations:
+      - method: GET
+        name: list-dns-zones
+        description: List DNS zones for the tenant.
+        call: cloud-dns.list-domains
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-dns-zones
+        description: Create one or more DNS zones.
+        call: cloud-dns.create-domains
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+          domains: rest.domains
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: show-dns-zone
+        description: Show DNS zone details.
+        call: cloud-dns.show-domain
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+          domainId: rest.domainId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-dns-zone
+        description: Delete a DNS zone.
+        call: cloud-dns.delete-domain
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+          domainId: rest.domainId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dns-records
+      name: dns-records
+      description: DNS records within a zone.
+      operations:
+      - method: GET
+        name: list-dns-records
+        description: List records in a DNS zone.
+        call: cloud-dns.list-records
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+          domainId: rest.domainId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: add-dns-records
+        description: Add records to a DNS zone.
+        call: cloud-dns.add-records
+        with:
+          accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+          domainId: rest.domainId
+          records: rest.records
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 8082
+    namespace: cloud-account-operations-mcp
+    transport: http
+    description: MCP server for AI-assisted Rackspace cloud account operations.
+    tools:
+    - name: authenticate-rackspace
+      description: Authenticate to Rackspace Cloud Identity using configured credentials and obtain a service token.
+      hints:
+        readOnly: false
+        openWorld: true
+      call: cloud-identity.authenticate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-customer-accounts
+      description: List Rackspace customer accounts (RCNs) accessible to the caller.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: customer-service.list-customer-accounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-customer-account
+      description: Get a Rackspace customer account by RCN.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: customer-service.get-customer-account
+      with:
+        rcn: tools.rcn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-dns-zones
+      description: List Rackspace Cloud DNS zones for the configured tenant.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cloud-dns.list-domains
+      with:
+        accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-dns-records
+      description: List records in a Rackspace Cloud DNS zone.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cloud-dns.list-records
+      with:
+        accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+        domainId: tools.domainId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-dns-records
+      description: Add DNS records to a Rackspace Cloud DNS zone.
+      hints:
+        readOnly: false
+        openWorld: true
+      call: cloud-dns.add-records
+      with:
+        accountId: '{{env.RACKSPACE_ACCOUNT_ID}}'
+        domainId: tools.domainId
+        records: tools.records
+      outputParameters:
+      - type: object
+        mapping: $.
