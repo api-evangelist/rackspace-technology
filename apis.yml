@@ -330,6 +330,13 @@ common:
   - type: Vocabulary
     url: vocabulary/rackspace-technology-vocabulary.yml
     title: Rackspace Technology Vocabulary
+  - type: Integrations
+    url: https://www.rackspace.com/marketplace
+integrations:
+  - name: Rackspace Technology
+  - name: Toggle Search
+  - name: Enter Search Criteria
+  - name: Logo
 maintainers:
   - FN: API Evangelist
     url: https://apievangelist.com
