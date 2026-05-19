@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — Domains
+  description: 'Rackspace Cloud Identity API — Domains. 2 operations. Lead operation: List Domains. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Domains
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-domains
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — Domains business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-RAX-AUTH-domains
+      path: /v2.0/RAX-AUTH/domains
+      operations:
+      - name: listdomains
+        method: GET
+        description: List Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0-RAX-AUTH-domains-domainId
+      path: /v2.0/RAX-AUTH/domains/{domainId}
+      operations:
+      - name: getdomainbyid
+        method: GET
+        description: Get Domain By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-domains-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — Domains. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/rax-auth/domains
+      name: v2-0-rax-auth-domains
+      description: REST surface for v2.0-RAX-AUTH-domains.
+      operations:
+      - method: GET
+        name: listdomains
+        description: List Domains
+        call: rackspace-cloud-identity-domains.listdomains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/rax-auth/domains/{domainid}
+      name: v2-0-rax-auth-domains-domainid
+      description: REST surface for v2.0-RAX-AUTH-domains-domainId.
+      operations:
+      - method: GET
+        name: getdomainbyid
+        description: Get Domain By Id
+        call: rackspace-cloud-identity-domains.getdomainbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-domains-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — Domains. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-domains
+      description: List Domains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-domains.listdomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-domain-id
+      description: Get Domain By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-domains.getdomainbyid
+      outputParameters:
+      - type: object
+        mapping: $.

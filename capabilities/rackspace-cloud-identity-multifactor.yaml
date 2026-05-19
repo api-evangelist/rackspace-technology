@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — MultiFactor
+  description: 'Rackspace Cloud Identity API — MultiFactor. 2 operations. Lead operation: Update Multi-Factor Settings. Self-contained
+    Naftiko capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - MultiFactor
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-multifactor
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — MultiFactor business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-users-userId-RAX-AUTH-multi-factor
+      path: /v2.0/users/{userId}/RAX-AUTH/multi-factor
+      operations:
+      - name: updatemultifactorsettings
+        method: PUT
+        description: Update Multi-Factor Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2.0-users-userId-RAX-AUTH-multi-factor-mobile-phones
+      path: /v2.0/users/{userId}/RAX-AUTH/multi-factor/mobile-phones
+      operations:
+      - name: addmobilephone
+        method: POST
+        description: Add Mobile Phone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-multifactor-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — MultiFactor. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/users/{userid}/rax-auth/multi-factor
+      name: v2-0-users-userid-rax-auth-multi-factor
+      description: REST surface for v2.0-users-userId-RAX-AUTH-multi-factor.
+      operations:
+      - method: PUT
+        name: updatemultifactorsettings
+        description: Update Multi-Factor Settings
+        call: rackspace-cloud-identity-multifactor.updatemultifactorsettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/users/{userid}/rax-auth/multi-factor/mobile-phones
+      name: v2-0-users-userid-rax-auth-multi-factor-mobile-phones
+      description: REST surface for v2.0-users-userId-RAX-AUTH-multi-factor-mobile-phones.
+      operations:
+      - method: POST
+        name: addmobilephone
+        description: Add Mobile Phone
+        call: rackspace-cloud-identity-multifactor.addmobilephone
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-multifactor-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — MultiFactor. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: update-multi-factor-settings
+      description: Update Multi-Factor Settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-multifactor.updatemultifactorsettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-mobile-phone
+      description: Add Mobile Phone
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-multifactor.addmobilephone
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

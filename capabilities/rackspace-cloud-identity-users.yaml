@@ -1,0 +1,389 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — Users
+  description: 'Rackspace Cloud Identity API — Users. 11 operations. Lead operation: List Users. Self-contained Naftiko capability
+    covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-users
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-users
+      path: /v2.0/users
+      operations:
+      - name: listusers
+        method: GET
+        description: List Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Filter to a specific username.
+      - name: adduser
+        method: POST
+        description: Add User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2.0-users-userId
+      path: /v2.0/users/{userId}
+      operations:
+      - name: getuserbyid
+        method: GET
+        description: Get User By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuser
+        method: POST
+        description: Update User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteuser
+        method: DELETE
+        description: Delete User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0-users-userId-OS-KSADM-credentials
+      path: /v2.0/users/{userId}/OS-KSADM/credentials
+      operations:
+      - name: listusercredentials
+        method: GET
+        description: List User Credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addusercredential
+        method: POST
+        description: Add User Credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2.0-users-userId-OS-KSADM-credentials-RAX-KSKEY:apiKeyCredentials
+      path: /v2.0/users/{userId}/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials
+      operations:
+      - name: getuserapikeycredentials
+        method: GET
+        description: Get User API Key Credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: resetapikeyforuser
+        method: POST
+        description: Reset API Key For User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuserapikeycredentials
+        method: DELETE
+        description: Delete User API Key Credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0-users-userId-RAX-AUTH-domains
+      path: /v2.0/users/{userId}/RAX-AUTH/domains
+      operations:
+      - name: getaccessibledomainsforuser
+        method: GET
+        description: Get Accessible Domains For User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-users-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — Users. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/users
+      name: v2-0-users
+      description: REST surface for v2.0-users.
+      operations:
+      - method: GET
+        name: listusers
+        description: List Users
+        call: rackspace-cloud-identity-users.listusers
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: adduser
+        description: Add User
+        call: rackspace-cloud-identity-users.adduser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/users/{userid}
+      name: v2-0-users-userid
+      description: REST surface for v2.0-users-userId.
+      operations:
+      - method: GET
+        name: getuserbyid
+        description: Get User By Id
+        call: rackspace-cloud-identity-users.getuserbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateuser
+        description: Update User
+        call: rackspace-cloud-identity-users.updateuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuser
+        description: Delete User
+        call: rackspace-cloud-identity-users.deleteuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/users/{userid}/os-ksadm/credentials
+      name: v2-0-users-userid-os-ksadm-credentials
+      description: REST surface for v2.0-users-userId-OS-KSADM-credentials.
+      operations:
+      - method: GET
+        name: listusercredentials
+        description: List User Credentials
+        call: rackspace-cloud-identity-users.listusercredentials
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addusercredential
+        description: Add User Credential
+        call: rackspace-cloud-identity-users.addusercredential
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/users/{userid}/os-ksadm/credentials/rax-kskey-apikeycredentials
+      name: v2-0-users-userid-os-ksadm-credentials-rax-kskey-apikeycredentials
+      description: REST surface for v2.0-users-userId-OS-KSADM-credentials-RAX-KSKEY:apiKeyCredentials.
+      operations:
+      - method: GET
+        name: getuserapikeycredentials
+        description: Get User API Key Credentials
+        call: rackspace-cloud-identity-users.getuserapikeycredentials
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: resetapikeyforuser
+        description: Reset API Key For User
+        call: rackspace-cloud-identity-users.resetapikeyforuser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuserapikeycredentials
+        description: Delete User API Key Credentials
+        call: rackspace-cloud-identity-users.deleteuserapikeycredentials
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/users/{userid}/rax-auth/domains
+      name: v2-0-users-userid-rax-auth-domains
+      description: REST surface for v2.0-users-userId-RAX-AUTH-domains.
+      operations:
+      - method: GET
+        name: getaccessibledomainsforuser
+        description: Get Accessible Domains For User
+        call: rackspace-cloud-identity-users.getaccessibledomainsforuser
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — Users. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-users
+      description: List Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-users.listusers
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-user
+      description: Add User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-users.adduser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-id
+      description: Get User By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-users.getuserbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-user
+      description: Update User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-users.updateuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-user
+      description: Delete User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-identity-users.deleteuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-credentials
+      description: List User Credentials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-users.listusercredentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-user-credential
+      description: Add User Credential
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-users.addusercredential
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-api-key-credentials
+      description: Get User API Key Credentials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-users.getuserapikeycredentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-api-key-user
+      description: Reset API Key For User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-users.resetapikeyforuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-user-api-key-credentials
+      description: Delete User API Key Credentials
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-identity-users.deleteuserapikeycredentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-accessible-domains-user
+      description: Get Accessible Domains For User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-users.getaccessibledomainsforuser
+      outputParameters:
+      - type: object
+        mapping: $.

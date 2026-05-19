@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — Versions
+  description: 'Rackspace Cloud Identity API — Versions. 2 operations. Lead operation: List Versions. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Versions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-versions
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — Versions business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: listversions
+        method: GET
+        description: List Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0
+      path: /v2.0
+      operations:
+      - name: showversion
+        method: GET
+        description: Show Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-versions-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — Versions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: listversions
+        description: List Versions
+        call: rackspace-cloud-identity-versions.listversions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0
+      name: v2-0
+      description: REST surface for v2.0.
+      operations:
+      - method: GET
+        name: showversion
+        description: Show Version
+        call: rackspace-cloud-identity-versions.showversion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-versions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — Versions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-versions
+      description: List Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-versions.listversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: show-version
+      description: Show Version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-versions.showversion
+      outputParameters:
+      - type: object
+        mapping: $.

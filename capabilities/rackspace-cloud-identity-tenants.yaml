@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — Tenants
+  description: 'Rackspace Cloud Identity API — Tenants. 2 operations. Lead operation: List Tenants. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Tenants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-tenants
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — Tenants business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-tenants
+      path: /v2.0/tenants
+      operations:
+      - name: listtenants
+        method: GET
+        description: List Tenants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0-tenants-tenantId
+      path: /v2.0/tenants/{tenantId}
+      operations:
+      - name: gettenantbyid
+        method: GET
+        description: Get Tenant By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-tenants-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — Tenants. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/tenants
+      name: v2-0-tenants
+      description: REST surface for v2.0-tenants.
+      operations:
+      - method: GET
+        name: listtenants
+        description: List Tenants
+        call: rackspace-cloud-identity-tenants.listtenants
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/tenants/{tenantid}
+      name: v2-0-tenants-tenantid
+      description: REST surface for v2.0-tenants-tenantId.
+      operations:
+      - method: GET
+        name: gettenantbyid
+        description: Get Tenant By Id
+        call: rackspace-cloud-identity-tenants.gettenantbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-tenants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — Tenants. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-tenants
+      description: List Tenants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-tenants.listtenants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tenant-id
+      description: Get Tenant By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-tenants.gettenantbyid
+      outputParameters:
+      - type: object
+        mapping: $.

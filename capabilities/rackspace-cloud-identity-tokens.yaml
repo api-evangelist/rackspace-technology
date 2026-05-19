@@ -1,0 +1,195 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — Tokens
+  description: 'Rackspace Cloud Identity API — Tokens. 4 operations. Lead operation: Authenticate. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-tokens
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-tokens
+      path: /v2.0/tokens
+      operations:
+      - name: authenticate
+        method: POST
+        description: Authenticate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apply_rcn_roles
+          in: query
+          type: boolean
+          description: When true, returns any roles and endpoints accessible due to RCN roles.
+        - name: include_accessible_domains
+          in: query
+          type: boolean
+        - name: include_endpoints
+          in: query
+          type: boolean
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2.0-tokens-tokenId
+      path: /v2.0/tokens/{tokenId}
+      operations:
+      - name: validatetoken
+        method: GET
+        description: Validate Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: belongsTo
+          in: query
+          type: string
+      - name: revoketoken
+        method: DELETE
+        description: Revoke Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2.0-tokens-tokenId-endpoints
+      path: /v2.0/tokens/{tokenId}/endpoints
+      operations:
+      - name: listendpointsfortoken
+        method: GET
+        description: List Endpoints For Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-tokens-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — Tokens. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/tokens
+      name: v2-0-tokens
+      description: REST surface for v2.0-tokens.
+      operations:
+      - method: POST
+        name: authenticate
+        description: Authenticate
+        call: rackspace-cloud-identity-tokens.authenticate
+        with:
+          apply_rcn_roles: rest.apply_rcn_roles
+          include_accessible_domains: rest.include_accessible_domains
+          include_endpoints: rest.include_endpoints
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/tokens/{tokenid}
+      name: v2-0-tokens-tokenid
+      description: REST surface for v2.0-tokens-tokenId.
+      operations:
+      - method: GET
+        name: validatetoken
+        description: Validate Token
+        call: rackspace-cloud-identity-tokens.validatetoken
+        with:
+          belongsTo: rest.belongsTo
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: revoketoken
+        description: Revoke Token
+        call: rackspace-cloud-identity-tokens.revoketoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-0/tokens/{tokenid}/endpoints
+      name: v2-0-tokens-tokenid-endpoints
+      description: REST surface for v2.0-tokens-tokenId-endpoints.
+      operations:
+      - method: GET
+        name: listendpointsfortoken
+        description: List Endpoints For Token
+        call: rackspace-cloud-identity-tokens.listendpointsfortoken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — Tokens. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: authenticate
+      description: Authenticate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-identity-tokens.authenticate
+      with:
+        apply_rcn_roles: tools.apply_rcn_roles
+        include_accessible_domains: tools.include_accessible_domains
+        include_endpoints: tools.include_endpoints
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-token
+      description: Validate Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-tokens.validatetoken
+      with:
+        belongsTo: tools.belongsTo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoke-token
+      description: Revoke Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-identity-tokens.revoketoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-endpoints-token
+      description: List Endpoints For Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-tokens.listendpointsfortoken
+      outputParameters:
+      - type: object
+        mapping: $.

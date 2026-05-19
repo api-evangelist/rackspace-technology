@@ -1,0 +1,195 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud DNS API — ReverseDNS
+  description: 'Rackspace Cloud DNS API — ReverseDNS. 4 operations. Lead operation: Add PTR Records. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - ReverseDNS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-dns-reversedns
+    baseUri: https://dns.api.rackspacecloud.com/v1.0
+    description: Rackspace Cloud DNS API — ReverseDNS business capability. Self-contained, no shared references.
+    resources:
+    - name: account-rdns
+      path: /{account}/rdns
+      operations:
+      - name: addptrrecords
+        method: POST
+        description: Add PTR Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: account-rdns-serviceName
+      path: /{account}/rdns/{serviceName}
+      operations:
+      - name: listptrrecords
+        method: GET
+        description: List PTR Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: href
+          in: query
+          type: string
+          description: The fully qualified device URL whose PTR records should be listed.
+          required: true
+      - name: deleteptrrecords
+        method: DELETE
+        description: Delete PTR Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: href
+          in: query
+          type: string
+          required: true
+        - name: ip
+          in: query
+          type: string
+    - name: account-rdns-serviceName-recordId
+      path: /{account}/rdns/{serviceName}/{recordId}
+      operations:
+      - name: showptrrecord
+        method: GET
+        description: Show PTR Record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-dns-reversedns-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud DNS API — ReverseDNS. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{account}/rdns
+      name: account-rdns
+      description: REST surface for account-rdns.
+      operations:
+      - method: POST
+        name: addptrrecords
+        description: Add PTR Records
+        call: rackspace-cloud-dns-reversedns.addptrrecords
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/rdns/{servicename}
+      name: account-rdns-servicename
+      description: REST surface for account-rdns-serviceName.
+      operations:
+      - method: GET
+        name: listptrrecords
+        description: List PTR Records
+        call: rackspace-cloud-dns-reversedns.listptrrecords
+        with:
+          href: rest.href
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteptrrecords
+        description: Delete PTR Records
+        call: rackspace-cloud-dns-reversedns.deleteptrrecords
+        with:
+          href: rest.href
+          ip: rest.ip
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/rdns/{servicename}/{recordid}
+      name: account-rdns-servicename-recordid
+      description: REST surface for account-rdns-serviceName-recordId.
+      operations:
+      - method: GET
+        name: showptrrecord
+        description: Show PTR Record
+        call: rackspace-cloud-dns-reversedns.showptrrecord
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-dns-reversedns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud DNS API — ReverseDNS. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: add-ptr-records
+      description: Add PTR Records
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-dns-reversedns.addptrrecords
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-ptr-records
+      description: List PTR Records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-reversedns.listptrrecords
+      with:
+        href: tools.href
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ptr-records
+      description: Delete PTR Records
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-dns-reversedns.deleteptrrecords
+      with:
+        href: tools.href
+        ip: tools.ip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: show-ptr-record
+      description: Show PTR Record
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-reversedns.showptrrecord
+      outputParameters:
+      - type: object
+        mapping: $.

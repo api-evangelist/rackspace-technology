@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud Identity API — PhonePin
+  description: 'Rackspace Cloud Identity API — PhonePin. 2 operations. Lead operation: Get Phone Pin. Self-contained Naftiko
+    capability covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - PhonePin
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-identity-phonepin
+    baseUri: https://identity.api.rackspacecloud.com
+    description: Rackspace Cloud Identity API — PhonePin business capability. Self-contained, no shared references.
+    resources:
+    - name: v2.0-users-userId-RAX-AUTH-phone-pin
+      path: /v2.0/users/{userId}/RAX-AUTH/phone-pin
+      operations:
+      - name: getphonepin
+        method: GET
+        description: Get Phone Pin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatephonepin
+        method: PUT
+        description: Update Phone Pin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-identity-phonepin-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud Identity API — PhonePin. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2-0/users/{userid}/rax-auth/phone-pin
+      name: v2-0-users-userid-rax-auth-phone-pin
+      description: REST surface for v2.0-users-userId-RAX-AUTH-phone-pin.
+      operations:
+      - method: GET
+        name: getphonepin
+        description: Get Phone Pin
+        call: rackspace-cloud-identity-phonepin.getphonepin
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatephonepin
+        description: Update Phone Pin
+        call: rackspace-cloud-identity-phonepin.updatephonepin
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-identity-phonepin-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud Identity API — PhonePin. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-phone-pin
+      description: Get Phone Pin
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-phonepin.getphonepin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-phone-pin
+      description: Update Phone Pin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-identity-phonepin.updatephonepin
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

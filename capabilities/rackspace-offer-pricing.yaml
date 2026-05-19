@@ -1,0 +1,210 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Offer API — Pricing
+  description: 'Rackspace Offer API — Pricing. 5 operations. Lead operation: Calculate Discount. Self-contained Naftiko capability
+    covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Pricing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-offer-pricing
+    baseUri: https://offerings.api.rackspacecloud.com
+    description: Rackspace Offer API — Pricing business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-calculate-discount
+      path: /v2/calculate/discount
+      operations:
+      - name: calculatediscount
+        method: POST
+        description: Calculate Discount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-commitGrids
+      path: /v2/commitGrids
+      operations:
+      - name: getcommitgrids
+        method: GET
+        description: Get Commit Grids
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-commitGrids-gridId
+      path: /v2/commitGrids/{gridId}
+      operations:
+      - name: getcommitgrid
+        method: GET
+        description: Get Commit Grid
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-volumeGrids
+      path: /v2/volumeGrids
+      operations:
+      - name: getvolumegrids
+        method: GET
+        description: Get Volume Grids
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-volumeGrids-gridId
+      path: /v2/volumeGrids/{gridId}
+      operations:
+      - name: getvolumegrid
+        method: GET
+        description: Get Volume Grid
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-offer-pricing-rest
+    port: 8080
+    description: REST adapter for Rackspace Offer API — Pricing. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/calculate/discount
+      name: v2-calculate-discount
+      description: REST surface for v2-calculate-discount.
+      operations:
+      - method: POST
+        name: calculatediscount
+        description: Calculate Discount
+        call: rackspace-offer-pricing.calculatediscount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/commitgrids
+      name: v2-commitgrids
+      description: REST surface for v2-commitGrids.
+      operations:
+      - method: GET
+        name: getcommitgrids
+        description: Get Commit Grids
+        call: rackspace-offer-pricing.getcommitgrids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/commitgrids/{gridid}
+      name: v2-commitgrids-gridid
+      description: REST surface for v2-commitGrids-gridId.
+      operations:
+      - method: GET
+        name: getcommitgrid
+        description: Get Commit Grid
+        call: rackspace-offer-pricing.getcommitgrid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/volumegrids
+      name: v2-volumegrids
+      description: REST surface for v2-volumeGrids.
+      operations:
+      - method: GET
+        name: getvolumegrids
+        description: Get Volume Grids
+        call: rackspace-offer-pricing.getvolumegrids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/volumegrids/{gridid}
+      name: v2-volumegrids-gridid
+      description: REST surface for v2-volumeGrids-gridId.
+      operations:
+      - method: GET
+        name: getvolumegrid
+        description: Get Volume Grid
+        call: rackspace-offer-pricing.getvolumegrid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-offer-pricing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Offer API — Pricing. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: calculate-discount
+      description: Calculate Discount
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-offer-pricing.calculatediscount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-commit-grids
+      description: Get Commit Grids
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-offer-pricing.getcommitgrids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-commit-grid
+      description: Get Commit Grid
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-offer-pricing.getcommitgrid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-volume-grids
+      description: Get Volume Grids
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-offer-pricing.getvolumegrids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-volume-grid
+      description: Get Volume Grid
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-offer-pricing.getvolumegrid
+      outputParameters:
+      - type: object
+        mapping: $.

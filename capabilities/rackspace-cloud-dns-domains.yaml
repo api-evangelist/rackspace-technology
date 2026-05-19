@@ -1,0 +1,553 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rackspace Cloud DNS API — Domains
+  description: 'Rackspace Cloud DNS API — Domains. 13 operations. Lead operation: List Domains. Self-contained Naftiko capability
+    covering one Rackspace Technology business surface.'
+  tags:
+  - Rackspace Technology
+  - Domains
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RACKSPACE_TECHNOLOGY_API_KEY: RACKSPACE_TECHNOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rackspace-cloud-dns-domains
+    baseUri: https://dns.api.rackspacecloud.com/v1.0
+    description: Rackspace Cloud DNS API — Domains business capability. Self-contained, no shared references.
+    resources:
+    - name: account-domains
+      path: /{account}/domains
+      operations:
+      - name: listdomains
+        method: GET
+        description: List Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Filter the listing to domains whose name starts with this string.
+      - name: createdomains
+        method: POST
+        description: Create Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatedomains
+        method: PUT
+        description: Update Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedomains
+        method: DELETE
+        description: Delete Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: array
+          description: One or more domain IDs to delete.
+          required: true
+    - name: account-domains-import
+      path: /{account}/domains/import
+      operations:
+      - name: importdomain
+        method: POST
+        description: Import Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: account-domains-search
+      path: /{account}/domains/search
+      operations:
+      - name: searchdomains
+        method: GET
+        description: Search Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Substring of the domain name to match.
+          required: true
+    - name: account-domains-domainId
+      path: /{account}/domains/{domainId}
+      operations:
+      - name: showdomain
+        method: GET
+        description: Show Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: showRecords
+          in: query
+          type: boolean
+          description: Include this domain's records in the response.
+        - name: showSubdomains
+          in: query
+          type: boolean
+          description: Include this domain's subdomains in the response.
+      - name: updatedomain
+        method: PUT
+        description: Update Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedomain
+        method: DELETE
+        description: Delete Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deleteSubdomains
+          in: query
+          type: boolean
+          description: When true, all subdomains are deleted along with the domain.
+    - name: account-domains-domainId-changes
+      path: /{account}/domains/{domainId}/changes
+      operations:
+      - name: showdomainchanges
+        method: GET
+        description: Show Domain Changes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: changes
+          in: query
+          type: string
+          description: ISO-8601 timestamp filter; only changes since this date are returned.
+    - name: account-domains-domainId-clone
+      path: /{account}/domains/{domainId}/clone
+      operations:
+      - name: clonedomain
+        method: POST
+        description: Clone Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloneName
+          in: query
+          type: string
+          description: New name to use for the clone.
+          required: true
+        - name: cloneSubdomains
+          in: query
+          type: boolean
+        - name: modifyRecordData
+          in: query
+          type: boolean
+        - name: modifyEmailAddress
+          in: query
+          type: boolean
+        - name: modifyComment
+          in: query
+          type: boolean
+    - name: account-domains-domainId-export
+      path: /{account}/domains/{domainId}/export
+      operations:
+      - name: exportdomain
+        method: GET
+        description: Export Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account-domains-domainId-subdomains
+      path: /{account}/domains/{domainId}/subdomains
+      operations:
+      - name: listsubdomains
+        method: GET
+        description: List Subdomains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.RACKSPACE_TECHNOLOGY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rackspace-cloud-dns-domains-rest
+    port: 8080
+    description: REST adapter for Rackspace Cloud DNS API — Domains. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{account}/domains
+      name: account-domains
+      description: REST surface for account-domains.
+      operations:
+      - method: GET
+        name: listdomains
+        description: List Domains
+        call: rackspace-cloud-dns-domains.listdomains
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdomains
+        description: Create Domains
+        call: rackspace-cloud-dns-domains.createdomains
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedomains
+        description: Update Domains
+        call: rackspace-cloud-dns-domains.updatedomains
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedomains
+        description: Delete Domains
+        call: rackspace-cloud-dns-domains.deletedomains
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/import
+      name: account-domains-import
+      description: REST surface for account-domains-import.
+      operations:
+      - method: POST
+        name: importdomain
+        description: Import Domain
+        call: rackspace-cloud-dns-domains.importdomain
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/search
+      name: account-domains-search
+      description: REST surface for account-domains-search.
+      operations:
+      - method: GET
+        name: searchdomains
+        description: Search Domains
+        call: rackspace-cloud-dns-domains.searchdomains
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/{domainid}
+      name: account-domains-domainid
+      description: REST surface for account-domains-domainId.
+      operations:
+      - method: GET
+        name: showdomain
+        description: Show Domain
+        call: rackspace-cloud-dns-domains.showdomain
+        with:
+          showRecords: rest.showRecords
+          showSubdomains: rest.showSubdomains
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedomain
+        description: Update Domain
+        call: rackspace-cloud-dns-domains.updatedomain
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedomain
+        description: Delete Domain
+        call: rackspace-cloud-dns-domains.deletedomain
+        with:
+          deleteSubdomains: rest.deleteSubdomains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/{domainid}/changes
+      name: account-domains-domainid-changes
+      description: REST surface for account-domains-domainId-changes.
+      operations:
+      - method: GET
+        name: showdomainchanges
+        description: Show Domain Changes
+        call: rackspace-cloud-dns-domains.showdomainchanges
+        with:
+          changes: rest.changes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/{domainid}/clone
+      name: account-domains-domainid-clone
+      description: REST surface for account-domains-domainId-clone.
+      operations:
+      - method: POST
+        name: clonedomain
+        description: Clone Domain
+        call: rackspace-cloud-dns-domains.clonedomain
+        with:
+          cloneName: rest.cloneName
+          cloneSubdomains: rest.cloneSubdomains
+          modifyRecordData: rest.modifyRecordData
+          modifyEmailAddress: rest.modifyEmailAddress
+          modifyComment: rest.modifyComment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/{domainid}/export
+      name: account-domains-domainid-export
+      description: REST surface for account-domains-domainId-export.
+      operations:
+      - method: GET
+        name: exportdomain
+        description: Export Domain
+        call: rackspace-cloud-dns-domains.exportdomain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{account}/domains/{domainid}/subdomains
+      name: account-domains-domainid-subdomains
+      description: REST surface for account-domains-domainId-subdomains.
+      operations:
+      - method: GET
+        name: listsubdomains
+        description: List Subdomains
+        call: rackspace-cloud-dns-domains.listsubdomains
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rackspace-cloud-dns-domains-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rackspace Cloud DNS API — Domains. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-domains
+      description: List Domains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.listdomains
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-domains
+      description: Create Domains
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-dns-domains.createdomains
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-domains
+      description: Update Domains
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.updatedomains
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-domains
+      description: Delete Domains
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-dns-domains.deletedomains
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-domain
+      description: Import Domain
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-dns-domains.importdomain
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-domains
+      description: Search Domains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.searchdomains
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: show-domain
+      description: Show Domain
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.showdomain
+      with:
+        showRecords: tools.showRecords
+        showSubdomains: tools.showSubdomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-domain
+      description: Update Domain
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.updatedomain
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-domain
+      description: Delete Domain
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rackspace-cloud-dns-domains.deletedomain
+      with:
+        deleteSubdomains: tools.deleteSubdomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: show-domain-changes
+      description: Show Domain Changes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.showdomainchanges
+      with:
+        changes: tools.changes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: clone-domain
+      description: Clone Domain
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rackspace-cloud-dns-domains.clonedomain
+      with:
+        cloneName: tools.cloneName
+        cloneSubdomains: tools.cloneSubdomains
+        modifyRecordData: tools.modifyRecordData
+        modifyEmailAddress: tools.modifyEmailAddress
+        modifyComment: tools.modifyComment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-domain
+      description: Export Domain
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.exportdomain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-subdomains
+      description: List Subdomains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rackspace-cloud-dns-domains.listsubdomains
+      outputParameters:
+      - type: object
+        mapping: $.
