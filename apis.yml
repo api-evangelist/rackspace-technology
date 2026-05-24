@@ -350,6 +350,8 @@ common:
   title: Rackspace Technology Vocabulary
 - type: Integrations
   url: https://www.rackspace.com/marketplace
+- type: LLMsTxt
+  url: https://docs.rackspace.com/llms.txt
 integrations:
 - name: Rackspace Technology
 - name: Toggle Search
