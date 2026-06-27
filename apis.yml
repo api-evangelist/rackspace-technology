@@ -56,13 +56,13 @@ apis:
   - type: Examples
     url: examples/rackspace-cloud-dns-create-domain-example.json
     title: Create Domain Example
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-dns-domains.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-dns-limits.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-dns-records.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-dns-reversedns.yaml
   description: The Rackspace Cloud DNS API (1.0) provides programmatic management of DNS zones and records hosted on the Rackspace
     Cloud.
@@ -166,11 +166,11 @@ apis:
   - type: Examples
     url: examples/rackspace-customer-service-list-accounts-example.json
     title: List Customer Accounts Example
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-contacts.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-customeraccounts.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-metadata.yaml
   description: The Rackspace Customer Service API (4.24.0) manages customer accounts, contacts, and service relationships
     keyed by Rackspace Customer Number (RCN).
@@ -199,32 +199,32 @@ apis:
   - type: Examples
     url: examples/rackspace-cloud-identity-authenticate-example.json
     title: Authenticate Example
-  - type: SDK
+  - type: SDKs
     url: https://github.com/rackspace/gophercloud
     title: Go SDK (gophercloud)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/rackspace/php-opencloud
     title: PHP SDK (php-opencloud)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/rackspace/openstack.net
     title: .NET SDK
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-domains.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-multifactor.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-phonepin.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-roles.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-secretqa.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-tenants.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-tokens.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-users.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-versions.yaml
   description: The Rackspace Customer Identity API (Cloud Identity v2) issues authentication tokens and manages users, roles,
     and tenants for accessing Rackspace cloud APIs.
@@ -247,13 +247,13 @@ apis:
   - type: Examples
     url: examples/rackspace-offer-get-offerings-example.json
     title: Get Offerings Example
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-currency.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-offerings.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-pricing.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-products.yaml
   description: The Rackspace Offer API (2.0) exposes the catalog of product offers and their metadata.
 common:
@@ -273,19 +273,19 @@ common:
 - type: GitHubOrganization
   url: https://github.com/rackerlabs
   title: RackerLabs GitHub Org
-- type: SDK
+- type: SDKs
   url: https://github.com/rackspace/gophercloud
   title: Go SDK (gophercloud, archived)
-- type: SDK
+- type: SDKs
   url: https://github.com/rackspace/php-opencloud
   title: PHP SDK (php-opencloud)
-- type: SDK
+- type: SDKs
   url: https://github.com/rackspace/openstack.net
   title: .NET SDK (openstack.net)
-- type: SDK
+- type: SDKs
   url: https://github.com/rackspace/jclouds
   title: Java SDK (jclouds, archived)
-- type: SDK
+- type: SDKs
   url: https://github.com/rackspace/fog
   title: Ruby SDK (fog, archived)
 - type: CLI
@@ -339,7 +339,7 @@ common:
 - type: SpectralRules
   url: rules/rackspace-technology-rules.yml
   title: Rackspace Technology Spectral Ruleset
-- type: NaftikoCapabilities
+- type: X-NaftikoCapabilities
   url: capabilities/cloud-account-operations.yaml
   title: Cloud Account Operations Capability
 - type: JSONLD
@@ -350,7 +350,7 @@ common:
   title: Rackspace Technology Vocabulary
 - type: Integrations
   url: https://www.rackspace.com/marketplace
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.rackspace.com/llms.txt
 integrations:
 - name: Rackspace Technology
