@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.rackspace.com/compliance
+url: https://www.rackspace.com/compliance
+certifications:
+- SOC 2
+- ISO 27001
+- PCI DSS
+- HIPAA
+- FedRAMP
+- GDPR
+- FIPS 140
+evidence:
+- source: https://www.rackspace.com/compliance
+  keywords:
+  - soc 2
+  - iso 27001
+  - iso/iec 27001
+  - pci dss
+  - hipaa
+  - fedramp
+  - compliance certification
+  - gdpr

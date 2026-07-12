@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rackspace-cloud-dns.yaml, openapi/rackspace-cloud-identity.yaml, openapi/rackspace-customer-service.yaml,
+  openapi/rackspace-offer.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: AuthToken
+  type: apiKey
+  in: header
+  parameter: X-Auth-Token
+  description: Rackspace Cloud Identity-issued authentication token.
+  sources:
+  - openapi/rackspace-cloud-dns.yaml
+  - openapi/rackspace-cloud-identity.yaml
+  - openapi/rackspace-customer-service.yaml
+  - openapi/rackspace-offer.yaml

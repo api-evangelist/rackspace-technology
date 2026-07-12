@@ -257,6 +257,14 @@ apis:
     url: capabilities/rackspace-offer-products.yaml
   description: The Rackspace Offer API (2.0) exposes the catalog of product offers and their metadata.
 common:
+- type: TrustCenter
+  url: security/rackspace-technology-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/rackspace-technology-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/rackspace-technology-domain-security.yml
+- type: Authentication
+  url: authentication/rackspace-technology-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/rackspace-technology
 - type: Website
@@ -267,6 +275,8 @@ common:
   url: https://docs.rackspace.com/reference/
 - type: Support
   url: https://support.rackspace.com/
+- url: https://www.rackspace.com/blog/feed
+  type: Blog
 - type: GitHubOrganization
   url: https://github.com/rackspace
   title: Rackspace GitHub Org
