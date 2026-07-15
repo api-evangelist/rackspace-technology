@@ -257,6 +257,8 @@ apis:
     url: capabilities/rackspace-offer-products.yaml
   description: The Rackspace Offer API (2.0) exposes the catalog of product offers and their metadata.
 common:
+- type: AgenticAccess
+  url: agentic-access/rackspace-technology-agentic-access.yml
 - type: TrustCenter
   url: security/rackspace-technology-trust-center.yml
 - type: VulnerabilityDisclosure
