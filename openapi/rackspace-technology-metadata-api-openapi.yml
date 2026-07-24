@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Metadata API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Metadata
+  description: Resource-level customer metadata.
+paths:
+  /v1/{resourceType}/{resourceId}/metadata:
+    parameters:
+    - $ref: '#/components/parameters/ResourceType'
+    - $ref: '#/components/parameters/ResourceId'
+    get:
+      operationId: getListOfAllMetadataForResource
+      summary: Get List Of All Metadata For Resource
+      description: Returns all metadata key-value pairs attached to the specified resource.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Metadata returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/{resourceType}/{resourceId}/metadata/{key}:
+    parameters:
+    - $ref: '#/components/parameters/ResourceType'
+    - $ref: '#/components/parameters/ResourceId'
+    - in: path
+      name: key
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getSpecificMetadata
+      summary: Get Specific Metadata
+      description: Returns the metadata entry identified by the supplied key.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Metadata entry returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metadata'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/{resourceType}/{resourceId}/metadata/{key}/details:
+    parameters:
+    - $ref: '#/components/parameters/ResourceType'
+    - $ref: '#/components/parameters/ResourceId'
+    - in: path
+      name: key
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getDetailsForSpecificMetadata
+      summary: Get Details For Specific Metadata
+      description: Returns extended detail about the metadata entry, including who created it and when.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Metadata details returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataDetails'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MetadataList:
+      title: MetadataList
+      type: object
+      properties:
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        category:
+          type: string
+    MetadataDetails:
+      title: MetadataDetails
+      allOf:
+      - $ref: '#/components/schemas/Metadata'
+      - type: object
+        properties:
+          createdAt:
+            type: string
+            format: date-time
+          createdBy:
+            type: string
+          updatedAt:
+            type: string
+            format: date-time
+          updatedBy:
+            type: string
+  parameters:
+    ResourceId:
+      in: path
+      name: resourceId
+      required: true
+      schema:
+        type: string
+    ResourceType:
+      in: path
+      name: resourceType
+      required: true
+      description: Resource type the metadata is attached to (for example, customer_accounts).
+      schema:
+        type: string
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

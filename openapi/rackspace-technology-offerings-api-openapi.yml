@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Offerings API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Offerings
+  description: Offering catalog operations.
+paths:
+  /v2/offerings:
+    get:
+      operationId: getOfferings
+      summary: Get Offerings
+      description: Lists Rackspace offerings available in the product catalog.
+      tags:
+      - Offerings
+      parameters:
+      - $ref: '#/components/parameters/LineOfBusiness'
+      - $ref: '#/components/parameters/Status'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Marker'
+      responses:
+        '200':
+          description: Offerings returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferingList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Offering:
+      title: Offering
+      type: object
+      properties:
+        offeringCode:
+          type: string
+        offeringVersion:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        lineOfBusiness:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    OfferingList:
+      title: OfferingList
+      type: object
+      properties:
+        offerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offering'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  parameters:
+    Status:
+      in: query
+      name: status
+      required: false
+      schema:
+        type: string
+        enum:
+        - ACTIVE
+        - INACTIVE
+        default: ACTIVE
+    LineOfBusiness:
+      in: query
+      name: lineOfBusiness
+      required: false
+      description: The Rackspace line of business associated with the offering (for example, US_CLOUD).
+      schema:
+        type: string
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

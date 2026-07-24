@@ -1,0 +1,807 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Domains API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Domains
+  description: DNS domain (zone) operations.
+paths:
+  /{account}/domains:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    get:
+      operationId: listDomains
+      summary: List Domains
+      description: Lists all DNS domains manageable by the specified account. The resulting list is flat (subdomains are not nested) and returns by default a maximum of 100 items per page; navigate using the limit and offset query parameters.
+      tags:
+      - Domains
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - in: query
+        name: name
+        required: false
+        description: Filter the listing to domains whose name starts with this string.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Domains list returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainList'
+              example:
+                domains:
+                - id: '2725233'
+                  name: example.com
+                  accountId: '1234'
+                  emailAddress: sample@rackspace.com
+                  comment: Optional domain comment.
+                  created: 2011-06-24T01:12:51.000+0000
+                  updated: 2011-06-24T01:23:15.000+0000
+                totalEntries: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '413':
+          $ref: '#/components/responses/OverLimit'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createDomains
+      summary: Create Domains
+      description: Creates one or more DNS domains under the specified account. Returns an asynchronous 202 response containing a callback URL that can be polled for completion status.
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDomainsRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateDomains
+      summary: Update Domains
+      description: Updates one or more existing DNS domains under the account.
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDomainsRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDomains
+      summary: Delete Domains
+      description: Deletes one or more DNS domains by ID.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: id
+        required: true
+        description: One or more domain IDs to delete.
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/search:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    get:
+      operationId: searchDomains
+      summary: Search Domains
+      description: Searches the account's domains by name fragment.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: name
+        required: true
+        description: Substring of the domain name to match.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching domains returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/import:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    post:
+      operationId: importDomain
+      summary: Import Domain
+      description: Imports a DNS domain definition supplied as a BIND9-formatted contents block.
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportDomainRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    get:
+      operationId: showDomain
+      summary: Show Domain
+      description: Returns details for the specified domain. Set showRecords or showSubdomains to include nested data.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: showRecords
+        required: false
+        schema:
+          type: boolean
+        description: Include this domain's records in the response.
+      - in: query
+        name: showSubdomains
+        required: false
+        schema:
+          type: boolean
+        description: Include this domain's subdomains in the response.
+      responses:
+        '200':
+          description: Domain returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateDomain
+      summary: Update Domain
+      description: Updates a single existing DNS domain.
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDomainRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDomain
+      summary: Delete Domain
+      description: Deletes a single DNS domain. Use the deleteSubdomains query parameter to also delete its subdomains.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: deleteSubdomains
+        required: false
+        description: When true, all subdomains are deleted along with the domain.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}/changes:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    get:
+      operationId: showDomainChanges
+      summary: Show Domain Changes
+      description: Returns a list of changes to the specified domain.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: changes
+        required: false
+        description: ISO-8601 timestamp filter; only changes since this date are returned.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Change history returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainChanges'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}/export:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    get:
+      operationId: exportDomain
+      summary: Export Domain
+      description: Exports the BIND9-formatted contents of a domain.
+      tags:
+      - Domains
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}/clone:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    post:
+      operationId: cloneDomain
+      summary: Clone Domain
+      description: Clones the specified domain to a new domain name.
+      tags:
+      - Domains
+      parameters:
+      - in: query
+        name: cloneName
+        required: true
+        description: New name to use for the clone.
+        schema:
+          type: string
+      - in: query
+        name: cloneSubdomains
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - in: query
+        name: modifyRecordData
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - in: query
+        name: modifyEmailAddress
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - in: query
+        name: modifyComment
+        required: false
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}/subdomains:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    get:
+      operationId: listSubdomains
+      summary: List Subdomains
+      description: Lists subdomains for a domain.
+      tags:
+      - Domains
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Subdomains returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/RAX-AUTH/domains:
+    get:
+      operationId: listDomains
+      summary: List Domains
+      description: Lists identity domains.
+      tags:
+      - Domains
+      responses:
+        '200':
+          description: Domains returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainList_2'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/RAX-AUTH/domains/{domainId}:
+    parameters:
+    - in: path
+      name: domainId
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getDomainById
+      summary: Get Domain By Id
+      tags:
+      - Domains
+      responses:
+        '200':
+          description: Domain returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain_2'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    OverLimit:
+      description: The number of items returned is above the allowed limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested item was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: The request is missing one or more elements, or values are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  parameters:
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
+  schemas:
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+    DomainChanges:
+      title: DomainChanges
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        totalEntries:
+          type: integer
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              action:
+                type: string
+              targetType:
+                type: string
+              targetId:
+                type: string
+              accountId:
+                type: string
+              changeDetails:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    originalValue:
+                      type: string
+                    newValue:
+                      type: string
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    UpdateDomainsRequest:
+      title: UpdateDomainsRequest
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+            - $ref: '#/components/schemas/UpdateDomainRequest'
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
+    DomainList_2:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain_2'
+    UpdateDomainRequest:
+      title: UpdateDomainRequest
+      type: object
+      properties:
+        ttl:
+          type: integer
+          minimum: 300
+        emailAddress:
+          type: string
+          format: email
+        comment:
+          type: string
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    CreateDomainsRequest:
+      title: CreateDomainsRequest
+      type: object
+      required:
+      - domains
+      properties:
+        domains:
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            - emailAddress
+            properties:
+              name:
+                type: string
+              ttl:
+                type: integer
+                minimum: 300
+              emailAddress:
+                type: string
+                format: email
+              comment:
+                type: string
+              recordsList:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordInput'
+              subdomains:
+                type: object
+                properties:
+                  domains:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Domain'
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    Domain:
+      title: Domain
+      type: object
+      description: A DNS zone manageable by the account.
+      properties:
+        id:
+          type: string
+          description: Domain identifier.
+        accountId:
+          type: string
+          description: Tenant identifier that owns the domain.
+        name:
+          type: string
+          description: Fully qualified domain name.
+        emailAddress:
+          type: string
+          format: email
+          description: Administrative email contact (used as SOA RNAME).
+        ttl:
+          type: integer
+          description: Default record TTL in seconds (>= 300).
+        comment:
+          type: string
+          description: Optional administrative comment.
+        nameservers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+        recordsList:
+          $ref: '#/components/schemas/RecordList'
+        subdomains:
+          $ref: '#/components/schemas/DomainList'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    ImportDomainRequest:
+      title: ImportDomainRequest
+      type: object
+      required:
+      - domains
+      properties:
+        domains:
+          type: array
+          items:
+            type: object
+            required:
+            - contentType
+            - contents
+            properties:
+              contentType:
+                type: string
+                enum:
+                - BIND_9
+              contents:
+                type: string
+                description: BIND9-formatted zone file contents.
+    Domain_2:
+      title: Domain
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

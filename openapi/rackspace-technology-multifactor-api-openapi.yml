@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts MultiFactor API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: MultiFactor
+  description: Multi-factor authentication setup and operations.
+paths:
+  /v2.0/users/{userId}/RAX-AUTH/multi-factor:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    put:
+      operationId: updateMultiFactorSettings
+      summary: Update Multi-Factor Settings
+      description: Enables, disables, or unlocks multi-factor authentication for a user.
+      tags:
+      - MultiFactor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                multiFactor:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    unlock:
+                      type: boolean
+      responses:
+        '204':
+          description: Multi-factor settings updated.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/RAX-AUTH/multi-factor/mobile-phones:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    post:
+      operationId: addMobilePhone
+      summary: Add Mobile Phone
+      tags:
+      - MultiFactor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobilePhone'
+      responses:
+        '201':
+          description: Mobile phone added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePhone'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+  schemas:
+    MobilePhone:
+      title: MobilePhone
+      type: object
+      properties:
+        id:
+          type: string
+        number:
+          type: string
+        verified:
+          type: boolean
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

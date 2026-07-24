@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Tenants API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Tenants
+  description: Tenant (account) operations.
+paths:
+  /v2.0/tenants:
+    get:
+      operationId: listTenants
+      summary: List Tenants
+      description: Lists all tenants accessible to the caller.
+      tags:
+      - Tenants
+      responses:
+        '200':
+          description: Tenants returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/tenants/{tenantId}:
+    parameters:
+    - in: path
+      name: tenantId
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getTenantById
+      summary: Get Tenant By Id
+      tags:
+      - Tenants
+      responses:
+        '200':
+          description: Tenant returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Tenant:
+      title: Tenant
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    TenantList:
+      title: TenantList
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

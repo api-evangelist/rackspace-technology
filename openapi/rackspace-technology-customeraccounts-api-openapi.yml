@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts CustomerAccounts API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: CustomerAccounts
+  description: Customer-account lookup and history operations.
+paths:
+  /v1/customer_accounts:
+    get:
+      operationId: getListOfCustomerAccounts
+      summary: Get List Of Customer Accounts
+      description: Returns the list of customer accounts the caller has access to based on their tenants.
+      tags:
+      - CustomerAccounts
+      responses:
+        '200':
+          description: Customer accounts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/customer_accounts/{rcn}:
+    parameters:
+    - $ref: '#/components/parameters/RCN'
+    get:
+      operationId: getCustomerAccount
+      summary: Get Customer Account
+      description: Returns details about a single customer account.
+      tags:
+      - CustomerAccounts
+      responses:
+        '200':
+          description: Customer account returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/customer_accounts/{rcn}/status_history:
+    parameters:
+    - $ref: '#/components/parameters/RCN'
+    get:
+      operationId: getListOfCustomerAccountStatusHistory
+      summary: Get List Of Customer Account Status History
+      description: Returns the status-change history for the customer account.
+      tags:
+      - CustomerAccounts
+      responses:
+        '200':
+          description: Status history returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountStatusHistory'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/customer_accounts/{rcn}/history:
+    parameters:
+    - $ref: '#/components/parameters/RCN'
+    get:
+      operationId: getListOfCustomerAccountHistory
+      summary: Get List Of Customer Account History
+      description: Returns the change history for the customer account.
+      tags:
+      - CustomerAccounts
+      responses:
+        '200':
+          description: Account history returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHistory'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/customers/{customerId}/history:
+    parameters:
+    - $ref: '#/components/parameters/CustomerId'
+    get:
+      operationId: getListOfCustomerHistory
+      summary: Get List Of Customer History
+      description: Returns the change history for the customer.
+      tags:
+      - CustomerAccounts
+      responses:
+        '200':
+          description: Customer history returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerHistory'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AccountHistory:
+      title: AccountHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              previousValue:
+                type: string
+              newValue:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+    CustomerAccountList:
+      title: CustomerAccountList
+      type: object
+      properties:
+        customer_accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAccount'
+        totalEntries:
+          type: integer
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        category:
+          type: string
+    CustomerHistory:
+      allOf:
+      - $ref: '#/components/schemas/AccountHistory'
+    Contact:
+      title: Contact
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        primary:
+          type: boolean
+    CustomerAccount:
+      title: CustomerAccount
+      type: object
+      properties:
+        rcn:
+          type: string
+          description: Rackspace Customer Number.
+        name:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customerSegment:
+          type: string
+        billingCountry:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+    AccountStatusHistory:
+      title: AccountStatusHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+              reason:
+                type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  parameters:
+    RCN:
+      in: path
+      name: rcn
+      required: true
+      description: The Rackspace Customer Number (RCN) identifying the customer account.
+      schema:
+        type: string
+    CustomerId:
+      in: path
+      name: customerId
+      required: true
+      schema:
+        type: string
+  responses:
+    Forbidden:
+      description: Forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts ReverseDNS API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: ReverseDNS
+  description: Reverse DNS (PTR) record operations.
+paths:
+  /{account}/rdns:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    post:
+      operationId: addPtrRecords
+      summary: Add PTR Records
+      description: Adds reverse DNS (PTR) records for one or more cloud devices (servers, load balancers).
+      tags:
+      - ReverseDNS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPtrRecordsRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/rdns/{serviceName}:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - in: path
+      name: serviceName
+      required: true
+      description: The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers).
+      schema:
+        type: string
+    get:
+      operationId: listPtrRecords
+      summary: List PTR Records
+      description: Lists PTR records for the specified service and device.
+      tags:
+      - ReverseDNS
+      parameters:
+      - in: query
+        name: href
+        required: true
+        description: The fully qualified device URL whose PTR records should be listed.
+        schema:
+          type: string
+          format: uri
+      responses:
+        '200':
+          description: PTR records returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deletePtrRecords
+      summary: Delete PTR Records
+      description: Deletes PTR records for the specified device.
+      tags:
+      - ReverseDNS
+      parameters:
+      - in: query
+        name: href
+        required: true
+        schema:
+          type: string
+          format: uri
+      - in: query
+        name: ip
+        required: false
+        schema:
+          type: string
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/rdns/{serviceName}/{recordId}:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - in: path
+      name: serviceName
+      required: true
+      schema:
+        type: string
+    - $ref: '#/components/parameters/RecordId'
+    get:
+      operationId: showPtrRecord
+      summary: Show PTR Record
+      description: Returns details for a single PTR record.
+      tags:
+      - ReverseDNS
+      responses:
+        '200':
+          description: PTR record returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    AddPtrRecordsRequest:
+      title: AddPtrRecordsRequest
+      type: object
+      required:
+      - recordsList
+      - link
+      properties:
+        recordsList:
+          type: object
+          properties:
+            records:
+              type: array
+              items:
+                $ref: '#/components/schemas/RecordInput'
+        link:
+          type: object
+          properties:
+            content:
+              type: string
+            href:
+              type: string
+              format: uri
+            rel:
+              type: string
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+  parameters:
+    RecordId:
+      in: path
+      name: recordId
+      required: true
+      description: The Rackspace Cloud DNS record ID.
+      schema:
+        type: string
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

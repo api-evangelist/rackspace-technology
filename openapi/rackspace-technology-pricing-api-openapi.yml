@@ -1,0 +1,242 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Pricing API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Pricing
+  description: Commit and volume pricing grid operations.
+paths:
+  /v2/commitGrids:
+    get:
+      operationId: getCommitGrids
+      summary: Get Commit Grids
+      description: Lists commit-pricing grids.
+      tags:
+      - Pricing
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Marker'
+      responses:
+        '200':
+          description: Commit grids returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommitGridList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/commitGrids/{gridId}:
+    parameters:
+    - in: path
+      name: gridId
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getCommitGrid
+      summary: Get Commit Grid
+      tags:
+      - Pricing
+      responses:
+        '200':
+          description: Commit grid returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommitGrid'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/volumeGrids:
+    get:
+      operationId: getVolumeGrids
+      summary: Get Volume Grids
+      description: Lists volume-pricing grids.
+      tags:
+      - Pricing
+      responses:
+        '200':
+          description: Volume grids returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeGridList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/volumeGrids/{gridId}:
+    parameters:
+    - in: path
+      name: gridId
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getVolumeGrid
+      summary: Get Volume Grid
+      tags:
+      - Pricing
+      responses:
+        '200':
+          description: Volume grid returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeGrid'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/calculate/discount:
+    post:
+      operationId: calculateDiscount
+      summary: Calculate Discount
+      description: Computes the discounted price for a quantity given the applicable commit/volume grids.
+      tags:
+      - Pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountCalculationRequest'
+      responses:
+        '200':
+          description: Discount calculation result returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountCalculationResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    VolumeGridList:
+      title: VolumeGridList
+      type: object
+      properties:
+        volumeGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeGrid'
+    DiscountCalculationResponse:
+      title: DiscountCalculationResponse
+      type: object
+      properties:
+        productCode:
+          type: string
+        quantity:
+          type: number
+        listPrice:
+          type: number
+        discountPercent:
+          type: number
+        finalPrice:
+          type: number
+        currency:
+          type: string
+    CommitGrid:
+      title: CommitGrid
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              minCommit:
+                type: number
+              maxCommit:
+                type: number
+              discountPercent:
+                type: number
+    DiscountCalculationRequest:
+      title: DiscountCalculationRequest
+      type: object
+      required:
+      - productCode
+      - quantity
+      properties:
+        productCode:
+          type: string
+        quantity:
+          type: number
+        currency:
+          type: string
+        commitGridId:
+          type: string
+        volumeGridId:
+          type: string
+    VolumeGrid:
+      title: VolumeGrid
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              minVolume:
+                type: number
+              maxVolume:
+                type: number
+              discountPercent:
+                type: number
+    CommitGridList:
+      title: CommitGridList
+      type: object
+      properties:
+        commitGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitGrid'
+  parameters:
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

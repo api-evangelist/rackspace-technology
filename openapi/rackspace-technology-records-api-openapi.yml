@@ -1,0 +1,315 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Records API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Records
+  description: DNS record operations within a domain.
+paths:
+  /{account}/domains/{domainId}/records:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    get:
+      operationId: listRecords
+      summary: List Records
+      description: Lists DNS records for the specified domain. Supports filtering by type, name, and data.
+      tags:
+      - Records
+      parameters:
+      - in: query
+        name: type
+        required: false
+        description: Filter by record type (A, AAAA, MX, CNAME, NS, TXT, SRV).
+        schema:
+          type: string
+      - in: query
+        name: name
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: data
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Records returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addRecords
+      summary: Add Records
+      description: Adds one or more DNS records to the specified domain.
+      tags:
+      - Records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRecordsRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteRecords
+      summary: Delete Records
+      description: Deletes multiple DNS records by ID.
+      tags:
+      - Records
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/domains/{domainId}/records/{recordId}:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - $ref: '#/components/parameters/DomainId'
+    - $ref: '#/components/parameters/RecordId'
+    get:
+      operationId: showRecord
+      summary: Show Record
+      description: Returns details for a single DNS record.
+      tags:
+      - Records
+      responses:
+        '200':
+          description: Record returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteRecord
+      summary: Delete Record
+      description: Deletes a single DNS record.
+      tags:
+      - Records
+      responses:
+        '202':
+          $ref: '#/components/responses/AsyncJobAccepted'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+    AddRecordsRequest:
+      title: AddRecordsRequest
+      type: object
+      required:
+      - records
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordInput'
+  parameters:
+    RecordId:
+      in: path
+      name: recordId
+      required: true
+      description: The Rackspace Cloud DNS record ID.
+      schema:
+        type: string
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

@@ -1,0 +1,385 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Users API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Users
+  description: User account operations.
+paths:
+  /v2.0/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Lists all users accessible to the caller.
+      tags:
+      - Users
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter to a specific username.
+      responses:
+        '200':
+          description: Users returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addUser
+      summary: Add User
+      description: Creates a user.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '201':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUserById
+      summary: Get User By Id
+      description: Returns details for a single user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: User returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: updateUser
+      summary: Update User
+      description: Updates information for the specified user, including password.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: User updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Deletes the specified user.
+      tags:
+      - Users
+      responses:
+        '204':
+          description: User deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/RAX-AUTH/domains:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getAccessibleDomainsForUser
+      summary: Get Accessible Domains For User
+      description: Lists the identity domains accessible to a user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Accessible domains returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/OS-KSADM/credentials:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listUserCredentials
+      summary: List User Credentials
+      description: Lists credentials assigned to a user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Credentials list returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addUserCredential
+      summary: Add User Credential
+      description: Adds a credential to a user.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credential'
+      responses:
+        '201':
+          description: Credential added.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUserApiKeyCredentials
+      summary: Get User API Key Credentials
+      description: Returns the user's RAX-KSKEY API-key credential.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: API-key credential returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credential'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: resetApiKeyForUser
+      summary: Reset API Key For User
+      description: Resets the user's RAX-KSKEY API-key credential.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: API key reset.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credential'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteUserApiKeyCredentials
+      summary: Delete User API Key Credentials
+      tags:
+      - Users
+      responses:
+        '204':
+          description: Credential deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        enabled:
+          type: boolean
+        domainId:
+          type: string
+        defaultRegion:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    UserCreateRequest:
+      title: UserCreateRequest
+      type: object
+      properties:
+        user:
+          type: object
+          required:
+          - username
+          - email
+          properties:
+            username:
+              type: string
+            email:
+              type: string
+              format: email
+            enabled:
+              type: boolean
+              default: true
+            OS-KSADM:password:
+              type: string
+            domainId:
+              type: string
+            defaultRegion:
+              type: string
+    Domain:
+      title: Domain
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    UserList:
+      title: UserList
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        serviceId:
+          type: string
+        tenantId:
+          type: string
+    Credential:
+      title: Credential
+      type: object
+      additionalProperties: true
+      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+    CredentialList:
+      title: CredentialList
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+    UserUpdateRequest:
+      title: UserUpdateRequest
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            username:
+              type: string
+            email:
+              type: string
+              format: email
+            enabled:
+              type: boolean
+    UserResponse:
+      title: UserResponse
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Missing or invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Contacts
+  description: Customer contact operations.
+paths:
+  /v1/customer_accounts/{rcn}/contacts:
+    parameters:
+    - $ref: '#/components/parameters/RCN'
+    get:
+      operationId: getListOfContacts
+      summary: Get List Of Contacts
+      description: Returns the list of contacts associated with the customer account.
+      tags:
+      - Contacts
+      responses:
+        '200':
+          description: Contacts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/customer_accounts/{rcn}/contacts/{contactId}:
+    parameters:
+    - $ref: '#/components/parameters/RCN'
+    - in: path
+      name: contactId
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getContact
+      summary: Get Contact
+      description: Returns a single contact by ID.
+      tags:
+      - Contacts
+      responses:
+        '200':
+          description: Contact returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Contact:
+      title: Contact
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        primary:
+          type: boolean
+    ContactList:
+      title: ContactList
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+  parameters:
+    RCN:
+      in: path
+      name: rcn
+      required: true
+      description: The Rackspace Customer Number (RCN) identifying the customer account.
+      schema:
+        type: string
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

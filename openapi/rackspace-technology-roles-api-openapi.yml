@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Roles API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Roles
+  description: Global and tenant role assignments.
+paths:
+  /v2.0/users/{userId}/roles:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listGlobalRolesAssignedToUser
+      summary: List Global Roles Assigned To User
+      description: Lists global roles assigned to the specified user.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Global roles returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/RAX-AUTH/effective-roles:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listEffectiveRoles
+      summary: List Effective Roles
+      description: Lists effective roles assigned to a user, including roles inherited from RCN.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Effective roles returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/users/{userId}/roles/OS-KSADM/{roleId}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    - $ref: '#/components/parameters/RoleId'
+    put:
+      operationId: addRoleToUser
+      summary: Add Role To User
+      description: Assigns the role to the user.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Role assigned.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteGlobalRoleFromUser
+      summary: Delete Global Role From User
+      tags:
+      - Roles
+      responses:
+        '204':
+          description: Role removed.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/OS-KSADM/roles:
+    get:
+      operationId: listRoles
+      summary: List Roles
+      description: Lists all roles available in the Identity service.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Roles list returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0/OS-KSADM/roles/{roleId}:
+    parameters:
+    - $ref: '#/components/parameters/RoleId'
+    get:
+      operationId: getRoleById
+      summary: Get Role By Id
+      description: Returns details for a single role.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Role returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    RoleId:
+      in: path
+      name: roleId
+      required: true
+      schema:
+        type: string
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+  schemas:
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        serviceId:
+          type: string
+        tenantId:
+          type: string
+    RoleList:
+      title: RoleList
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Versions API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Versions
+  description: Service version metadata.
+paths:
+  /:
+    get:
+      operationId: listVersions
+      summary: List Versions
+      description: Lists supported versions of the Identity service.
+      tags:
+      - Versions
+      security: []
+      responses:
+        '200':
+          description: Versions list returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Versions'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2.0:
+    get:
+      operationId: showVersion
+      summary: Show Version
+      description: Returns metadata about the v2.0 Identity API.
+      tags:
+      - Versions
+      security: []
+      responses:
+        '200':
+          description: Version returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Version:
+      title: Version
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        updated:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+              href:
+                type: string
+                format: uri
+              type:
+                type: string
+    Versions:
+      title: Versions
+      type: object
+      properties:
+        versions:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                $ref: '#/components/schemas/Version'
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.

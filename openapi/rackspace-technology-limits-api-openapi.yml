@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud DNS Contacts Limits API
+  version: '1.0'
+  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-last-validated: '2026-05-05'
+servers:
+- url: https://dns.api.rackspacecloud.com/v1.0
+  description: Rackspace Cloud DNS production endpoint
+security:
+- AuthToken: []
+tags:
+- name: Limits
+  description: Per-account usage limits and rate caps.
+paths:
+  /{account}/limits:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    get:
+      operationId: listLimits
+      summary: List Limits
+      description: Provides a list of all applicable limits (rate and absolute) for the specified account.
+      tags:
+      - Limits
+      responses:
+        '200':
+          description: Limits returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Limits'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/limits/types:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    get:
+      operationId: listLimitTypes
+      summary: List Limit Types
+      description: Returns the list of limit types (rate and absolute) supported by the DNS service for this account.
+      tags:
+      - Limits
+      responses:
+        '200':
+          description: Limit types returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LimitTypes'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{account}/limits/{type}:
+    parameters:
+    - $ref: '#/components/parameters/AccountId'
+    - in: path
+      name: type
+      required: true
+      description: The specific limit type to retrieve (for example, RATE_LIMIT or DOMAIN_LIMIT).
+      schema:
+        type: string
+    get:
+      operationId: showLimit
+      summary: Show Limit
+      description: Retrieves details for a single named limit type.
+      tags:
+      - Limits
+      responses:
+        '200':
+          description: Limit details returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Limit'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LimitTypes:
+      title: LimitTypes
+      type: object
+      properties:
+        limitTypes:
+          type: array
+          items:
+            type: string
+    Limits:
+      title: Limits
+      type: object
+      properties:
+        rate:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              regex:
+                type: string
+              limit:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Limit'
+        absolute:
+          type: object
+          additionalProperties:
+            type: integer
+    Limit:
+      title: Limit
+      type: object
+      properties:
+        verb:
+          type: string
+        URI:
+          type: string
+        regex:
+          type: string
+        value:
+          type: integer
+        remaining:
+          type: integer
+        unit:
+          type: string
+        resetTime:
+          type: integer
+          format: int64
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  parameters:
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Rackspace Cloud Identity-issued authentication token.
