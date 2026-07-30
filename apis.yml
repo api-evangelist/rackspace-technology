@@ -2,7 +2,20 @@ aid: rackspace-technology
 url: https://raw.githubusercontent.com/api-evangelist/rackspace-technology/refs/heads/main/apis.yml
 name: Rackspace Technology
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rackspace-technology.png
 tags:
 - Cloud
 - Managed Services
@@ -27,45 +40,9 @@ apis:
   properties:
   - type: APIReference
     url: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
-  description: The Rackspace Ticketing API (v2.0) lets customers and partners create, read, and manage support tickets programmatically.
-- aid: rackspace-technology:cloud-dns-api
-  name: Rackspace Cloud DNS API
-  humanURL: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
-  tags:
-  - DNS
-  - Networking
-  properties:
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
-  - type: OpenAPI
-    url: openapi/rackspace-cloud-dns.yaml
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-cloud-dns
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-domain-schema.json
-    title: Domain Schema
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-record-schema.json
-    title: Record Schema
-  - type: JSONStructure
-    url: json-structure/rackspace-cloud-dns-domain-structure.json
-    title: Domain Structure
-  - type: Examples
-    url: examples/rackspace-cloud-dns-list-domains-example.json
-    title: List Domains Example
-  - type: Examples
-    url: examples/rackspace-cloud-dns-create-domain-example.json
-    title: Create Domain Example
-  - type: X-NaftikoCapability
-    url: capabilities/rackspace-cloud-dns-domains.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rackspace-cloud-dns-limits.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rackspace-cloud-dns-records.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rackspace-cloud-dns-reversedns.yaml
-  description: The Rackspace Cloud DNS API (1.0) provides programmatic management of DNS zones and records hosted on the Rackspace
-    Cloud.
+  description: >-
+    The Rackspace Ticketing API (v2.0) lets customers and partners create, read, and manage support tickets
+    programmatically.
 - aid: rackspace-technology:load-balancers-api
   name: Rackspace Dedicated Load Balancer API
   humanURL: https://docs.rackspace.com/reference/load-balancers-api-30-dlbv3
@@ -83,8 +60,9 @@ apis:
   - type: RAML
     url: raml/rackspace-f5-load-balancer.raml
     title: F5 Load Balancer RAML
-  description: The Dedicated Load Balancer V3 (dlbv3) API provisions and manages dedicated load balancers for Rackspace customers.
-    Internal BPI and F5 load-balancer RAML specifications are also included for reference.
+  description: >-
+    The Dedicated Load Balancer V3 (dlbv3) API provisions and manages dedicated load balancers for Rackspace
+    customers. Internal BPI and F5 load-balancer RAML specifications are also included for reference.
 - aid: rackspace-technology:metrics-api
   name: Rackspace Metrics API
   humanURL: https://docs.rackspace.com/reference/metrics-getting-started
@@ -94,8 +72,9 @@ apis:
   properties:
   - type: APIReference
     url: https://docs.rackspace.com/reference/metrics-getting-started
-  description: The Rackspace Metrics API (2.0) ingests and queries time-series metric data for monitoring infrastructure and
-    applications.
+  description: >-
+    The Rackspace Metrics API (2.0) ingests and queries time-series metric data for monitoring infrastructure
+    and applications.
 - aid: rackspace-technology:monitoring-api
   name: Rackspace Monitoring API
   humanURL: https://docs.rackspace.com/reference/getting-started-monitoring
@@ -107,8 +86,9 @@ apis:
     url: https://docs.rackspace.com/reference/getting-started-monitoring
   - type: Documentation
     url: https://github.com/rackerlabs/docs-cloud-monitoring
-  description: The Rackspace Monitoring API (1.0) configures monitoring checks, alarms, and notification plans for cloud and
-    dedicated infrastructure.
+  description: >-
+    The Rackspace Monitoring API (1.0) configures monitoring checks, alarms, and notification plans for
+    cloud and dedicated infrastructure.
 - aid: rackspace-technology:cloud-orchestration-api
   name: Rackspace Cloud Orchestration API
   humanURL: https://docs.rackspace.com/reference/rackspace-cloud-orchestration-api-10
@@ -120,7 +100,8 @@ apis:
     url: https://docs.rackspace.com/reference/rackspace-cloud-orchestration-api-10
   - type: Documentation
     url: https://github.com/rackerlabs/docs-cloud-orchestration
-  description: The Rackspace Cloud Orchestration API (1.0) deploys multi-resource cloud stacks via templates.
+  description: >-
+    The Rackspace Cloud Orchestration API (1.0) deploys multi-resource cloud stacks via templates.
 - aid: rackspace-technology:cloud-feeds-api
   name: Rackspace Cloud Feeds API
   humanURL: https://docs.rackspace.com/reference/rackspace-cloud-feedstm-api-10
@@ -136,7 +117,9 @@ apis:
   - type: XSD
     url: xsd/rackspace-cloud-feeds-catalog.xsd
     title: Feeds Catalog XSD
-  description: The Rackspace Cloud Feeds API (1.0) provides Atom-style event feeds for cloud product activity and notifications.
+  description: >-
+    The Rackspace Cloud Feeds API (1.0) provides Atom-style event feeds for cloud product activity and
+    notifications.
 - aid: rackspace-technology:billing-api
   name: Rackspace Billing API
   humanURL: https://docs.rackspace.com/reference/billing-apiguide-v2
@@ -146,68 +129,71 @@ apis:
   properties:
   - type: APIReference
     url: https://docs.rackspace.com/reference/billing-apiguide-v2
-  description: The Rackspace Billing API (V2) returns invoices, transactions, and account billing data programmatically.
-- aid: rackspace-technology:customer-service-api
-  name: Rackspace Customer Service API
-  humanURL: https://docs.rackspace.com/reference/customer-service-v1
+  description: >-
+    The Rackspace Billing API (V2) returns invoices, transactions, and account billing data programmatically.
+- aid: rackspace-technology:rackspace-technology-contacts-api
+  name: Rackspace Technology Contacts API
+  description: Customer contact operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
-  - Customer
-  - Account
+  - Contacts
   properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-contacts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
   - type: APIReference
     url: https://docs.rackspace.com/reference/customer-service-v1
-  - type: OpenAPI
-    url: openapi/rackspace-customer-service.yaml
   - type: Documentation
     url: https://github.com/rackerlabs/docs-customer-service
   - type: JSONSchema
     url: json-schema/rackspace-customer-service-customer-account-schema.json
-    title: Customer Account Schema
   - type: Examples
     url: examples/rackspace-customer-service-list-accounts-example.json
-    title: List Customer Accounts Example
   - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-contacts.yaml
   - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-customeraccounts.yaml
   - type: X-NaftikoCapability
     url: capabilities/rackspace-customer-service-metadata.yaml
-  description: The Rackspace Customer Service API (4.24.0) manages customer accounts, contacts, and service relationships
-    keyed by Rackspace Customer Number (RCN).
-- aid: rackspace-technology:customer-identity-api
-  name: Rackspace Customer Identity API
-  humanURL: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
-  tags:
-  - Identity
-  - Authentication
-  properties:
   - type: APIReference
     url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
-  - type: OpenAPI
-    url: openapi/rackspace-cloud-identity.yaml
   - type: Documentation
     url: https://github.com/rackerlabs/docs-cloud-identity
   - type: JSONSchema
     url: json-schema/rackspace-cloud-identity-token-schema.json
-    title: Token Schema
   - type: JSONSchema
     url: json-schema/rackspace-cloud-identity-user-schema.json
-    title: User Schema
   - type: JSONStructure
     url: json-structure/rackspace-cloud-identity-token-structure.json
-    title: Token Structure
   - type: Examples
     url: examples/rackspace-cloud-identity-authenticate-example.json
-    title: Authenticate Example
   - type: SDKs
     url: https://github.com/rackspace/gophercloud
-    title: Go SDK (gophercloud)
   - type: SDKs
     url: https://github.com/rackspace/php-opencloud
-    title: PHP SDK (php-opencloud)
   - type: SDKs
     url: https://github.com/rackspace/openstack.net
-    title: .NET SDK
   - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-domains.yaml
   - type: X-NaftikoCapability
@@ -226,27 +212,14 @@ apis:
     url: capabilities/rackspace-cloud-identity-users.yaml
   - type: X-NaftikoCapability
     url: capabilities/rackspace-cloud-identity-versions.yaml
-  description: The Rackspace Customer Identity API (Cloud Identity v2) issues authentication tokens and manages users, roles,
-    and tenants for accessing Rackspace cloud APIs.
-- aid: rackspace-technology:offer-api
-  name: Rackspace Offer API
-  humanURL: https://docs.rackspace.com/reference/rackspace-offer-api-20
-  tags:
-  - Offers
-  - Catalog
-  properties:
   - type: APIReference
     url: https://docs.rackspace.com/reference/rackspace-offer-api-20
-  - type: OpenAPI
-    url: openapi/rackspace-offer.yaml
   - type: Documentation
     url: https://github.com/rackerlabs/docs-offerings
   - type: JSONSchema
     url: json-schema/rackspace-offer-offering-schema.json
-    title: Offering Schema
   - type: Examples
     url: examples/rackspace-offer-get-offerings-example.json
-    title: Get Offerings Example
   - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-currency.yaml
   - type: X-NaftikoCapability
@@ -255,7 +228,1752 @@ apis:
     url: capabilities/rackspace-offer-pricing.yaml
   - type: X-NaftikoCapability
     url: capabilities/rackspace-offer-products.yaml
-  description: The Rackspace Offer API (2.0) exposes the catalog of product offers and their metadata.
+- aid: rackspace-technology:rackspace-technology-currency-api
+  name: Rackspace Technology Currency API
+  description: Currency lookup.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Currency
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-currency-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-customeraccounts-api
+  name: Rackspace Technology CustomerAccounts API
+  description: Customer-account lookup and history operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - CustomerAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-customeraccounts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-domains-api
+  name: Rackspace Technology Domains API
+  description: DNS domain (zone) operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-domains-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-limits-api
+  name: Rackspace Technology Limits API
+  description: Per-account usage limits and rate caps.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Limits
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-limits-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-metadata-api
+  name: Rackspace Technology Metadata API
+  description: Resource-level customer metadata.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-metadata-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-multifactor-api
+  name: Rackspace Technology MultiFactor API
+  description: Multi-factor authentication setup and operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - MultiFactor
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-multifactor-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-offerings-api
+  name: Rackspace Technology Offerings API
+  description: Offering catalog operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Offerings
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-offerings-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-phonepin-api
+  name: Rackspace Technology PhonePin API
+  description: Phone PIN operations for verbal account verification.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - PhonePin
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-phonepin-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-pricing-api
+  name: Rackspace Technology Pricing API
+  description: Commit and volume pricing grid operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-pricing-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-products-api
+  name: Rackspace Technology Products API
+  description: Product catalog operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-products-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-records-api
+  name: Rackspace Technology Records API
+  description: DNS record operations within a domain.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-records-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-reversedns-api
+  name: Rackspace Technology ReverseDNS API
+  description: Reverse DNS (PTR) record operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - ReverseDNS
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-reversedns-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-roles-api
+  name: Rackspace Technology Roles API
+  description: Global and tenant role assignments.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-roles-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-secretqa-api
+  name: Rackspace Technology SecretQA API
+  description: Secret question and answer operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - SecretQA
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-secretqa-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-tenants-api
+  name: Rackspace Technology Tenants API
+  description: Tenant (account) operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-tenants-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-tokens-api
+  name: Rackspace Technology Tokens API
+  description: Authentication and token validation operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-tokens-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-users-api
+  name: Rackspace Technology Users API
+  description: User account operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-users-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
+- aid: rackspace-technology:rackspace-technology-versions-api
+  name: Rackspace Technology Versions API
+  description: Service version metadata.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-versions-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-limits.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-records.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-dns-reversedns.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-contacts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-customeraccounts.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-customer-service-metadata.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-multifactor.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-phonepin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-roles.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-secretqa.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tenants.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-tokens.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-users.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-cloud-identity-versions.yaml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-currency.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-offerings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rackspace-offer-products.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/rackspace-technology-agentic-access.yml
