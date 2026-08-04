@@ -1,0 +1,826 @@
+openapi: 3.0.3
+info:
+  title: Rackspace Cloud Identity API
+  version: '2.0'
+  description: >-
+    The Rackspace Cloud Identity API (v2.0) issues authentication tokens and
+    manages users, tenants, roles, domains, identity providers, multi-factor
+    authentication, secret questions, and phone PINs. It is the access-control
+    plane for all Rackspace Cloud APIs and supports password, API-key, token,
+    SAML federation, and multi-factor credential flows.
+  contact:
+    name: Rackspace Technology
+    url: https://www.rackspace.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+  x-source-url: https://github.com/rackerlabs/docs-cloud-identity
+  x-last-validated: '2026-05-05'
+servers:
+  - url: https://identity.api.rackspacecloud.com
+    description: Rackspace US Cloud Identity endpoint.
+  - url: https://lon.identity.api.rackspacecloud.com
+    description: Rackspace UK Cloud Identity endpoint.
+security:
+  - AuthToken: []
+tags:
+  - name: Tokens
+    description: Authentication and token validation operations.
+  - name: Users
+    description: User account operations.
+  - name: Roles
+    description: Global and tenant role assignments.
+  - name: Tenants
+    description: Tenant (account) operations.
+  - name: Domains
+    description: Identity domain operations.
+  - name: MultiFactor
+    description: Multi-factor authentication setup and operations.
+  - name: PhonePin
+    description: Phone PIN operations for verbal account verification.
+  - name: SecretQA
+    description: Secret question and answer operations.
+  - name: Versions
+    description: Service version metadata.
+paths:
+  /:
+    get:
+      operationId: listVersions
+      summary: List Versions
+      description: Lists supported versions of the Identity service.
+      tags: [Versions]
+      security: []
+      responses:
+        '200':
+          description: Versions list returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Versions' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0:
+    get:
+      operationId: showVersion
+      summary: Show Version
+      description: Returns metadata about the v2.0 Identity API.
+      tags: [Versions]
+      security: []
+      responses:
+        '200':
+          description: Version returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Version' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/tokens:
+    post:
+      operationId: authenticate
+      summary: Authenticate
+      description: >-
+        Authenticates as a user with password or API-key credentials, or as a
+        tenant with an existing token, and returns an access token, the user's
+        roles, and the service catalog of endpoints they may access.
+      tags: [Tokens]
+      security: []
+      parameters:
+        - in: query
+          name: apply_rcn_roles
+          required: false
+          schema: { type: boolean, default: false }
+          description: When true, returns any roles and endpoints accessible due to RCN roles.
+        - in: query
+          name: include_accessible_domains
+          required: false
+          schema: { type: boolean, default: false }
+        - in: query
+          name: include_endpoints
+          required: false
+          schema: { type: boolean, default: true }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AuthenticateRequest' }
+      responses:
+        '200':
+          description: Authenticated successfully.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthenticateResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/tokens/{tokenId}:
+    parameters:
+      - $ref: '#/components/parameters/TokenId'
+    get:
+      operationId: validateToken
+      summary: Validate Token
+      description: Validates a token and returns the user, roles, and tenants associated with it.
+      tags: [Tokens]
+      parameters:
+        - in: query
+          name: belongsTo
+          required: false
+          schema: { type: string }
+      responses:
+        '200':
+          description: Token validated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthenticateResponse' }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    delete:
+      operationId: revokeToken
+      summary: Revoke Token
+      description: Revokes the specified token.
+      tags: [Tokens]
+      responses:
+        '204': { description: Token revoked. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/tokens/{tokenId}/endpoints:
+    parameters:
+      - $ref: '#/components/parameters/TokenId'
+    get:
+      operationId: listEndpointsForToken
+      summary: List Endpoints For Token
+      description: Returns the list of endpoints accessible by the supplied token.
+      tags: [Tokens]
+      responses:
+        '200':
+          description: Endpoint list returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EndpointList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Lists all users accessible to the caller.
+      tags: [Users]
+      parameters:
+        - in: query
+          name: name
+          schema: { type: string }
+          description: Filter to a specific username.
+      responses:
+        '200':
+          description: Users returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    post:
+      operationId: addUser
+      summary: Add User
+      description: Creates a user.
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserCreateRequest' }
+      responses:
+        '201':
+          description: User created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUserById
+      summary: Get User By Id
+      description: Returns details for a single user.
+      tags: [Users]
+      responses:
+        '200':
+          description: User returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserResponse' }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    post:
+      operationId: updateUser
+      summary: Update User
+      description: Updates information for the specified user, including password.
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserUpdateRequest' }
+      responses:
+        '200':
+          description: User updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserResponse' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Deletes the specified user.
+      tags: [Users]
+      responses:
+        '204': { description: User deleted. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-AUTH/domains:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getAccessibleDomainsForUser
+      summary: Get Accessible Domains For User
+      description: Lists the identity domains accessible to a user.
+      tags: [Users]
+      responses:
+        '200':
+          description: Accessible domains returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DomainList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/OS-KSADM/credentials:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listUserCredentials
+      summary: List User Credentials
+      description: Lists credentials assigned to a user.
+      tags: [Users]
+      responses:
+        '200':
+          description: Credentials list returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CredentialList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    post:
+      operationId: addUserCredential
+      summary: Add User Credential
+      description: Adds a credential to a user.
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Credential' }
+      responses:
+        '201': { description: Credential added. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUserApiKeyCredentials
+      summary: Get User API Key Credentials
+      description: Returns the user's RAX-KSKEY API-key credential.
+      tags: [Users]
+      responses:
+        '200':
+          description: API-key credential returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Credential' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    post:
+      operationId: resetApiKeyForUser
+      summary: Reset API Key For User
+      description: Resets the user's RAX-KSKEY API-key credential.
+      tags: [Users]
+      responses:
+        '200':
+          description: API key reset.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Credential' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    delete:
+      operationId: deleteUserApiKeyCredentials
+      summary: Delete User API Key Credentials
+      tags: [Users]
+      responses:
+        '204': { description: Credential deleted. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/roles:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listGlobalRolesAssignedToUser
+      summary: List Global Roles Assigned To User
+      description: Lists global roles assigned to the specified user.
+      tags: [Roles]
+      responses:
+        '200':
+          description: Global roles returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RoleList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-AUTH/effective-roles:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: listEffectiveRoles
+      summary: List Effective Roles
+      description: Lists effective roles assigned to a user, including roles inherited from RCN.
+      tags: [Roles]
+      responses:
+        '200':
+          description: Effective roles returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RoleList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/roles/OS-KSADM/{roleId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/RoleId'
+    put:
+      operationId: addRoleToUser
+      summary: Add Role To User
+      description: Assigns the role to the user.
+      tags: [Roles]
+      responses:
+        '200': { description: Role assigned. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    delete:
+      operationId: deleteGlobalRoleFromUser
+      summary: Delete Global Role From User
+      tags: [Roles]
+      responses:
+        '204': { description: Role removed. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/OS-KSADM/roles:
+    get:
+      operationId: listRoles
+      summary: List Roles
+      description: Lists all roles available in the Identity service.
+      tags: [Roles]
+      responses:
+        '200':
+          description: Roles list returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RoleList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/OS-KSADM/roles/{roleId}:
+    parameters:
+      - $ref: '#/components/parameters/RoleId'
+    get:
+      operationId: getRoleById
+      summary: Get Role By Id
+      description: Returns details for a single role.
+      tags: [Roles]
+      responses:
+        '200':
+          description: Role returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Role' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/tenants:
+    get:
+      operationId: listTenants
+      summary: List Tenants
+      description: Lists all tenants accessible to the caller.
+      tags: [Tenants]
+      responses:
+        '200':
+          description: Tenants returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TenantList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/tenants/{tenantId}:
+    parameters:
+      - in: path
+        name: tenantId
+        required: true
+        schema: { type: string }
+    get:
+      operationId: getTenantById
+      summary: Get Tenant By Id
+      tags: [Tenants]
+      responses:
+        '200':
+          description: Tenant returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Tenant' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/RAX-AUTH/domains:
+    get:
+      operationId: listDomains
+      summary: List Domains
+      description: Lists identity domains.
+      tags: [Domains]
+      responses:
+        '200':
+          description: Domains returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DomainList' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/RAX-AUTH/domains/{domainId}:
+    parameters:
+      - in: path
+        name: domainId
+        required: true
+        schema: { type: string }
+    get:
+      operationId: getDomainById
+      summary: Get Domain By Id
+      tags: [Domains]
+      responses:
+        '200':
+          description: Domain returned.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Domain' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-AUTH/multi-factor:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    put:
+      operationId: updateMultiFactorSettings
+      summary: Update Multi-Factor Settings
+      description: Enables, disables, or unlocks multi-factor authentication for a user.
+      tags: [MultiFactor]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                multiFactor:
+                  type: object
+                  properties:
+                    enabled: { type: boolean }
+                    unlock: { type: boolean }
+      responses:
+        '204': { description: Multi-factor settings updated. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-AUTH/multi-factor/mobile-phones:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    post:
+      operationId: addMobilePhone
+      summary: Add Mobile Phone
+      tags: [MultiFactor]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MobilePhone' }
+      responses:
+        '201':
+          description: Mobile phone added.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MobilePhone' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-AUTH/phone-pin:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getPhonePin
+      summary: Get Phone Pin
+      description: Returns the user's phone PIN, used for verbal account verification.
+      tags: [PhonePin]
+      responses:
+        '200':
+          description: Phone PIN returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pin: { type: string }
+                  state: { type: string, enum: [ACTIVE, LOCKED] }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    put:
+      operationId: updatePhonePin
+      summary: Update Phone Pin
+      tags: [PhonePin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pin]
+              properties:
+                pin: { type: string, minLength: 4, maxLength: 4 }
+      responses:
+        '204': { description: PIN updated. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /v2.0/users/{userId}/RAX-KSQA/secretqa:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getSecretQa
+      summary: Get Secret QA
+      tags: [SecretQA]
+      responses:
+        '200':
+          description: Secret QA returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question: { type: string }
+                  answer: { type: string }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+    put:
+      operationId: updateSecretQa
+      summary: Update Secret QA
+      tags: [SecretQA]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [question, answer]
+              properties:
+                question: { type: string }
+                answer: { type: string }
+      responses:
+        '204': { description: Secret QA updated. }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+components:
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Cloud Identity-issued service token.
+  parameters:
+    TokenId:
+      in: path
+      name: tokenId
+      required: true
+      schema: { type: string }
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema: { type: string }
+    RoleId:
+      in: path
+      name: roleId
+      required: true
+      schema: { type: string }
+  responses:
+    BadRequest:
+      description: Missing or invalid request parameters.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Fault' }
+    Unauthorized:
+      description: Invalid credentials or missing required MFA.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Fault' }
+    Forbidden:
+      description: User disabled or missing required role.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Fault' }
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Fault' }
+  schemas:
+    AuthenticateRequest:
+      title: AuthenticateRequest
+      type: object
+      properties:
+        auth:
+          type: object
+          properties:
+            tenantName: { type: string }
+            tenantId: { type: string }
+            passwordCredentials:
+              type: object
+              required: [username, password]
+              properties:
+                username: { type: string }
+                password: { type: string }
+            "RAX-KSKEY:apiKeyCredentials":
+              type: object
+              required: [username, apiKey]
+              properties:
+                username: { type: string }
+                apiKey: { type: string }
+            token:
+              type: object
+              properties:
+                id: { type: string }
+    AuthenticateResponse:
+      title: AuthenticateResponse
+      type: object
+      properties:
+        access:
+          type: object
+          properties:
+            token:
+              $ref: '#/components/schemas/Token'
+            user:
+              $ref: '#/components/schemas/User'
+            serviceCatalog:
+              type: array
+              items: { $ref: '#/components/schemas/ServiceCatalogEntry' }
+    Token:
+      title: Token
+      type: object
+      properties:
+        id: { type: string }
+        expires: { type: string, format: date-time }
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+    User:
+      title: User
+      type: object
+      properties:
+        id: { type: string }
+        username: { type: string }
+        email: { type: string, format: email }
+        enabled: { type: boolean }
+        domainId: { type: string }
+        defaultRegion: { type: string }
+        roles:
+          type: array
+          items: { $ref: '#/components/schemas/Role' }
+    UserList:
+      title: UserList
+      type: object
+      properties:
+        users:
+          type: array
+          items: { $ref: '#/components/schemas/User' }
+    UserResponse:
+      title: UserResponse
+      type: object
+      properties:
+        user: { $ref: '#/components/schemas/User' }
+    UserCreateRequest:
+      title: UserCreateRequest
+      type: object
+      properties:
+        user:
+          type: object
+          required: [username, email]
+          properties:
+            username: { type: string }
+            email: { type: string, format: email }
+            enabled: { type: boolean, default: true }
+            "OS-KSADM:password": { type: string }
+            domainId: { type: string }
+            defaultRegion: { type: string }
+    UserUpdateRequest:
+      title: UserUpdateRequest
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            username: { type: string }
+            email: { type: string, format: email }
+            enabled: { type: boolean }
+    Tenant:
+      title: Tenant
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        enabled: { type: boolean }
+    TenantList:
+      title: TenantList
+      type: object
+      properties:
+        tenants:
+          type: array
+          items: { $ref: '#/components/schemas/Tenant' }
+    Domain:
+      title: Domain
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        enabled: { type: boolean }
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        "RAX-AUTH:domains":
+          type: array
+          items: { $ref: '#/components/schemas/Domain' }
+    Role:
+      title: Role
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        serviceId: { type: string }
+        tenantId: { type: string }
+    RoleList:
+      title: RoleList
+      type: object
+      properties:
+        roles:
+          type: array
+          items: { $ref: '#/components/schemas/Role' }
+    Credential:
+      title: Credential
+      type: object
+      additionalProperties: true
+      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
+    CredentialList:
+      title: CredentialList
+      type: object
+      properties:
+        credentials:
+          type: array
+          items: { $ref: '#/components/schemas/Credential' }
+    EndpointList:
+      title: EndpointList
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items: { $ref: '#/components/schemas/Endpoint' }
+    Endpoint:
+      title: Endpoint
+      type: object
+      properties:
+        id: { type: string }
+        type: { type: string }
+        name: { type: string }
+        region: { type: string }
+        publicURL: { type: string, format: uri }
+        internalURL: { type: string, format: uri }
+        tenantId: { type: string }
+        versionId: { type: string }
+    ServiceCatalogEntry:
+      title: ServiceCatalogEntry
+      type: object
+      properties:
+        name: { type: string }
+        type: { type: string }
+        endpoints:
+          type: array
+          items: { $ref: '#/components/schemas/Endpoint' }
+    MobilePhone:
+      title: MobilePhone
+      type: object
+      properties:
+        id: { type: string }
+        number: { type: string }
+        verified: { type: boolean }
+    Versions:
+      title: Versions
+      type: object
+      properties:
+        versions:
+          type: object
+          properties:
+            values:
+              type: array
+              items: { $ref: '#/components/schemas/Version' }
+    Version:
+      title: Version
+      type: object
+      properties:
+        id: { type: string }
+        status: { type: string }
+        updated: { type: string, format: date-time }
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel: { type: string }
+              href: { type: string, format: uri }
+              type: { type: string }
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code: { type: integer }
+        message: { type: string }
+        details: { type: string }
