@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Tokens API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/tokens",
+            "params": [
+              {
+                "name": "apply_rcn_roles",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns any roles and endpoints accessible due to RCN roles."
+              },
+              {
+                "name": "include_accessible_domains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_endpoints",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates as a user with password or API-key credentials, or as a tenant with an existing token, and returns an access token, the user's roles, and the service catalog of endpoints they may access."
+        },
+        {
+          "info": {
+            "name": "Validate Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/tokens/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "belongsTo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Validates a token and returns the user, roles, and tenants associated with it."
+        },
+        {
+          "info": {
+            "name": "Revoke Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/tokens/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revokes the specified token."
+        },
+        {
+          "info": {
+            "name": "List Endpoints For Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/tokens/:tokenId/endpoints",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the list of endpoints accessible by the supplied token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

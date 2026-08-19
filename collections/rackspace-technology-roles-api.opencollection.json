@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Roles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Global Roles Assigned To User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/roles",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists global roles assigned to the specified user."
+        },
+        {
+          "info": {
+            "name": "List Effective Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/RAX-AUTH/effective-roles",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists effective roles assigned to a user, including roles inherited from RCN."
+        },
+        {
+          "info": {
+            "name": "Add Role To User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Assigns the role to the user."
+        },
+        {
+          "info": {
+            "name": "Delete Global Role From User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Global Role From User"
+        },
+        {
+          "info": {
+            "name": "List Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/OS-KSADM/roles"
+          },
+          "docs": "Lists all roles available in the Identity service."
+        },
+        {
+          "info": {
+            "name": "Get Role By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/OS-KSADM/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details for a single role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

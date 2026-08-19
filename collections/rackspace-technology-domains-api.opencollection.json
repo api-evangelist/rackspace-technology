@@ -1,0 +1,452 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Domains API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset into the result set."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter the listing to domains whose name starts with this string."
+              }
+            ]
+          },
+          "docs": "Lists all DNS domains manageable by the specified account. The resulting list is flat (subdomains are not nested) and returns by default a maximum of 100 items per page; navigate using the limit and offset query parameters."
+        },
+        {
+          "info": {
+            "name": "Create Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more DNS domains under the specified account. Returns an asynchronous 202 response containing a callback URL that can be polled for completion status."
+        },
+        {
+          "info": {
+            "name": "Update Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more existing DNS domains under the account."
+        },
+        {
+          "info": {
+            "name": "Delete Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "One or more domain IDs to delete."
+              }
+            ]
+          },
+          "docs": "Deletes one or more DNS domains by ID."
+        },
+        {
+          "info": {
+            "name": "Search Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/search",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Substring of the domain name to match."
+              }
+            ]
+          },
+          "docs": "Searches the account's domains by name fragment."
+        },
+        {
+          "info": {
+            "name": "Import Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/import",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Imports a DNS domain definition supplied as a BIND9-formatted contents block."
+        },
+        {
+          "info": {
+            "name": "Show Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "showRecords",
+                "value": "",
+                "type": "query",
+                "description": "Include this domain's records in the response."
+              },
+              {
+                "name": "showSubdomains",
+                "value": "",
+                "type": "query",
+                "description": "Include this domain's subdomains in the response."
+              }
+            ]
+          },
+          "docs": "Returns details for the specified domain. Set showRecords or showSubdomains to include nested data."
+        },
+        {
+          "info": {
+            "name": "Update Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a single existing DNS domain."
+        },
+        {
+          "info": {
+            "name": "Delete Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "deleteSubdomains",
+                "value": "",
+                "type": "query",
+                "description": "When true, all subdomains are deleted along with the domain."
+              }
+            ]
+          },
+          "docs": "Deletes a single DNS domain. Use the deleteSubdomains query parameter to also delete its subdomains."
+        },
+        {
+          "info": {
+            "name": "Show Domain Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/changes",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "changes",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 timestamp filter; only changes since this date are returned."
+              }
+            ]
+          },
+          "docs": "Returns a list of changes to the specified domain."
+        },
+        {
+          "info": {
+            "name": "Export Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/export",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              }
+            ]
+          },
+          "docs": "Exports the BIND9-formatted contents of a domain."
+        },
+        {
+          "info": {
+            "name": "Clone Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/clone",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "cloneName",
+                "value": "",
+                "type": "query",
+                "description": "New name to use for the clone."
+              },
+              {
+                "name": "cloneSubdomains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifyRecordData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifyEmailAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifyComment",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Clones the specified domain to a new domain name."
+        },
+        {
+          "info": {
+            "name": "List Subdomains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/subdomains",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset into the result set."
+              }
+            ]
+          },
+          "docs": "Lists subdomains for a domain."
+        },
+        {
+          "info": {
+            "name": "List Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/RAX-AUTH/domains"
+          },
+          "docs": "Lists identity domains."
+        },
+        {
+          "info": {
+            "name": "Get Domain By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/RAX-AUTH/domains/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Domain By Id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

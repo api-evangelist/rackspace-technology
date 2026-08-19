@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts CustomerAccounts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomerAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List Of Customer Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts"
+          },
+          "docs": "Returns the list of customer accounts the caller has access to based on their tenants."
+        },
+        {
+          "info": {
+            "name": "Get Customer Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts/:rcn",
+            "params": [
+              {
+                "name": "rcn",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Customer Number (RCN) identifying the customer account."
+              }
+            ]
+          },
+          "docs": "Returns details about a single customer account."
+        },
+        {
+          "info": {
+            "name": "Get List Of Customer Account Status History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts/:rcn/status_history",
+            "params": [
+              {
+                "name": "rcn",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Customer Number (RCN) identifying the customer account."
+              }
+            ]
+          },
+          "docs": "Returns the status-change history for the customer account."
+        },
+        {
+          "info": {
+            "name": "Get List Of Customer Account History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts/:rcn/history",
+            "params": [
+              {
+                "name": "rcn",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Customer Number (RCN) identifying the customer account."
+              }
+            ]
+          },
+          "docs": "Returns the change history for the customer account."
+        },
+        {
+          "info": {
+            "name": "Get List Of Customer History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customers/:customerId/history",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the change history for the customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

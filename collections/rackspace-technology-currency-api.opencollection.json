@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Currency API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Currency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Currency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/currencies/:currencyCode",
+            "params": [
+              {
+                "name": "currencyCode",
+                "value": "",
+                "type": "path",
+                "description": "ISO-4217 currency code."
+              }
+            ]
+          },
+          "docs": "Returns currency metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

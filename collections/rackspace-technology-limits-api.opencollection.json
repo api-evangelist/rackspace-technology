@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Limits API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Limits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/limits",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ]
+          },
+          "docs": "Provides a list of all applicable limits (rate and absolute) for the specified account."
+        },
+        {
+          "info": {
+            "name": "List Limit Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/limits/types",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ]
+          },
+          "docs": "Returns the list of limit types (rate and absolute) supported by the DNS service for this account."
+        },
+        {
+          "info": {
+            "name": "Show Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/limits/:type",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The specific limit type to retrieve (for example, RATE_LIMIT or DOMAIN_LIMIT)."
+              }
+            ]
+          },
+          "docs": "Retrieves details for a single named limit type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

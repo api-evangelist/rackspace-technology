@@ -1,0 +1,205 @@
+{
+  "item": [
+    {
+      "id": "7268db51-b121-4ff2-942d-da21b8bc3b97",
+      "name": "Versions",
+      "description": {
+        "content": "Service version metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d87c3d61-0b14-45a2-a3c4-89a7d630cb80",
+          "name": "List Versions",
+          "request": {
+            "name": "List Versions",
+            "description": {
+              "content": "Lists supported versions of the Identity service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b63461e0-8e25-4ff9-9f39-126946dfc963",
+              "name": "Versions list returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"versions\": {\n    \"values\": [\n      {\n        \"id\": \"string\",\n        \"status\": \"string\",\n        \"updated\": \"1997-04-23T20:40:28.409Z\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://vTcvmbvSsTkSUbGVIAQIOKKivqQlu.wunlGTC,aRG4i9c6T4E2txFNt7Ik8KHrClGJdp.\",\n            \"type\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://mqvgquXMMIIqlbkUITRXLocpVdttlgd.apvqs2O+s41gKJ3xXyTN3QTiA19wr5MtzFs-qGXrPQlJhBiuqI1IDmruUtM\",\n            \"type\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"status\": \"string\",\n        \"updated\": \"1978-11-22T07:49:40.420Z\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://VgFapZDuJJPAaIKdJZuNfuLiTwCL.jfuSquKohnKBKSgq4SzOAG8hWft-2rMvibG3XyQM0gzMcDXqIU5Q6wjv1\",\n            \"type\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://ouOxfAASsIFwNnDtIHEdfrWIxrETNV.cyI2o24SpP0LsbOcx9SwGjTH7PcZiBy8fViBtUbISuStrPwqKMS5uwBJb\",\n            \"type\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4087f640-cae8-40ac-af58-684f03549085",
+          "name": "Show Version",
+          "request": {
+            "name": "Show Version",
+            "description": {
+              "content": "Returns metadata about the v2.0 Identity API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2.0"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe90d072-8606-4fa8-9f95-63bb711b2d27",
+              "name": "Version returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2.0"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"updated\": \"1947-07-28T14:38:12.577Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://dBywaprHCKRCxJCfYwiq.nxfx.,jSigEKVt7B,9WGEeGi0R+s7ZuSF7r74bT,Pt\",\n      \"type\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://JnHEJieKheIHRlSo.efjKmpGVWVlPwmEi8T\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "492d2fa0-bfcc-41f1-9263-5f63f7a6a3b2",
+    "name": "Rackspace Cloud DNS Contacts Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

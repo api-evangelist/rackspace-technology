@@ -1,0 +1,169 @@
+{
+  "item": [
+    {
+      "id": "f8a7aaf4-57c1-4c2b-9c74-e4f14ed79ff8",
+      "name": "Offerings",
+      "description": {
+        "content": "Offering catalog operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "754512f9-b850-4881-9c14-a6af0a6a27ba",
+          "name": "Get Offerings",
+          "request": {
+            "name": "Get Offerings",
+            "description": {
+              "content": "Lists Rackspace offerings available in the product catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "offerings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineOfBusiness",
+                  "value": "<string>",
+                  "description": "The Rackspace line of business associated with the offering (for example, US_CLOUD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "ACTIVE"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "marker",
+                  "value": "<string>",
+                  "description": "Pagination marker (the starting point for the next batch of items)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9373bec-469e-4f23-887a-3288c8b6acf1",
+              "name": "Offerings returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineOfBusiness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offerings\": [\n    {\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 509,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"INACTIVE\",\n      \"lineOfBusiness\": \"string\",\n      \"startDate\": \"1957-05-28\",\n      \"endDate\": \"2012-04-21\"\n    },\n    {\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 3526,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"lineOfBusiness\": \"string\",\n      \"startDate\": \"1955-08-08\",\n      \"endDate\": \"1989-04-03\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://mjsAhVwDASSfEUBywXtplSBtE.gjuAI-MvugCiA6QkqnkM3SnIjDGIXirE.LcjBIUjBU.GKhfEmo\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://GSbtEkDAAlFDVsZwPvUPop.wkuhIRsXC2PbP-qTCQnI,v9Zl1m8hHbh,rdmuumKMRP53uthpj\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95252aa6-2403-4101-bd81-956e6009331a",
+    "name": "Rackspace Cloud DNS Contacts Offerings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

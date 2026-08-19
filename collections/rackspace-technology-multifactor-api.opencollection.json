@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts MultiFactor API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MultiFactor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Multi-Factor Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/RAX-AUTH/multi-factor",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables, disables, or unlocks multi-factor authentication for a user."
+        },
+        {
+          "info": {
+            "name": "Add Mobile Phone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/RAX-AUTH/multi-factor/mobile-phones",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Mobile Phone"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

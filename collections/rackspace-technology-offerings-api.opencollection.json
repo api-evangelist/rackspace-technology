@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Offerings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Offerings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Offerings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/offerings",
+            "params": [
+              {
+                "name": "lineOfBusiness",
+                "value": "",
+                "type": "query",
+                "description": "The Rackspace line of business associated with the offering (for example, US_CLOUD)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination marker (the starting point for the next batch of items)."
+              }
+            ]
+          },
+          "docs": "Lists Rackspace offerings available in the product catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

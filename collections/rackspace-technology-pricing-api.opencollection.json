@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Pricing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Commit Grids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/commitGrids",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination marker (the starting point for the next batch of items)."
+              }
+            ]
+          },
+          "docs": "Lists commit-pricing grids."
+        },
+        {
+          "info": {
+            "name": "Get Commit Grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/commitGrids/:gridId",
+            "params": [
+              {
+                "name": "gridId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Commit Grid"
+        },
+        {
+          "info": {
+            "name": "Get Volume Grids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/volumeGrids"
+          },
+          "docs": "Lists volume-pricing grids."
+        },
+        {
+          "info": {
+            "name": "Get Volume Grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/volumeGrids/:gridId",
+            "params": [
+              {
+                "name": "gridId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Volume Grid"
+        },
+        {
+          "info": {
+            "name": "Calculate Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2/calculate/discount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Computes the discounted price for a quantity given the applicable commit/volume grids."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

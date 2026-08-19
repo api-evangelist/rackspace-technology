@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Users API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific username."
+              }
+            ]
+          },
+          "docs": "Lists all users accessible to the caller."
+        },
+        {
+          "info": {
+            "name": "Add User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a user."
+        },
+        {
+          "info": {
+            "name": "Get User By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details for a single user."
+        },
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates information for the specified user, including password."
+        },
+        {
+          "info": {
+            "name": "Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified user."
+        },
+        {
+          "info": {
+            "name": "Get Accessible Domains For User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/RAX-AUTH/domains",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists the identity domains accessible to a user."
+        },
+        {
+          "info": {
+            "name": "List User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/OS-KSADM/credentials",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists credentials assigned to a user."
+        },
+        {
+          "info": {
+            "name": "Add User Credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/OS-KSADM/credentials",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a credential to a user."
+        },
+        {
+          "info": {
+            "name": "Get User API Key Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the user's RAX-KSKEY API-key credential."
+        },
+        {
+          "info": {
+            "name": "Reset API Key For User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resets the user's RAX-KSKEY API-key credential."
+        },
+        {
+          "info": {
+            "name": "Delete User API Key Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete User API Key Credentials"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

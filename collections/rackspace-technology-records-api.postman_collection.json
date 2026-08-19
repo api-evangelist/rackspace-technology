@@ -1,0 +1,744 @@
+{
+  "item": [
+    {
+      "id": "a03dc3c2-dbd2-43c1-a3f5-c2b98a6b4e18",
+      "name": "Records",
+      "description": {
+        "content": "DNS record operations within a domain.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fba17c32-53a5-46e4-b218-335e87fce3ce",
+          "name": "List Records",
+          "request": {
+            "name": "List Records",
+            "description": {
+              "content": "Lists DNS records for the specified domain. Supports filtering by type, name, and data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by record type (A, AAAA, MX, CNAME, NS, TXT, SRV)."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of items to return (default 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Zero-based offset into the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1b71274-dd3b-4642-a9a7-2ac0cd965338",
+              "name": "Records returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "data",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"A\",\n      \"data\": \"string\",\n      \"ttl\": 637,\n      \"priority\": 2306,\n      \"comment\": \"string\",\n      \"created\": \"1991-06-11T03:31:10.431Z\",\n      \"updated\": \"1977-02-14T18:24:57.082Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"CNAME\",\n      \"data\": \"string\",\n      \"ttl\": 7998,\n      \"priority\": 8577,\n      \"comment\": \"string\",\n      \"created\": \"1998-07-25T08:06:23.338Z\",\n      \"updated\": \"2008-01-01T10:12:51.314Z\"\n    }\n  ],\n  \"totalEntries\": 520,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://FEdQLMZMLzsz.ikxfQuH\",\n      \"content\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://fHkLGWqsGrRmucCl.sjuZhDbq+DP.pJI.r9MHbDr\",\n      \"content\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54074255-906f-47b3-a2a2-d26bbccd8d03",
+          "name": "Add Records",
+          "request": {
+            "name": "Add Records",
+            "description": {
+              "content": "Adds one or more DNS records to the specified domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"records\": [\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"priority\": \"<integer>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"priority\": \"<integer>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37f01c78-38e7-43d4-a05a-fd93d9da5ced",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"priority\": \"<integer>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"priority\": \"<integer>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"http://TJYGAROeBCFjFHvc.gaubi9WOXR0E\",\n  \"status\": \"COMPLETED\",\n  \"requestUrl\": \"http://gn.mxdAcn0yvMorr6Pv057Ndpu+a8e1WFMwV.24pXSUUqI+\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9397.312420978085,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42eaa07b-f709-4629-8f74-0b2861d24997",
+          "name": "Delete Records",
+          "request": {
+            "name": "Delete Records",
+            "description": {
+              "content": "Deletes multiple DNS records by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ea0586b-0054-4962-a9f2-cfd4d2584804",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"http://TJYGAROeBCFjFHvc.gaubi9WOXR0E\",\n  \"status\": \"COMPLETED\",\n  \"requestUrl\": \"http://gn.mxdAcn0yvMorr6Pv057Ndpu+a8e1WFMwV.24pXSUUqI+\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9397.312420978085,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad0c57eb-3582-40e7-9082-9b113fcbf3e2",
+          "name": "Show Record",
+          "request": {
+            "name": "Show Record",
+            "description": {
+              "content": "Returns details for a single DNS record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "records",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) The Rackspace Cloud DNS record ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7a82e8f-a4ee-409f-be30-a8fc57d3b8b3",
+              "name": "Record returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "records",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The Rackspace Cloud DNS record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"TXT\",\n  \"data\": \"string\",\n  \"ttl\": 9918,\n  \"priority\": 1237,\n  \"comment\": \"string\",\n  \"created\": \"1997-11-20T22:56:24.758Z\",\n  \"updated\": \"2025-12-24T01:04:00.655Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cea3cb7-f031-4370-99c3-6f642a9dc228",
+          "name": "Delete Record",
+          "request": {
+            "name": "Delete Record",
+            "description": {
+              "content": "Deletes a single DNS record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "records",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) The Rackspace Cloud DNS record ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bec714c-1c7a-47fe-800e-32adfb5111f0",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "records",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The Rackspace Cloud DNS record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"http://TJYGAROeBCFjFHvc.gaubi9WOXR0E\",\n  \"status\": \"COMPLETED\",\n  \"requestUrl\": \"http://gn.mxdAcn0yvMorr6Pv057Ndpu+a8e1WFMwV.24pXSUUqI+\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9397.312420978085,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0efc152e-09ba-4614-8017-3b0104efc25b",
+    "name": "Rackspace Cloud DNS Contacts Records API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

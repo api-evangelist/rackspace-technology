@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List Of Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts/:rcn/contacts",
+            "params": [
+              {
+                "name": "rcn",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Customer Number (RCN) identifying the customer account."
+              }
+            ]
+          },
+          "docs": "Returns the list of contacts associated with the customer account."
+        },
+        {
+          "info": {
+            "name": "Get Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/v1/customer_accounts/:rcn/contacts/:contactId",
+            "params": [
+              {
+                "name": "rcn",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Customer Number (RCN) identifying the customer account."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a single contact by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

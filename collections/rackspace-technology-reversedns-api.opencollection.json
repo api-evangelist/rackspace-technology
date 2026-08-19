@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts ReverseDNS API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ReverseDNS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add PTR Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/rdns",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds reverse DNS (PTR) records for one or more cloud devices (servers, load balancers)."
+        },
+        {
+          "info": {
+            "name": "List PTR Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/rdns/:serviceName",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path",
+                "description": "The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+              },
+              {
+                "name": "href",
+                "value": "",
+                "type": "query",
+                "description": "The fully qualified device URL whose PTR records should be listed."
+              }
+            ]
+          },
+          "docs": "Lists PTR records for the specified service and device."
+        },
+        {
+          "info": {
+            "name": "Delete PTR Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/rdns/:serviceName",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path",
+                "description": "The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+              },
+              {
+                "name": "href",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes PTR records for the specified device."
+        },
+        {
+          "info": {
+            "name": "Show PTR Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/rdns/:serviceName/:recordId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS record ID."
+              }
+            ]
+          },
+          "docs": "Returns details for a single PTR record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

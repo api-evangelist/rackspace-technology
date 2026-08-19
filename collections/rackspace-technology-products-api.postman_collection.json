@@ -1,0 +1,275 @@
+{
+  "item": [
+    {
+      "id": "97542cb8-9a4e-42a3-b8ab-fe61221e7351",
+      "name": "Products",
+      "description": {
+        "content": "Product catalog operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0b5fb48-4dd1-4ee1-ac90-75c63e2d99e9",
+          "name": "Get Products",
+          "request": {
+            "name": "Get Products",
+            "description": {
+              "content": "Lists Rackspace products under an offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offeringCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offeringVersion",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "ACTIVE"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "marker",
+                  "value": "<string>",
+                  "description": "Pagination marker (the starting point for the next batch of items)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "359bb150-4c57-4323-89ec-47156903bfe5",
+              "name": "Products returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offeringCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offeringVersion",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"productCode\": \"string\",\n      \"productVersion\": 7380,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 1615,\n      \"status\": \"ACTIVE\",\n      \"unitOfMeasure\": \"string\",\n      \"currency\": \"string\",\n      \"listPrice\": 5622.950848152605\n    },\n    {\n      \"productCode\": \"string\",\n      \"productVersion\": 905,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 7026,\n      \"status\": \"ACTIVE\",\n      \"unitOfMeasure\": \"string\",\n      \"currency\": \"string\",\n      \"listPrice\": 4008.3100579929696\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://cVdFiDAWAQYroyEhTdDjxyIZ.olNMIupSRX\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://l.ozmmUExCiSm,bn6j1lcUJCrPSz\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77e3a53-38e2-4302-b060-1e1f1566e62b",
+          "name": "Get Product",
+          "request": {
+            "name": "Get Product",
+            "description": {
+              "content": "Returns a single product by its product code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "products",
+                ":productCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productCode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74610332-c15c-4ea1-9b36-c6d173016ad4",
+              "name": "Product returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "products",
+                    ":productCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productCode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productCode\": \"string\",\n  \"productVersion\": 2386,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"offeringCode\": \"string\",\n  \"offeringVersion\": 3914,\n  \"status\": \"INACTIVE\",\n  \"unitOfMeasure\": \"string\",\n  \"currency\": \"string\",\n  \"listPrice\": 4703.194544395131\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dbd5b784-cd65-4e27-a1b6-4736b57ba42e",
+    "name": "Rackspace Cloud DNS Contacts Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

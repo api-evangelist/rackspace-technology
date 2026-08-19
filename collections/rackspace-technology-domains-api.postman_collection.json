@@ -1,0 +1,2380 @@
+{
+  "item": [
+    {
+      "id": "70976bac-e7b2-4cc8-9eca-b3a82a14b539",
+      "name": "Domains",
+      "description": {
+        "content": "DNS domain (zone) operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d60b3d2-4649-4a12-ab77-f943e1d92cec",
+          "name": "List Domains",
+          "request": {
+            "name": "List Domains",
+            "description": {
+              "content": "Lists all DNS domains manageable by the specified account. The resulting list is flat (subdomains are not nested) and returns by default a maximum of 100 items per page; navigate using the limit and offset query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of items to return (default 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Zero-based offset into the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter the listing to domains whose name starts with this string."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e626a94c-2899-46b6-b2cd-72f58a5bf5b8",
+              "name": "Domains list returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domains\": [\n    {\n      \"id\": \"2725233\",\n      \"name\": \"example.com\",\n      \"accountId\": \"1234\",\n      \"emailAddress\": \"sample@rackspace.com\",\n      \"comment\": \"Optional domain comment.\",\n      \"created\": \"2011-06-24T01:12:51.000+0000\",\n      \"updated\": \"2011-06-24T01:23:15.000+0000\"\n    }\n  ],\n  \"totalEntries\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c82d7e6b-0e78-4d0d-ad24-77b6799b4922",
+              "name": "The request is missing one or more elements, or values are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07ceee2f-e4fd-454d-a3f2-ade9b7a1aecb",
+              "name": "You are not authorized to complete this operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7733333e-1ab2-4f18-abfd-c7edca588588",
+              "name": "The number of items returned is above the allowed limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77dbbd4f-7dc8-4f07-9eae-55ed33cbe0d6",
+              "name": "The DNS service is not available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b2e52f2-451a-407f-9938-66c6b5425233",
+          "name": "Create Domains",
+          "request": {
+            "name": "Create Domains",
+            "description": {
+              "content": "Creates one or more DNS domains under the specified account. Returns an asynchronous 202 response containing a callback URL that can be polled for completion status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domains\": [\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f19653d5-a7d5-4c01-928f-df896233742e",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed4cf83f-2ba6-4cd4-8007-1ad8d730c9a1",
+              "name": "The request is missing one or more elements, or values are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "001b1826-11c3-496f-8f14-e39543d8442c",
+              "name": "You are not authorized to complete this operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"data\": \"<string>\",\n            \"ttl\": \"<integer>\",\n            \"priority\": \"<integer>\",\n            \"comment\": \"<string>\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"accountId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"emailAddress\": \"<email>\",\n            \"ttl\": \"<integer>\",\n            \"comment\": \"<string>\",\n            \"nameservers\": [\n              {\n                \"name\": \"<string>\"\n              },\n              {\n                \"name\": \"<string>\"\n              }\n            ],\n            \"recordsList\": {\n              \"records\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"subdomains\": {\n              \"domains\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"totalEntries\": \"<integer>\",\n              \"links\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"created\": \"<dateTime>\",\n            \"updated\": \"<dateTime>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b76395ef-92e7-470a-9ceb-4cbd06b612c1",
+          "name": "Update Domains",
+          "request": {
+            "name": "Update Domains",
+            "description": {
+              "content": "Updates one or more existing DNS domains under the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domains\": [\n    {\n      \"id\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"emailAddress\": \"<email>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"emailAddress\": \"<email>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "59d39574-40c9-48bb-ac58-be79946f8382",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"id\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"emailAddress\": \"<email>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"emailAddress\": \"<email>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7696c435-9ed2-4d9f-a747-cf040c688bf3",
+          "name": "Delete Domains",
+          "request": {
+            "name": "Delete Domains",
+            "description": {
+              "content": "Deletes one or more DNS domains by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) One or more domain IDs to delete."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) One or more domain IDs to delete."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6b693a2-c499-46a8-873d-2110b6362711",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fdf73b0-041e-4d2c-922a-b38a06dcc29c",
+          "name": "Search Domains",
+          "request": {
+            "name": "Search Domains",
+            "description": {
+              "content": "Searches the account's domains by name fragment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Substring of the domain name to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b634f97-e6e5-45cb-ba63-1910518ad0ab",
+              "name": "Matching domains returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domains\": [\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"nameservers\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"PTR\",\n            \"data\": \"string\",\n            \"ttl\": 7904,\n            \"priority\": 1499,\n            \"comment\": \"string\",\n            \"created\": \"1996-02-16T02:02:02.131Z\",\n            \"updated\": \"2016-07-03T08:30:37.853Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"PTR\",\n            \"data\": \"string\",\n            \"ttl\": 768,\n            \"priority\": 1733,\n            \"comment\": \"string\",\n            \"created\": \"2026-02-11T21:52:26.754Z\",\n            \"updated\": \"2025-12-15T17:08:07.385Z\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://eKivHoMIjHybdvtzFUmjBJOuQJVKigX.iyrdqWnOMFXR-gXUJjxM,z5wnA0je0TOUpF+Ku88xZeybmcxok7\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://LnZLvoNwAqAeLzyzLzknUVFiX.jdqaVLA6nd2e-cOXmBERKKfNAKIjqc\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://GoguPegOxJMYJNymhOH.rvDmeC,qiRZ9tiqT2OTmbAMP6ByPaqqPkxE.tUkRucFmIgAniJo1yvO\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://xspVvIc.auYVkitCylYvLUVmtudHd\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"nameservers\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"CNAME\",\n            \"data\": \"string\",\n            \"ttl\": 5033,\n            \"priority\": 113,\n            \"comment\": \"string\",\n            \"created\": \"1962-11-25T23:11:35.834Z\",\n            \"updated\": \"1966-10-04T16:18:54.660Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"CNAME\",\n            \"data\": \"string\",\n            \"ttl\": 4798,\n            \"priority\": 2855,\n            \"comment\": \"string\",\n            \"created\": \"1950-03-29T21:29:27.514Z\",\n            \"updated\": \"1976-04-30T22:45:59.364Z\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://dLaqedmdjeUkBrh.dqivPLleq1Bn4AbvdKFEDvrAvT1o-B+7Dc,sxpg9ZNu9htapFar4akZ4Ik,bJ0se,-Uf\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://HayJfRtMjsFjEGxILFQpday.mvyaVnLvLaPPWKdtfQ+5kcQ9v6ymXNqUt93Gix2o0ktIh\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://UuoDafqdpSKRvZJncPd.pnopeyztapwOJg6SzobVjvSRYqgXeKFg3m4ZO1lrqONrAKeYbTPERfkJTsyHIqST\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://fNvoEp.bpfwAvAMwYVVa\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    }\n  ],\n  \"totalEntries\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://khmpdXpZdjTyoxzMsS.mliku,g9r2WLilcaVtjhX+R6aIWXBGMI\",\n      \"content\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://iQhGJ.xgJMb3Vgt7xeli1EWyYEji.JVgAp\",\n      \"content\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10db2f1d-640d-4da8-8537-3e071f7ee1a3",
+          "name": "Import Domain",
+          "request": {
+            "name": "Import Domain",
+            "description": {
+              "content": "Imports a DNS domain definition supplied as a BIND9-formatted contents block.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domains\": [\n    {\n      \"contentType\": \"<string>\",\n      \"contents\": \"<string>\"\n    },\n    {\n      \"contentType\": \"<string>\",\n      \"contents\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea2d7a38-95f8-4581-9a03-410466be2a0d",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"contentType\": \"<string>\",\n      \"contents\": \"<string>\"\n    },\n    {\n      \"contentType\": \"<string>\",\n      \"contents\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0408d2ca-cbf2-4727-a037-60cc8abbbcbe",
+          "name": "Show Domain",
+          "request": {
+            "name": "Show Domain",
+            "description": {
+              "content": "Returns details for the specified domain. Set showRecords or showSubdomains to include nested data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showRecords",
+                  "value": "<boolean>",
+                  "description": "Include this domain's records in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "showSubdomains",
+                  "value": "<boolean>",
+                  "description": "Include this domain's subdomains in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97cfd9c3-2caf-41ef-b89e-c40bbac7371c",
+              "name": "Domain returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "showSubdomains",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"emailAddress\": \"<email>\",\n  \"ttl\": \"<integer>\",\n  \"comment\": \"<string>\",\n  \"nameservers\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ],\n  \"recordsList\": {\n    \"records\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"CNAME\",\n        \"data\": \"string\",\n        \"ttl\": 2842,\n        \"priority\": 9916,\n        \"comment\": \"string\",\n        \"created\": \"1982-12-15T21:22:31.162Z\",\n        \"updated\": \"1958-08-11T00:29:46.962Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"NS\",\n        \"data\": \"string\",\n        \"ttl\": 9253,\n        \"priority\": 4020,\n        \"comment\": \"string\",\n        \"created\": \"1986-05-07T02:01:17.121Z\",\n        \"updated\": \"1948-06-16T08:39:01.623Z\"\n      }\n    ],\n    \"totalEntries\": \"<integer>\",\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"http://DNJYKuboDtxDSivdTiYfWrBpiIThd.coiwIK4UhZgLzNl3snUemI\",\n        \"content\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"https://UyQIpxfCZKicicwdUqQ.lnI9yofqdoeCvByyrIC,BdYXXDl9Ptw\",\n        \"content\": \"string\"\n      }\n    ]\n  },\n  \"subdomains\": {\n    \"domains\": [\n      {\n        \"id\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"emailAddress\": \"<email>\",\n        \"ttl\": \"<integer>\",\n        \"comment\": \"<string>\",\n        \"nameservers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"recordsList\": {\n          \"records\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"totalEntries\": \"<integer>\",\n          \"links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"subdomains\": {\n          \"value\": \"<Circular reference to #/components/schemas/DomainList detected>\"\n        },\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"emailAddress\": \"<email>\",\n        \"ttl\": \"<integer>\",\n        \"comment\": \"<string>\",\n        \"nameservers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"recordsList\": {\n          \"records\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"totalEntries\": \"<integer>\",\n          \"links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"subdomains\": {\n          \"value\": \"<Circular reference to #/components/schemas/DomainList detected>\"\n        },\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    ],\n    \"totalEntries\": \"<integer>\",\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"https://OdCdbTgsmzMTXVWPTtuqEG.jacSED-qLx5y5vTduPRLI+\",\n        \"content\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"http://NGHkPfXoOcmgftLNR.nljnhihbSaHg.LxMyNwB-pCpUFy-JlK5JZmuudL\",\n        \"content\": \"string\"\n      }\n    ]\n  },\n  \"created\": \"<dateTime>\",\n  \"updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4371027-00f2-4fbb-acb7-735b008e6c83",
+              "name": "The requested item was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "showSubdomains",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bca16a7-4278-42ed-b6f8-884cef6cd430",
+          "name": "Update Domain",
+          "request": {
+            "name": "Update Domain",
+            "description": {
+              "content": "Updates a single existing DNS domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ttl\": \"<integer>\",\n  \"emailAddress\": \"<email>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef38dbd6-216c-4da2-9472-bfba22c31656",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<integer>\",\n  \"emailAddress\": \"<email>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c499ac3-98fd-4d16-8d4a-152737742825",
+          "name": "Delete Domain",
+          "request": {
+            "name": "Delete Domain",
+            "description": {
+              "content": "Deletes a single DNS domain. Use the deleteSubdomains query parameter to also delete its subdomains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deleteSubdomains",
+                  "value": "false",
+                  "description": "When true, all subdomains are deleted along with the domain."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98e1f95e-7185-4ac0-a32e-e033110db400",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deleteSubdomains",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd8f4d49-662e-476e-8321-a73a0afa90f6",
+              "name": "The requested item was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deleteSubdomains",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2472,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9d28195-43dc-4690-81cc-7516c78a629b",
+          "name": "Show Domain Changes",
+          "request": {
+            "name": "Show Domain Changes",
+            "description": {
+              "content": "Returns a list of changes to the specified domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "changes",
+                  "value": "<dateTime>",
+                  "description": "ISO-8601 timestamp filter; only changes since this date are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a7a5d05-55f0-4751-ac03-9c5577a4c419",
+              "name": "Change history returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "changes",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"from\": \"1973-02-22T04:33:19.032Z\",\n  \"to\": \"1989-05-24T08:43:30.240Z\",\n  \"totalEntries\": 4105,\n  \"changes\": [\n    {\n      \"domain\": \"string\",\n      \"action\": \"string\",\n      \"targetType\": \"string\",\n      \"targetId\": \"string\",\n      \"accountId\": \"string\",\n      \"changeDetails\": [\n        {\n          \"field\": \"string\",\n          \"originalValue\": \"string\",\n          \"newValue\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"originalValue\": \"string\",\n          \"newValue\": \"string\"\n        }\n      ]\n    },\n    {\n      \"domain\": \"string\",\n      \"action\": \"string\",\n      \"targetType\": \"string\",\n      \"targetId\": \"string\",\n      \"accountId\": \"string\",\n      \"changeDetails\": [\n        {\n          \"field\": \"string\",\n          \"originalValue\": \"string\",\n          \"newValue\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"originalValue\": \"string\",\n          \"newValue\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57b5ebab-82c7-43b7-b48f-f833d35cb5d0",
+          "name": "Export Domain",
+          "request": {
+            "name": "Export Domain",
+            "description": {
+              "content": "Exports the BIND9-formatted contents of a domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e21c7bbf-d9de-4b08-811e-cdef5be2830e",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0410b4f-da35-467d-b012-bff626e7d455",
+          "name": "Clone Domain",
+          "request": {
+            "name": "Clone Domain",
+            "description": {
+              "content": "Clones the specified domain to a new domain name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cloneName",
+                  "value": "<string>",
+                  "description": "(Required) New name to use for the clone."
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneSubdomains",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "modifyRecordData",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "modifyEmailAddress",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "modifyComment",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d34aa91f-690b-4209-8a77-b1b06764d576",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cloneName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloneSubdomains",
+                      "value": "true"
+                    },
+                    {
+                      "key": "modifyRecordData",
+                      "value": "true"
+                    },
+                    {
+                      "key": "modifyEmailAddress",
+                      "value": "true"
+                    },
+                    {
+                      "key": "modifyComment",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"https://xnabmupuszkcMiqYIsqUlDdZulTIE.xenjZ+TlyJfg28JnH-juPS1\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"http://ffOVdYjZO.suijtZVREWjFftD9eVKU62SDuS4abjzsay\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": 1615,\n    \"key_1\": 2717.104434550819\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e204396-7aaf-4fd0-bc98-d4c67c5689e6",
+          "name": "List Subdomains",
+          "request": {
+            "name": "List Subdomains",
+            "description": {
+              "content": "Lists subdomains for a domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "domains",
+                ":domainId",
+                "subdomains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of items to return (default 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Zero-based offset into the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) The Rackspace Cloud DNS domain ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "492ed514-d300-4412-aa61-a575ffd452b1",
+              "name": "Subdomains returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "domains",
+                    ":domainId",
+                    "subdomains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) The Rackspace Cloud DNS domain ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domains\": [\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"nameservers\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"PTR\",\n            \"data\": \"string\",\n            \"ttl\": 7904,\n            \"priority\": 1499,\n            \"comment\": \"string\",\n            \"created\": \"1996-02-16T02:02:02.131Z\",\n            \"updated\": \"2016-07-03T08:30:37.853Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"PTR\",\n            \"data\": \"string\",\n            \"ttl\": 768,\n            \"priority\": 1733,\n            \"comment\": \"string\",\n            \"created\": \"2026-02-11T21:52:26.754Z\",\n            \"updated\": \"2025-12-15T17:08:07.385Z\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://eKivHoMIjHybdvtzFUmjBJOuQJVKigX.iyrdqWnOMFXR-gXUJjxM,z5wnA0je0TOUpF+Ku88xZeybmcxok7\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://LnZLvoNwAqAeLzyzLzknUVFiX.jdqaVLA6nd2e-cOXmBERKKfNAKIjqc\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://GoguPegOxJMYJNymhOH.rvDmeC,qiRZ9tiqT2OTmbAMP6ByPaqqPkxE.tUkRucFmIgAniJo1yvO\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://xspVvIc.auYVkitCylYvLUVmtudHd\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"emailAddress\": \"<email>\",\n      \"ttl\": \"<integer>\",\n      \"comment\": \"<string>\",\n      \"nameservers\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"recordsList\": {\n        \"records\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"CNAME\",\n            \"data\": \"string\",\n            \"ttl\": 5033,\n            \"priority\": 113,\n            \"comment\": \"string\",\n            \"created\": \"1962-11-25T23:11:35.834Z\",\n            \"updated\": \"1966-10-04T16:18:54.660Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"CNAME\",\n            \"data\": \"string\",\n            \"ttl\": 4798,\n            \"priority\": 2855,\n            \"comment\": \"string\",\n            \"created\": \"1950-03-29T21:29:27.514Z\",\n            \"updated\": \"1976-04-30T22:45:59.364Z\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://dLaqedmdjeUkBrh.dqivPLleq1Bn4AbvdKFEDvrAvT1o-B+7Dc,sxpg9ZNu9htapFar4akZ4Ik,bJ0se,-Uf\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"https://HayJfRtMjsFjEGxILFQpday.mvyaVnLvLaPPWKdtfQ+5kcQ9v6ymXNqUt93Gix2o0ktIh\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"subdomains\": {\n        \"domains\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Domain detected>\"\n          }\n        ],\n        \"totalEntries\": \"<integer>\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://UuoDafqdpSKRvZJncPd.pnopeyztapwOJg6SzobVjvSRYqgXeKFg3m4ZO1lrqONrAKeYbTPERfkJTsyHIqST\",\n            \"content\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"http://fNvoEp.bpfwAvAMwYVVa\",\n            \"content\": \"string\"\n          }\n        ]\n      },\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    }\n  ],\n  \"totalEntries\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://khmpdXpZdjTyoxzMsS.mliku,g9r2WLilcaVtjhX+R6aIWXBGMI\",\n      \"content\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://iQhGJ.xgJMb3Vgt7xeli1EWyYEji.JVgAp\",\n      \"content\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c301a9c-6c2c-46af-921c-e3f2942ce51a",
+          "name": "List Domains",
+          "request": {
+            "name": "List Domains",
+            "description": {
+              "content": "Lists identity domains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2.0",
+                "RAX-AUTH",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25265acb-b56e-4d97-b862-3a6b120d4eab",
+              "name": "Domains returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2.0",
+                    "RAX-AUTH",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"RAX-AUTH:domains\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81264084-64b3-4519-81ed-624a8d1e5b2a",
+          "name": "Get Domain By Id",
+          "request": {
+            "name": "Get Domain By Id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2.0",
+                "RAX-AUTH",
+                "domains",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domainId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3b6528a-b7b5-46c3-830a-139fadfd2f6a",
+              "name": "Domain returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2.0",
+                    "RAX-AUTH",
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domainId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6377dbbf-ab86-45b3-972e-370600d208bf",
+    "name": "Rackspace Cloud DNS Contacts Domains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

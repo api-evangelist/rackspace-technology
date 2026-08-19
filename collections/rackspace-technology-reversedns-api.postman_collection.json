@@ -1,0 +1,551 @@
+{
+  "item": [
+    {
+      "id": "7e47e2d0-2301-4b5d-9735-7ff14d98aab7",
+      "name": "ReverseDNS",
+      "description": {
+        "content": "Reverse DNS (PTR) record operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7bc19c6-0e3a-491a-8b24-07dcbda9657a",
+          "name": "Add PTR Records",
+          "request": {
+            "name": "Add PTR Records",
+            "description": {
+              "content": "Adds reverse DNS (PTR) records for one or more cloud devices (servers, load balancers).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "rdns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recordsList\": {\n    \"records\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"data\": \"<string>\",\n        \"ttl\": \"<integer>\",\n        \"priority\": \"<integer>\",\n        \"comment\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"data\": \"<string>\",\n        \"ttl\": \"<integer>\",\n        \"priority\": \"<integer>\",\n        \"comment\": \"<string>\"\n      }\n    ]\n  },\n  \"link\": {\n    \"content\": \"<string>\",\n    \"href\": \"<uri>\",\n    \"rel\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c6cf830-4f96-4cd0-99bc-6b8b65cd6f83",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "rdns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordsList\": {\n    \"records\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"data\": \"<string>\",\n        \"ttl\": \"<integer>\",\n        \"priority\": \"<integer>\",\n        \"comment\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"data\": \"<string>\",\n        \"ttl\": \"<integer>\",\n        \"priority\": \"<integer>\",\n        \"comment\": \"<string>\"\n      }\n    ]\n  },\n  \"link\": {\n    \"content\": \"<string>\",\n    \"href\": \"<uri>\",\n    \"rel\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"http://nYbnLukoazYUKnQxkVxPhgzcyxoGoX.ncukQSPh4aL7X7EqDDktJohszr3PvZleIbQbGjNvvcAIMVSZXR8Oj\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"https://VhvUmmxafAtKbiyKspVVlq.azjJpo.7K.l,G7z7J9eEccDtQ9vwhphfcINxQbDqvdHet9d4KI3R97Md9hJCgLqxSmpz9YFcTZ1\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ac95d57-fbcf-435f-932d-d833d6ebbdc0",
+          "name": "List PTR Records",
+          "request": {
+            "name": "List PTR Records",
+            "description": {
+              "content": "Lists PTR records for the specified service and device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "rdns",
+                ":serviceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "href",
+                  "value": "<uri>",
+                  "description": "(Required) The fully qualified device URL whose PTR records should be listed."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceName",
+                  "description": "(Required) The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9215ce65-5909-4a33-a6ee-3907931b8c8f",
+              "name": "PTR records returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "rdns",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "href",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"AAAA\",\n      \"data\": \"string\",\n      \"ttl\": 3888,\n      \"priority\": 6733,\n      \"comment\": \"string\",\n      \"created\": \"2010-11-27T07:16:01.114Z\",\n      \"updated\": \"1948-03-05T10:14:42.903Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"TXT\",\n      \"data\": \"string\",\n      \"ttl\": 5847,\n      \"priority\": 8748,\n      \"comment\": \"string\",\n      \"created\": \"1999-08-14T00:12:20.185Z\",\n      \"updated\": \"2008-05-17T10:22:43.090Z\"\n    }\n  ],\n  \"totalEntries\": 4695,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://NVBaHvXnC.fkxPU6,ePi8M8R1nEK+4FkwYpc-sJ6U6tjgzTG-uzqOq..fQ.1\",\n      \"content\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://jDmOXkIP.cpvkeaRwNRox2XizDgGkcWAGpKBsnHg8gFBaLjv0XHDvvGhqYmF.u48eC69kfnFCDNR8DRU\",\n      \"content\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "773c0fa7-9163-4089-9753-c47a2524d166",
+          "name": "Delete PTR Records",
+          "request": {
+            "name": "Delete PTR Records",
+            "description": {
+              "content": "Deletes PTR records for the specified device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "rdns",
+                ":serviceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "href",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceName",
+                  "description": "(Required) The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49d4133a-1d7b-4e2e-9104-9669b28c07ff",
+              "name": "The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "rdns",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "href",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) The cloud service whose PTR records are being managed (cloudServersOpenStack, cloudLoadBalancers)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callbackUrl\": \"http://nYbnLukoazYUKnQxkVxPhgzcyxoGoX.ncukQSPh4aL7X7EqDDktJohszr3PvZleIbQbGjNvvcAIMVSZXR8Oj\",\n  \"status\": \"ERROR\",\n  \"requestUrl\": \"https://VhvUmmxafAtKbiyKspVVlq.azjJpo.7K.l,G7z7J9eEccDtQ9vwhphfcINxQbDqvdHet9d4KI3R97Md9hJCgLqxSmpz9YFcTZ1\",\n  \"verb\": \"string\",\n  \"jobId\": \"string\",\n  \"response\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d742be1-983d-444a-ba04-5acd7e1919ba",
+          "name": "Show PTR Record",
+          "request": {
+            "name": "Show PTR Record",
+            "description": {
+              "content": "Returns details for a single PTR record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "rdns",
+                ":serviceName",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceName",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) The Rackspace Cloud DNS record ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65795001-94ca-43bc-ab95-60188ff09481",
+              "name": "PTR record returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "rdns",
+                    ":serviceName",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The Rackspace Cloud DNS record ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"CNAME\",\n  \"data\": \"string\",\n  \"ttl\": 7287,\n  \"priority\": 3192,\n  \"comment\": \"string\",\n  \"created\": \"1993-10-21T22:03:19.076Z\",\n  \"updated\": \"2010-06-20T16:29:44.144Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc948e6b-f5e6-4c58-9dd2-e074d08b2e7e",
+    "name": "Rackspace Cloud DNS Contacts ReverseDNS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}

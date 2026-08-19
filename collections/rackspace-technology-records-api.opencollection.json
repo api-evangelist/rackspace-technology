@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rackspace Cloud DNS Contacts Records API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/records",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by record type (A, AAAA, MX, CNAME, NS, TXT, SRV)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset into the result set."
+              }
+            ]
+          },
+          "docs": "Lists DNS records for the specified domain. Supports filtering by type, name, and data."
+        },
+        {
+          "info": {
+            "name": "Add Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/records",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more DNS records to the specified domain."
+        },
+        {
+          "info": {
+            "name": "Delete Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/records",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes multiple DNS records by ID."
+        },
+        {
+          "info": {
+            "name": "Show Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/records/:recordId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS record ID."
+              }
+            ]
+          },
+          "docs": "Returns details for a single DNS record."
+        },
+        {
+          "info": {
+            "name": "Delete Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dns.api.rackspacecloud.com/v1.0/:account/domains/:domainId/records/:recordId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud account (tenant) ID."
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS domain ID."
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Rackspace Cloud DNS record ID."
+              }
+            ]
+          },
+          "docs": "Deletes a single DNS record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

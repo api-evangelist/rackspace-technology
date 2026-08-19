@@ -1,0 +1,523 @@
+{
+  "item": [
+    {
+      "id": "333e9fe5-eab1-4f39-b013-d0f10081c786",
+      "name": "Pricing",
+      "description": {
+        "content": "Commit and volume pricing grid operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e929958d-9f0e-406b-801f-b8f7efce7f2d",
+          "name": "Get Commit Grids",
+          "request": {
+            "name": "Get Commit Grids",
+            "description": {
+              "content": "Lists commit-pricing grids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "commitGrids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "marker",
+                  "value": "<string>",
+                  "description": "Pagination marker (the starting point for the next batch of items)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "784ac489-b8af-4438-96e1-123f90d56a11",
+              "name": "Commit grids returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "commitGrids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"commitGrids\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minCommit\": 5433.301887810361,\n          \"maxCommit\": 1236.279357704848,\n          \"discountPercent\": 4525.081740127362\n        },\n        {\n          \"minCommit\": 7162.9929070464195,\n          \"maxCommit\": 7289.566456218989,\n          \"discountPercent\": 1151.6709066054475\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minCommit\": 727.5814605715569,\n          \"maxCommit\": 5938.726598705417,\n          \"discountPercent\": 7096.650068385938\n        },\n        {\n          \"minCommit\": 7854.446916487868,\n          \"maxCommit\": 9901.401869504098,\n          \"discountPercent\": 8433.487983928044\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef28c579-20e7-49fb-94f8-c237dd83c9da",
+          "name": "Get Commit Grid",
+          "request": {
+            "name": "Get Commit Grid",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "commitGrids",
+                ":gridId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gridId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06320980-6023-490a-be9c-4e15716773eb",
+              "name": "Commit grid returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "commitGrids",
+                    ":gridId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gridId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"tiers\": [\n    {\n      \"minCommit\": 4295.989526266044,\n      \"maxCommit\": 4677.752836599067,\n      \"discountPercent\": 5574.309552994293\n    },\n    {\n      \"minCommit\": 327.9889586168649,\n      \"maxCommit\": 3228.9155389943303,\n      \"discountPercent\": 9185.180990319264\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "466ea279-0bf1-4d04-b469-99102d7f9a5f",
+          "name": "Get Volume Grids",
+          "request": {
+            "name": "Get Volume Grids",
+            "description": {
+              "content": "Lists volume-pricing grids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "volumeGrids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8744c87-088a-4bbe-96cd-68b718f9758a",
+              "name": "Volume grids returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "volumeGrids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"volumeGrids\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minVolume\": 7432.72962421359,\n          \"maxVolume\": 3107.6394003569876,\n          \"discountPercent\": 8768.174934634522\n        },\n        {\n          \"minVolume\": 6248.001876913259,\n          \"maxVolume\": 5505.074545491274,\n          \"discountPercent\": 6661.63071860551\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minVolume\": 139.83800271988534,\n          \"maxVolume\": 1566.3453884501878,\n          \"discountPercent\": 4022.649299786023\n        },\n        {\n          \"minVolume\": 9386.53659380322,\n          \"maxVolume\": 5039.461990262932,\n          \"discountPercent\": 7292.512641960828\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9e0bd8d-7831-4a9c-addc-55d41d3ad00f",
+          "name": "Get Volume Grid",
+          "request": {
+            "name": "Get Volume Grid",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "volumeGrids",
+                ":gridId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gridId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "120c9bc2-acb5-4c1c-886b-b9699dc0a170",
+              "name": "Volume grid returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "volumeGrids",
+                    ":gridId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gridId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"tiers\": [\n    {\n      \"minVolume\": 294.3760463116707,\n      \"maxVolume\": 938.5096585198149,\n      \"discountPercent\": 680.3406711267701\n    },\n    {\n      \"minVolume\": 6864.783345364851,\n      \"maxVolume\": 119.18298884700751,\n      \"discountPercent\": 9212.157119349597\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "031fd864-c6e7-4e38-8aa5-cdd814139f6e",
+          "name": "Calculate Discount",
+          "request": {
+            "name": "Calculate Discount",
+            "description": {
+              "content": "Computes the discounted price for a quantity given the applicable commit/volume grids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "calculate",
+                "discount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d04a1047-32c9-458b-8a63-30f0f52182f2",
+              "name": "Discount calculation result returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "calculate",
+                    "discount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productCode\": \"string\",\n  \"quantity\": 3048.4052976272856,\n  \"listPrice\": 966.4479725069697,\n  \"discountPercent\": 7292.094546500562,\n  \"finalPrice\": 9515.486226782801,\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dns.api.rackspacecloud.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "769f180c-f9a7-4234-9311-9f63e1c525ec",
+    "name": "Rackspace Cloud DNS Contacts Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+      "type": "text/plain"
+    }
+  }
+}
