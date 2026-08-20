@@ -18,6 +18,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rackspace-technology.png
 tags:
 - Cloud
+- Managed Service
+- Multi-Cloud
+- Infrastructure
+- DevOps
+tags_raw:
+- Cloud
 - Managed Services
 - Multicloud
 - Infrastructure
@@ -80,6 +86,8 @@ apis:
   humanURL: https://docs.rackspace.com/reference/getting-started-monitoring
   tags:
   - Monitoring
+  tags_raw:
+  - Monitoring
   - Operations
   properties:
   - type: APIReference
@@ -106,6 +114,9 @@ apis:
   name: Rackspace Cloud Feeds API
   humanURL: https://docs.rackspace.com/reference/rackspace-cloud-feedstm-api-10
   tags:
+  - Event
+  - Feeds
+  tags_raw:
   - Events
   - Feeds
   properties:
@@ -250,6 +261,8 @@ apis:
   description: Customer-account lookup and history operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
+  - Customer Accounts
+  tags_raw:
   - CustomerAccounts
   properties:
   - type: OpenAPI
@@ -706,6 +719,8 @@ apis:
   description: Product catalog operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -820,6 +835,8 @@ apis:
   description: Reverse DNS (PTR) record operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
+  - Reverse DNS
+  tags_raw:
   - ReverseDNS
   properties:
   - type: OpenAPI
@@ -1105,6 +1122,8 @@ apis:
   description: User account operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
