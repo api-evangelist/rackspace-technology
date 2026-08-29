@@ -1,8 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Domains API
-  version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  title: Rackspace Technology Domains API
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +8,18 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
   x-last-validated: '2026-05-05'
+  x-refined-note:
+  - x-source-url differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Domains across 2 of this provider''s published API definitions: rackspace-cloud-dns.yaml, rackspace-cloud-identity.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://dns.api.rackspacecloud.com/v1.0
   description: Rackspace Cloud DNS production endpoint
+- url: https://identity.api.rackspacecloud.com
+  description: Rackspace US Cloud Identity endpoint.
+- url: https://lon.identity.api.rackspacecloud.com
+  description: Rackspace UK Cloud Identity endpoint.
 security:
 - AuthToken: []
 tags:
@@ -130,6 +135,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/search:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -156,6 +164,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/import:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -177,6 +188,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/{domainId}:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -252,6 +266,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/{domainId}/changes:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -280,6 +297,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/{domainId}/export:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -296,6 +316,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/{domainId}/clone:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -343,6 +366,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /{account}/domains/{domainId}/subdomains:
     parameters:
     - $ref: '#/components/parameters/AccountId'
@@ -366,6 +392,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://dns.api.rackspacecloud.com/v1.0
+      description: Rackspace Cloud DNS production endpoint
   /v2.0/RAX-AUTH/domains:
     get:
       operationId: listDomains
@@ -383,6 +412,11 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://identity.api.rackspacecloud.com
+      description: Rackspace US Cloud Identity endpoint.
+    - url: https://lon.identity.api.rackspacecloud.com
+      description: Rackspace UK Cloud Identity endpoint.
   /v2.0/RAX-AUTH/domains/{domainId}:
     parameters:
     - in: path
@@ -405,10 +439,27 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://identity.api.rackspacecloud.com
+      description: Rackspace US Cloud Identity endpoint.
+    - url: https://lon.identity.api.rackspacecloud.com
+      description: Rackspace UK Cloud Identity endpoint.
 components:
   responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
     OverLimit:
       description: The number of items returned is above the allowed limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: The DNS service is not available.
       content:
         application/json:
           schema:
@@ -419,14 +470,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
-    ServiceUnavailable:
-      description: The DNS service is not available.
+    BadRequest:
+      description: The request is missing one or more elements, or values are invalid.
       content:
         application/json:
           schema:
@@ -437,72 +482,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: The request is missing one or more elements, or values are invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-  parameters:
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
-    Limit:
-      in: query
-      name: limit
-      required: false
-      description: Maximum number of items to return (default 100).
-      schema:
-        type: integer
-        default: 100
-        minimum: 1
-        maximum: 100
-    DomainId:
-      in: path
-      name: domainId
-      required: true
-      description: The Rackspace Cloud DNS domain ID.
-      schema:
-        type: string
   schemas:
-    DomainList:
-      title: DomainList
+    RecordList:
+      title: RecordList
       type: object
       properties:
-        domains:
+        records:
           type: array
           items:
-            $ref: '#/components/schemas/Domain'
+            $ref: '#/components/schemas/Record'
         totalEntries:
           type: integer
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
     DomainChanges:
       title: DomainChanges
       type: object
@@ -541,82 +535,15 @@ components:
                       type: string
                     newValue:
                       type: string
-    RecordList:
-      title: RecordList
+    Fault:
+      title: Fault
       type: object
       properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
+        code:
           type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    UpdateDomainsRequest:
-      title: UpdateDomainsRequest
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            allOf:
-            - type: object
-              properties:
-                id:
-                  type: string
-            - $ref: '#/components/schemas/UpdateDomainRequest'
-    RecordInput:
-      title: RecordInput
-      type: object
-      required:
-      - type
-      - name
-      - data
-      properties:
-        type:
+        message:
           type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        name:
-          type: string
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-        comment:
-          type: string
-    DomainList_2:
-      title: DomainList
-      type: object
-      properties:
-        RAX-AUTH:domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain_2'
-    UpdateDomainRequest:
-      title: UpdateDomainRequest
-      type: object
-      properties:
-        ttl:
-          type: integer
-          minimum: 300
-        emailAddress:
-          type: string
-          format: email
-        comment:
+        details:
           type: string
     AsyncJob:
       title: AsyncJob
@@ -680,6 +607,38 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/Domain'
+    ImportDomainRequest:
+      title: ImportDomainRequest
+      type: object
+      required:
+      - domains
+      properties:
+        domains:
+          type: array
+          items:
+            type: object
+            required:
+            - contentType
+            - contents
+            properties:
+              contentType:
+                type: string
+                enum:
+                - BIND_9
+              contents:
+                type: string
+                description: BIND9-formatted zone file contents.
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
     Record:
       title: Record
       type: object
@@ -715,6 +674,75 @@ components:
         updated:
           type: string
           format: date-time
+    UpdateDomainsRequest:
+      title: UpdateDomainsRequest
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+            - $ref: '#/components/schemas/UpdateDomainRequest'
+    UpdateDomainRequest:
+      title: UpdateDomainRequest
+      type: object
+      properties:
+        ttl:
+          type: integer
+          minimum: 300
+        emailAddress:
+          type: string
+          format: email
+        comment:
+          type: string
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Domain:
       title: Domain
       type: object
@@ -756,27 +784,14 @@ components:
         updated:
           type: string
           format: date-time
-    ImportDomainRequest:
-      title: ImportDomainRequest
+    DomainList_2:
+      title: DomainList
       type: object
-      required:
-      - domains
       properties:
-        domains:
+        RAX-AUTH:domains:
           type: array
           items:
-            type: object
-            required:
-            - contentType
-            - contents
-            properties:
-              contentType:
-                type: string
-                enum:
-                - BIND_9
-              contents:
-                type: string
-                description: BIND9-formatted zone file contents.
+            $ref: '#/components/schemas/Domain_2'
     Domain_2:
       title: Domain
       type: object
@@ -789,19 +804,46 @@ components:
           type: string
         enabled:
           type: boolean
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey
       in: header
       name: X-Auth-Token
       description: Rackspace Cloud Identity-issued authentication token.
+x-refined-from:
+- rackspace-cloud-dns.yaml
+- rackspace-cloud-identity.yaml

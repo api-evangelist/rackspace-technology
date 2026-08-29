@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Pricing API
-  version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  title: Rackspace Offer Pricing API
+  version: '2.0'
+  description: The Rackspace Offer API (v2) exposes the Rackspace offerings catalog, including offerings, products, currency, and pricing grids (commit grids, volume grids). It supports listing offerings by line-of-business and status, retrieving products, and computing discounts via commit and volume grids.
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +10,11 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-source-url: https://github.com/rackerlabs/docs-offerings
   x-last-validated: '2026-05-05'
 servers:
-- url: https://dns.api.rackspacecloud.com/v1.0
-  description: Rackspace Cloud DNS production endpoint
+- url: https://offerings.api.rackspacecloud.com
+  description: Rackspace Offerings API endpoint.
 security:
 - AuthToken: []
 tags:
@@ -127,6 +127,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VolumeGrid:
+      title: VolumeGrid
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              minVolume:
+                type: number
+              maxVolume:
+                type: number
+              discountPercent:
+                type: number
     VolumeGridList:
       title: VolumeGridList
       type: object
@@ -135,6 +156,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VolumeGrid'
+    CommitGridList:
+      title: CommitGridList
+      type: object
+      properties:
+        commitGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitGrid'
     DiscountCalculationResponse:
       title: DiscountCalculationResponse
       type: object
@@ -150,6 +179,23 @@ components:
         finalPrice:
           type: number
         currency:
+          type: string
+    DiscountCalculationRequest:
+      title: DiscountCalculationRequest
+      type: object
+      required:
+      - productCode
+      - quantity
+      properties:
+        productCode:
+          type: string
+        quantity:
+          type: number
+        currency:
+          type: string
+        commitGridId:
+          type: string
+        volumeGridId:
           type: string
     CommitGrid:
       title: CommitGrid
@@ -172,60 +218,7 @@ components:
                 type: number
               discountPercent:
                 type: number
-    DiscountCalculationRequest:
-      title: DiscountCalculationRequest
-      type: object
-      required:
-      - productCode
-      - quantity
-      properties:
-        productCode:
-          type: string
-        quantity:
-          type: number
-        currency:
-          type: string
-        commitGridId:
-          type: string
-        volumeGridId:
-          type: string
-    VolumeGrid:
-      title: VolumeGrid
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        currency:
-          type: string
-        tiers:
-          type: array
-          items:
-            type: object
-            properties:
-              minVolume:
-                type: number
-              maxVolume:
-                type: number
-              discountPercent:
-                type: number
-    CommitGridList:
-      title: CommitGridList
-      type: object
-      properties:
-        commitGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/CommitGrid'
   parameters:
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
     Limit:
       in: query
       name: limit
@@ -234,9 +227,15 @@ components:
         type: integer
         default: 100
         maximum: 100
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Rackspace Cloud Identity-issued authentication token.

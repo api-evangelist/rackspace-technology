@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Records API
+  title: Rackspace Cloud DNS Records API
   version: '1.0'
   description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
   contact:
@@ -134,7 +134,93 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
+    RecordId:
+      in: path
+      name: recordId
+      required: true
+      description: The Rackspace Cloud DNS record ID.
+      schema:
+        type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
   schemas:
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
     Record:
       title: Record
       type: object
@@ -200,44 +286,6 @@ components:
           type: integer
         comment:
           type: string
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
     Link:
       title: Link
       type: object
@@ -259,54 +307,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RecordInput'
-  parameters:
-    RecordId:
-      in: path
-      name: recordId
-      required: true
-      description: The Rackspace Cloud DNS record ID.
-      schema:
-        type: string
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
-    Limit:
-      in: query
-      name: limit
-      required: false
-      description: Maximum number of items to return (default 100).
-      schema:
-        type: integer
-        default: 100
-        minimum: 1
-        maximum: 100
-    DomainId:
-      in: path
-      name: domainId
-      required: true
-      description: The Rackspace Cloud DNS domain ID.
-      schema:
-        type: string
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
   securitySchemes:
     AuthToken:
       type: apiKey

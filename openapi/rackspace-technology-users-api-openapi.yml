@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Users API
-  version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  title: Rackspace Cloud Identity Users API
+  version: '2.0'
+  description: The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +10,13 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-source-url: https://github.com/rackerlabs/docs-cloud-identity
   x-last-validated: '2026-05-05'
 servers:
-- url: https://dns.api.rackspacecloud.com/v1.0
-  description: Rackspace Cloud DNS production endpoint
+- url: https://identity.api.rackspacecloud.com
+  description: Rackspace US Cloud Identity endpoint.
+- url: https://lon.identity.api.rackspacecloud.com
+  description: Rackspace UK Cloud Identity endpoint.
 security:
 - AuthToken: []
 tags:
@@ -248,6 +250,77 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+    UserResponse:
+      title: UserResponse
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    Credential:
+      title: Credential
+      type: object
+      additionalProperties: true
+      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+    UserList:
+      title: UserList
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    CredentialList:
+      title: CredentialList
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+    UserUpdateRequest:
+      title: UserUpdateRequest
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            username:
+              type: string
+            email:
+              type: string
+              format: email
+            enabled:
+              type: boolean
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    Domain:
+      title: Domain
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
     UserCreateRequest:
       title: UserCreateRequest
       type: object
@@ -272,26 +345,6 @@ components:
               type: string
             defaultRegion:
               type: string
-    Domain:
-      title: Domain
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-    UserList:
-      title: UserList
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     Role:
       title: Role
       type: object
@@ -305,57 +358,6 @@ components:
         serviceId:
           type: string
         tenantId:
-          type: string
-    Credential:
-      title: Credential
-      type: object
-      additionalProperties: true
-      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        RAX-AUTH:domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain'
-    CredentialList:
-      title: CredentialList
-      type: object
-      properties:
-        credentials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Credential'
-    UserUpdateRequest:
-      title: UserUpdateRequest
-      type: object
-      properties:
-        user:
-          type: object
-          properties:
-            username:
-              type: string
-            email:
-              type: string
-              format: email
-            enabled:
-              type: boolean
-    UserResponse:
-      title: UserResponse
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
           type: string
   responses:
     NotFound:
@@ -382,4 +384,4 @@ components:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Rackspace Cloud Identity-issued authentication token.
+      description: Cloud Identity-issued service token.

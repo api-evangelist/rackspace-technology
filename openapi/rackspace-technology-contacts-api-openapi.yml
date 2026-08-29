@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts API
+  title: Rackspace Customer Service Contacts API
   version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  description: The Rackspace Customer Service API exposes customer account, contact, and metadata operations. It lets internal users and integrations look up customer accounts the caller has access to (via tenant assignment), inspect account and customer history, and read service-level metadata associated with a customer resource.
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +10,11 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-source-url: https://github.com/rackerlabs/docs-customer-service
   x-last-validated: '2026-05-05'
 servers:
-- url: https://dns.api.rackspacecloud.com/v1.0
-  description: Rackspace Cloud DNS production endpoint
+- url: https://accounts.api.rackspacecloud.com
+  description: Rackspace Customer Service production endpoint.
 security:
 - AuthToken: []
 tags:
@@ -108,4 +108,3 @@ components:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Rackspace Cloud Identity-issued authentication token.

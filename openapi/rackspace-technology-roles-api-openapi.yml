@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Roles API
-  version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  title: Rackspace Cloud Identity Roles API
+  version: '2.0'
+  description: The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +10,13 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-source-url: https://github.com/rackerlabs/docs-cloud-identity
   x-last-validated: '2026-05-05'
 servers:
-- url: https://dns.api.rackspacecloud.com/v1.0
-  description: Rackspace Cloud DNS production endpoint
+- url: https://identity.api.rackspacecloud.com
+  description: Rackspace US Cloud Identity endpoint.
+- url: https://lon.identity.api.rackspacecloud.com
+  description: Rackspace UK Cloud Identity endpoint.
 security:
 - AuthToken: []
 tags:
@@ -137,6 +139,14 @@ components:
       schema:
         type: string
   schemas:
+    RoleList:
+      title: RoleList
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
     Role:
       title: Role
       type: object
@@ -151,17 +161,9 @@ components:
           type: string
         tenantId:
           type: string
-    RoleList:
-      title: RoleList
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
   securitySchemes:
     AuthToken:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Rackspace Cloud Identity-issued authentication token.
+      description: Cloud Identity-issued service token.

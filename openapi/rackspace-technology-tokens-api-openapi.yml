@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Tokens API
-  version: '1.0'
-  description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
+  title: Rackspace Cloud Identity Tokens API
+  version: '2.0'
+  description: The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.
   contact:
     name: Rackspace Technology
     url: https://www.rackspace.com/
@@ -10,11 +10,13 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   x-generated-from: documentation
-  x-source-url: https://github.com/rackerlabs/docs-cloud-dns
+  x-source-url: https://github.com/rackerlabs/docs-cloud-identity
   x-last-validated: '2026-05-05'
 servers:
-- url: https://dns.api.rackspacecloud.com/v1.0
-  description: Rackspace Cloud DNS production endpoint
+- url: https://identity.api.rackspacecloud.com
+  description: Rackspace US Cloud Identity endpoint.
+- url: https://lon.identity.api.rackspacecloud.com
+  description: Rackspace UK Cloud Identity endpoint.
 security:
 - AuthToken: []
 tags:
@@ -152,110 +154,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    Token:
-      title: Token
-      type: object
-      properties:
-        id:
-          type: string
-        expires:
-          type: string
-          format: date-time
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-    EndpointList:
-      title: EndpointList
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
-    Role:
-      title: Role
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        serviceId:
-          type: string
-        tenantId:
-          type: string
-    Endpoint:
-      title: Endpoint
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        region:
-          type: string
-        publicURL:
-          type: string
-          format: uri
-        internalURL:
-          type: string
-          format: uri
-        tenantId:
-          type: string
-        versionId:
-          type: string
-    Tenant:
-      title: Tenant
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-    AuthenticateResponse:
-      title: AuthenticateResponse
-      type: object
-      properties:
-        access:
-          type: object
-          properties:
-            token:
-              $ref: '#/components/schemas/Token'
-            user:
-              $ref: '#/components/schemas/User'
-            serviceCatalog:
-              type: array
-              items:
-                $ref: '#/components/schemas/ServiceCatalogEntry'
-    ServiceCatalogEntry:
-      title: ServiceCatalogEntry
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
     AuthenticateRequest:
       title: AuthenticateRequest
       type: object
@@ -292,19 +190,111 @@ components:
               properties:
                 id:
                   type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    AuthenticateResponse:
+      title: AuthenticateResponse
+      type: object
+      properties:
+        access:
+          type: object
+          properties:
+            token:
+              $ref: '#/components/schemas/Token'
+            user:
+              $ref: '#/components/schemas/User'
+            serviceCatalog:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceCatalogEntry'
+    ServiceCatalogEntry:
+      title: ServiceCatalogEntry
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    EndpointList:
+      title: EndpointList
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    Endpoint:
+      title: Endpoint
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        publicURL:
+          type: string
+          format: uri
+        internalURL:
+          type: string
+          format: uri
+        tenantId:
+          type: string
+        versionId:
+          type: string
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        serviceId:
+          type: string
+        tenantId:
+          type: string
+    Token:
+      title: Token
+      type: object
+      properties:
+        id:
+          type: string
+        expires:
+          type: string
+          format: date-time
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+    Tenant:
+      title: Tenant
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
   responses:
-    Forbidden:
-      description: User disabled or missing required role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Invalid credentials or missing required MFA.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     NotFound:
       description: The requested resource was not found.
       content:
@@ -313,6 +303,18 @@ components:
             $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Missing or invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Forbidden:
+      description: User disabled or missing required role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Invalid credentials or missing required MFA.
       content:
         application/json:
           schema:
@@ -329,4 +331,4 @@ components:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Rackspace Cloud Identity-issued authentication token.
+      description: Cloud Identity-issued service token.

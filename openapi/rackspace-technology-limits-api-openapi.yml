@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rackspace Cloud DNS Contacts Limits API
+  title: Rackspace Cloud DNS Limits API
   version: '1.0'
   description: The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.
   contact:
@@ -92,6 +92,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     LimitTypes:
       title: LimitTypes
       type: object
@@ -140,16 +150,6 @@ components:
         resetTime:
           type: integer
           format: int64
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
   responses:
     Unauthorized:
       description: You are not authorized to complete this operation.
