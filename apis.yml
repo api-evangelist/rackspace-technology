@@ -2,6 +2,18 @@ aid: rackspace-technology
 url: https://raw.githubusercontent.com/api-evangelist/rackspace-technology/refs/heads/main/apis.yml
 name: Rackspace Technology
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -1234,6 +1246,8 @@ apis:
   - type: Examples
     url: examples/rackspace-offer-get-offerings-example.json
 common:
+- type: IssueTracker
+  url: https://github.com/rackerlabs/cloudfeeds-catalog/issues
 - type: AgenticAccess
   url: agentic-access/rackspace-technology-agentic-access.yml
 - type: TrustCenter
