@@ -273,7 +273,7 @@ apis:
   description: Customer-account lookup and history operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
-  - CustomerAccounts
+  - Customer Accounts
   tags_raw:
   - CustomerAccounts
   properties:
@@ -847,7 +847,7 @@ apis:
   description: Reverse DNS (PTR) record operations.
   humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
   tags:
-  - ReverseDNS
+  - Reverse DNS
   tags_raw:
   - ReverseDNS
   properties:
