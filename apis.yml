@@ -269,65 +269,6 @@ apis:
     url: json-schema/rackspace-offer-offering-schema.json
   - type: Examples
     url: examples/rackspace-offer-get-offerings-example.json
-- aid: rackspace-technology:rackspace-technology-customeraccounts-api
-  name: Rackspace Technology CustomerAccounts API
-  description: Customer-account lookup and history operations.
-  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
-  tags:
-  - Customer Accounts
-  tags_raw:
-  - CustomerAccounts
-  properties:
-  - type: OpenAPI
-    url: openapi/rackspace-technology-customeraccounts-api-openapi.yml
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-cloud-dns
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-domain-schema.json
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-record-schema.json
-  - type: JSONStructure
-    url: json-structure/rackspace-cloud-dns-domain-structure.json
-  - type: Examples
-    url: examples/rackspace-cloud-dns-list-domains-example.json
-  - type: Examples
-    url: examples/rackspace-cloud-dns-create-domain-example.json
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/customer-service-v1
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-customer-service
-  - type: JSONSchema
-    url: json-schema/rackspace-customer-service-customer-account-schema.json
-  - type: Examples
-    url: examples/rackspace-customer-service-list-accounts-example.json
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-cloud-identity
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-identity-token-schema.json
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-identity-user-schema.json
-  - type: JSONStructure
-    url: json-structure/rackspace-cloud-identity-token-structure.json
-  - type: Examples
-    url: examples/rackspace-cloud-identity-authenticate-example.json
-  - type: SDKs
-    url: https://github.com/rackspace/gophercloud
-  - type: SDKs
-    url: https://github.com/rackspace/php-opencloud
-  - type: SDKs
-    url: https://github.com/rackspace/openstack.net
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-offerings
-  - type: JSONSchema
-    url: json-schema/rackspace-offer-offering-schema.json
-  - type: Examples
-    url: examples/rackspace-offer-get-offerings-example.json
 - aid: rackspace-technology:rackspace-technology-domains-api
   name: Rackspace Technology Domains API
   description: DNS domain (zone) operations.
@@ -843,65 +784,6 @@ apis:
     url: json-schema/rackspace-offer-offering-schema.json
   - type: Examples
     url: examples/rackspace-offer-get-offerings-example.json
-- aid: rackspace-technology:rackspace-technology-reversedns-api
-  name: Rackspace Technology ReverseDNS API
-  description: Reverse DNS (PTR) record operations.
-  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
-  tags:
-  - Reverse DNS
-  tags_raw:
-  - ReverseDNS
-  properties:
-  - type: OpenAPI
-    url: openapi/rackspace-technology-reversedns-api-openapi.yml
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-cloud-dns
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-domain-schema.json
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-dns-record-schema.json
-  - type: JSONStructure
-    url: json-structure/rackspace-cloud-dns-domain-structure.json
-  - type: Examples
-    url: examples/rackspace-cloud-dns-list-domains-example.json
-  - type: Examples
-    url: examples/rackspace-cloud-dns-create-domain-example.json
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/customer-service-v1
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-customer-service
-  - type: JSONSchema
-    url: json-schema/rackspace-customer-service-customer-account-schema.json
-  - type: Examples
-    url: examples/rackspace-customer-service-list-accounts-example.json
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-cloud-identity
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-identity-token-schema.json
-  - type: JSONSchema
-    url: json-schema/rackspace-cloud-identity-user-schema.json
-  - type: JSONStructure
-    url: json-structure/rackspace-cloud-identity-token-structure.json
-  - type: Examples
-    url: examples/rackspace-cloud-identity-authenticate-example.json
-  - type: SDKs
-    url: https://github.com/rackspace/gophercloud
-  - type: SDKs
-    url: https://github.com/rackspace/php-opencloud
-  - type: SDKs
-    url: https://github.com/rackspace/openstack.net
-  - type: APIReference
-    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
-  - type: Documentation
-    url: https://github.com/rackerlabs/docs-offerings
-  - type: JSONSchema
-    url: json-schema/rackspace-offer-offering-schema.json
-  - type: Examples
-    url: examples/rackspace-offer-get-offerings-example.json
 - aid: rackspace-technology:rackspace-technology-roles-api
   name: Rackspace Technology Roles API
   description: Global and tenant role assignments.
@@ -1198,6 +1080,120 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rackspace-technology-versions-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+- aid: rackspace-technology:rackspace-technology-customer-accounts-api
+  name: Rackspace Technology Customer Accounts API
+  description: Customer-account lookup and history operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Customer Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-customer-accounts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-dns
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-dns-record-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-dns-domain-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-list-domains-example.json
+  - type: Examples
+    url: examples/rackspace-cloud-dns-create-domain-example.json
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/customer-service-v1
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-customer-service
+  - type: JSONSchema
+    url: json-schema/rackspace-customer-service-customer-account-schema.json
+  - type: Examples
+    url: examples/rackspace-customer-service-list-accounts-example.json
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/cloud-identity-v2-getting-started
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-cloud-identity
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-token-schema.json
+  - type: JSONSchema
+    url: json-schema/rackspace-cloud-identity-user-schema.json
+  - type: JSONStructure
+    url: json-structure/rackspace-cloud-identity-token-structure.json
+  - type: Examples
+    url: examples/rackspace-cloud-identity-authenticate-example.json
+  - type: SDKs
+    url: https://github.com/rackspace/gophercloud
+  - type: SDKs
+    url: https://github.com/rackspace/php-opencloud
+  - type: SDKs
+    url: https://github.com/rackspace/openstack.net
+  - type: APIReference
+    url: https://docs.rackspace.com/reference/rackspace-offer-api-20
+  - type: Documentation
+    url: https://github.com/rackerlabs/docs-offerings
+  - type: JSONSchema
+    url: json-schema/rackspace-offer-offering-schema.json
+  - type: Examples
+    url: examples/rackspace-offer-get-offerings-example.json
+- aid: rackspace-technology:rackspace-technology-reverse-dns-api
+  name: Rackspace Technology Reverse DNS API
+  description: Reverse DNS (PTR) record operations.
+  humanURL: https://docs.rackspace.com/reference/ticketing-rackspace-ticketing-api
+  tags:
+  - Reverse DNS
+  properties:
+  - type: OpenAPI
+    url: openapi/rackspace-technology-reverse-dns-api-openapi.yml
   - type: APIReference
     url: https://docs.rackspace.com/reference/rackspace-cloud-dns-api-10
   - type: Documentation
