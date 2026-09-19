@@ -128,7 +128,7 @@ apis:
   humanURL: https://docs.rackspace.com/reference/rackspace-cloud-feedstm-api-10
   tags:
   - Event
-  - Feeds
+  - Feed
   tags_raw:
   - Events
   - Feeds
