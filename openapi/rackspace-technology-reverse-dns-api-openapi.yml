@@ -18,7 +18,7 @@ servers:
 security:
 - AuthToken: []
 tags:
-- name: ReverseDNS
+- name: Reverse DNS
   description: Reverse DNS (PTR) record operations.
 paths:
   /{account}/rdns:
@@ -29,7 +29,7 @@ paths:
       summary: Add PTR Records
       description: Adds reverse DNS (PTR) records for one or more cloud devices (servers, load balancers).
       tags:
-      - ReverseDNS
+      - Reverse DNS
       requestBody:
         required: true
         content:
@@ -56,7 +56,7 @@ paths:
       summary: List PTR Records
       description: Lists PTR records for the specified service and device.
       tags:
-      - ReverseDNS
+      - Reverse DNS
       parameters:
       - in: query
         name: href
@@ -80,7 +80,7 @@ paths:
       summary: Delete PTR Records
       description: Deletes PTR records for the specified device.
       tags:
-      - ReverseDNS
+      - Reverse DNS
       parameters:
       - in: query
         name: href
@@ -113,7 +113,7 @@ paths:
       summary: Show PTR Record
       description: Returns details for a single PTR record.
       tags:
-      - ReverseDNS
+      - Reverse DNS
       responses:
         '200':
           description: PTR record returned.
@@ -125,14 +125,42 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
   schemas:
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
     RecordList:
       title: RecordList
       type: object
@@ -147,30 +175,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
     AddPtrRecordsRequest:
       title: AddPtrRecordsRequest
       type: object
@@ -236,41 +240,37 @@ components:
           format: uri
         content:
           type: string
-    Record:
-      title: Record
+    AsyncJob:
+      title: AsyncJob
       type: object
       properties:
-        id:
+        callbackUrl:
           type: string
-        name:
-          type: string
-        type:
+          format: uri
+        status:
           type: string
           enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        data:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
           type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-          description: Required for MX and SRV records.
-        comment:
+          format: uri
+        verb:
           type: string
-        created:
+        jobId:
           type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
+        response:
+          type: object
+          additionalProperties: true
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
   parameters:
     AccountId:
       in: path

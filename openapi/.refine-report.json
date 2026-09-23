@@ -1,10 +1,10 @@
 {
   "provider": "rackspace-technology",
   "sources": [
-    "_original/rackspace-cloud-dns.yaml",
-    "_original/rackspace-cloud-identity.yaml",
-    "_original/rackspace-customer-service.yaml",
-    "_original/rackspace-offer.yaml"
+    "_ae-authored/rackspace-cloud-dns.yaml",
+    "_ae-authored/rackspace-cloud-identity.yaml",
+    "_ae-authored/rackspace-customer-service.yaml",
+    "_ae-authored/rackspace-offer.yaml"
   ],
   "outputs": [
     "rackspace-technology-domains-api-openapi.yml",
@@ -27,21 +27,25 @@
     "rackspace-technology-pricing-api-openapi.yml",
     "rackspace-technology-products-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "rackspace-cloud-dns.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "rackspace-cloud-identity.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "rackspace-customer-service.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "rackspace-offer.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "tag 'Domains' spans 2 source specs (rackspace-cloud-dns.yaml, rackspace-cloud-identity.yaml): per-path servers applied"
+    "tag 'Domains' spans 2 source specs (rackspace-cloud-dns.yaml, rackspace-cloud-identity.yaml): per-path servers applied",
+    "superseded outputs removed: rackspace-technology-customer-accounts-api-openapi.yml, rackspace-technology-reverse-dns-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 26 total)"
   ],
   "skipped": [
     "rackspace-technology-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-currency-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "rackspace-technology-customeraccounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rackspace-technology-customer-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-limits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -51,7 +55,7 @@
     "rackspace-technology-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "rackspace-technology-reversedns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rackspace-technology-reverse-dns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-secretqa-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rackspace-technology-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",

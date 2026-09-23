@@ -64,14 +64,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TenantList:
-      title: TenantList
-      type: object
-      properties:
-        tenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tenant'
     Tenant:
       title: Tenant
       type: object
@@ -84,6 +76,14 @@ components:
           type: string
         enabled:
           type: boolean
+    TenantList:
+      title: TenantList
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
   securitySchemes:
     AuthToken:
       type: apiKey

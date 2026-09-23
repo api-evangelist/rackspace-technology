@@ -132,6 +132,38 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Invalid credentials or missing required MFA.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Missing or invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Forbidden:
+      description: User disabled or missing required role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  parameters:
+    TokenId:
+      in: path
+      name: tokenId
+      required: true
+      schema:
+        type: string
   schemas:
     User:
       title: User
@@ -154,6 +186,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+    Token:
+      title: Token
+      type: object
+      properties:
+        id:
+          type: string
+        expires:
+          type: string
+          format: date-time
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        serviceId:
+          type: string
+        tenantId:
+          type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     AuthenticateRequest:
       title: AuthenticateRequest
       type: object
@@ -190,51 +257,6 @@ components:
               properties:
                 id:
                   type: string
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    AuthenticateResponse:
-      title: AuthenticateResponse
-      type: object
-      properties:
-        access:
-          type: object
-          properties:
-            token:
-              $ref: '#/components/schemas/Token'
-            user:
-              $ref: '#/components/schemas/User'
-            serviceCatalog:
-              type: array
-              items:
-                $ref: '#/components/schemas/ServiceCatalogEntry'
-    ServiceCatalogEntry:
-      title: ServiceCatalogEntry
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
-    EndpointList:
-      title: EndpointList
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
     Endpoint:
       title: Endpoint
       type: object
@@ -257,31 +279,6 @@ components:
           type: string
         versionId:
           type: string
-    Role:
-      title: Role
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        serviceId:
-          type: string
-        tenantId:
-          type: string
-    Token:
-      title: Token
-      type: object
-      properties:
-        id:
-          type: string
-        expires:
-          type: string
-          format: date-time
-        tenant:
-          $ref: '#/components/schemas/Tenant'
     Tenant:
       title: Tenant
       type: object
@@ -294,38 +291,41 @@ components:
           type: string
         enabled:
           type: boolean
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: Missing or invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Forbidden:
-      description: User disabled or missing required role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Invalid credentials or missing required MFA.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-  parameters:
-    TokenId:
-      in: path
-      name: tokenId
-      required: true
-      schema:
-        type: string
+    ServiceCatalogEntry:
+      title: ServiceCatalogEntry
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    AuthenticateResponse:
+      title: AuthenticateResponse
+      type: object
+      properties:
+        access:
+          type: object
+          properties:
+            token:
+              $ref: '#/components/schemas/Token'
+            user:
+              $ref: '#/components/schemas/User'
+            serviceCatalog:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceCatalogEntry'
+    EndpointList:
+      title: EndpointList
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
   securitySchemes:
     AuthToken:
       type: apiKey

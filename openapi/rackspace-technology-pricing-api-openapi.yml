@@ -127,8 +127,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    VolumeGrid:
-      title: VolumeGrid
+    VolumeGridList:
+      title: VolumeGridList
+      type: object
+      properties:
+        volumeGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeGrid'
+    CommitGrid:
+      title: CommitGrid
       type: object
       properties:
         id:
@@ -142,20 +150,12 @@ components:
           items:
             type: object
             properties:
-              minVolume:
+              minCommit:
                 type: number
-              maxVolume:
+              maxCommit:
                 type: number
               discountPercent:
                 type: number
-    VolumeGridList:
-      title: VolumeGridList
-      type: object
-      properties:
-        volumeGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeGrid'
     CommitGridList:
       title: CommitGridList
       type: object
@@ -197,8 +197,8 @@ components:
           type: string
         volumeGridId:
           type: string
-    CommitGrid:
-      title: CommitGrid
+    VolumeGrid:
+      title: VolumeGrid
       type: object
       properties:
         id:
@@ -212,13 +212,20 @@ components:
           items:
             type: object
             properties:
-              minCommit:
+              minVolume:
                 type: number
-              maxCommit:
+              maxVolume:
                 type: number
               discountPercent:
                 type: number
   parameters:
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
     Limit:
       in: query
       name: limit
@@ -227,13 +234,6 @@ components:
         type: integer
         default: 100
         maximum: 100
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

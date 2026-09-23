@@ -18,7 +18,7 @@ servers:
 security:
 - AuthToken: []
 tags:
-- name: CustomerAccounts
+- name: Customer Accounts
   description: Customer-account lookup and history operations.
 paths:
   /v1/customer_accounts:
@@ -27,7 +27,7 @@ paths:
       summary: Get List Of Customer Accounts
       description: Returns the list of customer accounts the caller has access to based on their tenants.
       tags:
-      - CustomerAccounts
+      - Customer Accounts
       responses:
         '200':
           description: Customer accounts returned.
@@ -54,7 +54,7 @@ paths:
       summary: Get Customer Account
       description: Returns details about a single customer account.
       tags:
-      - CustomerAccounts
+      - Customer Accounts
       responses:
         '200':
           description: Customer account returned.
@@ -75,7 +75,7 @@ paths:
       summary: Get List Of Customer Account Status History
       description: Returns the status-change history for the customer account.
       tags:
-      - CustomerAccounts
+      - Customer Accounts
       responses:
         '200':
           description: Status history returned.
@@ -94,7 +94,7 @@ paths:
       summary: Get List Of Customer Account History
       description: Returns the change history for the customer account.
       tags:
-      - CustomerAccounts
+      - Customer Accounts
       responses:
         '200':
           description: Account history returned.
@@ -113,7 +113,7 @@ paths:
       summary: Get List Of Customer History
       description: Returns the change history for the customer.
       tags:
-      - CustomerAccounts
+      - Customer Accounts
       responses:
         '200':
           description: Customer history returned.
@@ -126,78 +126,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Contact:
-      title: Contact
-      type: object
-      properties:
-        id:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        primary:
-          type: boolean
-    AccountStatusHistory:
-      title: AccountStatusHistory
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-              changedAt:
-                type: string
-                format: date-time
-              changedBy:
-                type: string
-              reason:
-                type: string
-    CustomerHistory:
-      allOf:
-      - $ref: '#/components/schemas/AccountHistory'
-    AccountHistory:
-      title: AccountHistory
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              previousValue:
-                type: string
-              newValue:
-                type: string
-              changedAt:
-                type: string
-                format: date-time
-              changedBy:
-                type: string
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     CustomerAccount:
       title: CustomerAccount
       type: object
@@ -227,6 +155,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    CustomerHistory:
+      allOf:
+      - $ref: '#/components/schemas/AccountHistory'
+    Contact:
+      title: Contact
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        primary:
+          type: boolean
+    AccountHistory:
+      title: AccountHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              previousValue:
+                type: string
+              newValue:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
     CustomerAccountList:
       title: CustomerAccountList
       type: object
@@ -247,9 +229,33 @@ components:
           type: string
         category:
           type: string
+    AccountStatusHistory:
+      title: AccountStatusHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+              reason:
+                type: string
   responses:
     NotFound:
       description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Unauthorized.
       content:
         application/json:
           schema:
@@ -266,24 +272,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   parameters:
+    CustomerId:
+      in: path
+      name: customerId
+      required: true
+      schema:
+        type: string
     RCN:
       in: path
       name: rcn
       required: true
       description: The Rackspace Customer Number (RCN) identifying the customer account.
-      schema:
-        type: string
-    CustomerId:
-      in: path
-      name: customerId
-      required: true
       schema:
         type: string
   securitySchemes:

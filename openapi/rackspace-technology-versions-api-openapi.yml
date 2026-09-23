@@ -61,6 +61,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Versions:
+      title: Versions
+      type: object
+      properties:
+        versions:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                $ref: '#/components/schemas/Version'
     Version:
       title: Version
       type: object
@@ -84,17 +95,6 @@ components:
                 format: uri
               type:
                 type: string
-    Versions:
-      title: Versions
-      type: object
-      properties:
-        versions:
-          type: object
-          properties:
-            values:
-              type: array
-              items:
-                $ref: '#/components/schemas/Version'
   securitySchemes:
     AuthToken:
       type: apiKey

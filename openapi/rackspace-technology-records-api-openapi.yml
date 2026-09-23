@@ -134,93 +134,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    Limit:
-      in: query
-      name: limit
-      required: false
-      description: Maximum number of items to return (default 100).
-      schema:
-        type: integer
-        default: 100
-        minimum: 1
-        maximum: 100
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
-    DomainId:
-      in: path
-      name: domainId
-      required: true
-      description: The Rackspace Cloud DNS domain ID.
-      schema:
-        type: string
-    RecordId:
-      in: path
-      name: recordId
-      required: true
-      description: The Rackspace Cloud DNS record ID.
-      schema:
-        type: string
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
   schemas:
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
     Record:
       title: Record
       type: object
@@ -256,6 +170,30 @@ components:
         updated:
           type: string
           format: date-time
+    AddRecordsRequest:
+      title: AddRecordsRequest
+      type: object
+      required:
+      - records
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordInput'
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     RecordInput:
       title: RecordInput
       type: object
@@ -297,16 +235,78 @@ components:
           format: uri
         content:
           type: string
-    AddRecordsRequest:
-      title: AddRecordsRequest
+    AsyncJob:
+      title: AsyncJob
       type: object
-      required:
-      - records
       properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecordInput'
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+  parameters:
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    RecordId:
+      in: path
+      name: recordId
+      required: true
+      description: The Rackspace Cloud DNS record ID.
+      schema:
+        type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -66,6 +66,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ContactList:
+      title: ContactList
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
     Contact:
       title: Contact
       type: object
@@ -87,14 +95,6 @@ components:
             type: string
         primary:
           type: boolean
-    ContactList:
-      title: ContactList
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
   parameters:
     RCN:
       in: path

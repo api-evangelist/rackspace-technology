@@ -445,52 +445,182 @@ paths:
     - url: https://lon.identity.api.rackspacecloud.com
       description: Rackspace UK Cloud Identity endpoint.
 components:
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
-    OverLimit:
-      description: The number of items returned is above the allowed limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: The DNS service is not available.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested item was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: The request is missing one or more elements, or values are invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: You are not authorized to complete this operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   schemas:
-    RecordList:
-      title: RecordList
+    ImportDomainRequest:
+      title: ImportDomainRequest
       type: object
+      required:
+      - domains
       properties:
-        records:
+        domains:
           type: array
           items:
-            $ref: '#/components/schemas/Record'
+            type: object
+            required:
+            - contentType
+            - contents
+            properties:
+              contentType:
+                type: string
+                enum:
+                - BIND_9
+              contents:
+                type: string
+                description: BIND9-formatted zone file contents.
+    Domain:
+      title: Domain
+      type: object
+      description: A DNS zone manageable by the account.
+      properties:
+        id:
+          type: string
+          description: Domain identifier.
+        accountId:
+          type: string
+          description: Tenant identifier that owns the domain.
+        name:
+          type: string
+          description: Fully qualified domain name.
+        emailAddress:
+          type: string
+          format: email
+          description: Administrative email contact (used as SOA RNAME).
+        ttl:
+          type: integer
+          description: Default record TTL in seconds (>= 300).
+        comment:
+          type: string
+          description: Optional administrative comment.
+        nameservers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+        recordsList:
+          $ref: '#/components/schemas/RecordList'
+        subdomains:
+          $ref: '#/components/schemas/DomainList'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    UpdateDomainsRequest:
+      title: UpdateDomainsRequest
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+            - $ref: '#/components/schemas/UpdateDomainRequest'
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    UpdateDomainRequest:
+      title: UpdateDomainRequest
+      type: object
+      properties:
+        ttl:
+          type: integer
+          minimum: 300
+        emailAddress:
+          type: string
+          format: email
+        comment:
+          type: string
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
         totalEntries:
           type: integer
         links:
@@ -535,40 +665,20 @@ components:
                       type: string
                     newValue:
                       type: string
-    Fault:
-      title: Fault
+    RecordList:
+      title: RecordList
       type: object
       properties:
-        code:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
           type: integer
-        message:
-          type: string
-        details:
-          type: string
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     CreateDomainsRequest:
       title: CreateDomainsRequest
       type: object
@@ -607,98 +717,6 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/Domain'
-    ImportDomainRequest:
-      title: ImportDomainRequest
-      type: object
-      required:
-      - domains
-      properties:
-        domains:
-          type: array
-          items:
-            type: object
-            required:
-            - contentType
-            - contents
-            properties:
-              contentType:
-                type: string
-                enum:
-                - BIND_9
-              contents:
-                type: string
-                description: BIND9-formatted zone file contents.
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
-    Record:
-      title: Record
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-          description: Required for MX and SRV records.
-        comment:
-          type: string
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-    UpdateDomainsRequest:
-      title: UpdateDomainsRequest
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            allOf:
-            - type: object
-              properties:
-                id:
-                  type: string
-            - $ref: '#/components/schemas/UpdateDomainRequest'
-    UpdateDomainRequest:
-      title: UpdateDomainRequest
-      type: object
-      properties:
-        ttl:
-          type: integer
-          minimum: 300
-        emailAddress:
-          type: string
-          format: email
-        comment:
-          type: string
     RecordInput:
       title: RecordInput
       type: object
@@ -729,61 +747,6 @@ components:
           type: integer
         comment:
           type: string
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Domain:
-      title: Domain
-      type: object
-      description: A DNS zone manageable by the account.
-      properties:
-        id:
-          type: string
-          description: Domain identifier.
-        accountId:
-          type: string
-          description: Tenant identifier that owns the domain.
-        name:
-          type: string
-          description: Fully qualified domain name.
-        emailAddress:
-          type: string
-          format: email
-          description: Administrative email contact (used as SOA RNAME).
-        ttl:
-          type: integer
-          description: Default record TTL in seconds (>= 300).
-        comment:
-          type: string
-          description: Optional administrative comment.
-        nameservers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-        recordsList:
-          $ref: '#/components/schemas/RecordList'
-        subdomains:
-          $ref: '#/components/schemas/DomainList'
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
     DomainList_2:
       title: DomainList
       type: object
@@ -838,6 +801,43 @@ components:
       description: The Rackspace Cloud DNS domain ID.
       schema:
         type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: The request is missing one or more elements, or values are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    OverLimit:
+      description: The number of items returned is above the allowed limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested item was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   securitySchemes:
     AuthToken:
       type: apiKey
