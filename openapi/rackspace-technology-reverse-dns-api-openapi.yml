@@ -126,6 +126,41 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+    AddPtrRecordsRequest:
+      title: AddPtrRecordsRequest
+      type: object
+      required:
+      - recordsList
+      - link
+      properties:
+        recordsList:
+          type: object
+          properties:
+            records:
+              type: array
+              items:
+                $ref: '#/components/schemas/RecordInput'
+        link:
+          type: object
+          properties:
+            content:
+              type: string
+            href:
+              type: string
+              format: uri
+            rel:
+              type: string
     Record:
       title: Record
       type: object
@@ -161,44 +196,6 @@ components:
         updated:
           type: string
           format: date-time
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    AddPtrRecordsRequest:
-      title: AddPtrRecordsRequest
-      type: object
-      required:
-      - recordsList
-      - link
-      properties:
-        recordsList:
-          type: object
-          properties:
-            records:
-              type: array
-              items:
-                $ref: '#/components/schemas/RecordInput'
-        link:
-          type: object
-          properties:
-            content:
-              type: string
-            href:
-              type: string
-              format: uri
-            rel:
-              type: string
     RecordInput:
       title: RecordInput
       type: object
@@ -229,17 +226,6 @@ components:
           type: integer
         comment:
           type: string
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
     AsyncJob:
       title: AsyncJob
       type: object
@@ -264,6 +250,20 @@ components:
         response:
           type: object
           additionalProperties: true
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   responses:
     AsyncJobAccepted:
       description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.

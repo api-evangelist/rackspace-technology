@@ -397,7 +397,7 @@ paths:
       description: Rackspace Cloud DNS production endpoint
   /v2.0/RAX-AUTH/domains:
     get:
-      operationId: listDomains
+      operationId: getV20RAXAUTHDomains
       summary: List Domains
       description: Lists identity domains.
       tags:
@@ -412,6 +412,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      x-operation-id-source: normalized
+      x-operation-id-original: listDomains
     servers:
     - url: https://identity.api.rackspacecloud.com
       description: Rackspace US Cloud Identity endpoint.
@@ -446,27 +448,6 @@ paths:
       description: Rackspace UK Cloud Identity endpoint.
 components:
   schemas:
-    ImportDomainRequest:
-      title: ImportDomainRequest
-      type: object
-      required:
-      - domains
-      properties:
-        domains:
-          type: array
-          items:
-            type: object
-            required:
-            - contentType
-            - contents
-            properties:
-              contentType:
-                type: string
-                enum:
-                - BIND_9
-              contents:
-                type: string
-                description: BIND9-formatted zone file contents.
     Domain:
       title: Domain
       type: object
@@ -508,125 +489,44 @@ components:
         updated:
           type: string
           format: date-time
-    UpdateDomainsRequest:
-      title: UpdateDomainsRequest
+    CreateDomainsRequest:
+      title: CreateDomainsRequest
       type: object
+      required:
+      - domains
       properties:
         domains:
           type: array
           items:
-            allOf:
-            - type: object
-              properties:
-                id:
-                  type: string
-            - $ref: '#/components/schemas/UpdateDomainRequest'
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
-    Record:
-      title: Record
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-          description: Required for MX and SRV records.
-        comment:
-          type: string
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    UpdateDomainRequest:
-      title: UpdateDomainRequest
-      type: object
-      properties:
-        ttl:
-          type: integer
-          minimum: 300
-        emailAddress:
-          type: string
-          format: email
-        comment:
-          type: string
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            type: object
+            required:
+            - name
+            - emailAddress
+            properties:
+              name:
+                type: string
+              ttl:
+                type: integer
+                minimum: 300
+              emailAddress:
+                type: string
+                format: email
+              comment:
+                type: string
+              recordsList:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordInput'
+              subdomains:
+                type: object
+                properties:
+                  domains:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Domain'
     DomainChanges:
       title: DomainChanges
       type: object
@@ -679,8 +579,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    CreateDomainsRequest:
-      title: CreateDomainsRequest
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    UpdateDomainRequest:
+      title: UpdateDomainRequest
+      type: object
+      properties:
+        ttl:
+          type: integer
+          minimum: 300
+        emailAddress:
+          type: string
+          format: email
+        comment:
+          type: string
+    UpdateDomainsRequest:
+      title: UpdateDomainsRequest
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+            - $ref: '#/components/schemas/UpdateDomainRequest'
+    ImportDomainRequest:
+      title: ImportDomainRequest
       type: object
       required:
       - domains
@@ -690,33 +625,16 @@ components:
           items:
             type: object
             required:
-            - name
-            - emailAddress
+            - contentType
+            - contents
             properties:
-              name:
+              contentType:
                 type: string
-              ttl:
-                type: integer
-                minimum: 300
-              emailAddress:
+                enum:
+                - BIND_9
+              contents:
                 type: string
-                format: email
-              comment:
-                type: string
-              recordsList:
-                type: object
-                properties:
-                  records:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/RecordInput'
-              subdomains:
-                type: object
-                properties:
-                  domains:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Domain'
+                description: BIND9-formatted zone file contents.
     RecordInput:
       title: RecordInput
       type: object
@@ -747,6 +665,90 @@ components:
           type: integer
         comment:
           type: string
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
     DomainList_2:
       title: DomainList
       type: object
@@ -767,55 +769,15 @@ components:
           type: string
         enabled:
           type: boolean
-  parameters:
-    Limit:
-      in: query
-      name: limit
-      required: false
-      description: Maximum number of items to return (default 100).
-      schema:
-        type: integer
-        default: 100
-        minimum: 1
-        maximum: 100
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
-    DomainId:
-      in: path
-      name: domainId
-      required: true
-      description: The Rackspace Cloud DNS domain ID.
-      schema:
-        type: string
   responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
-    Unauthorized:
-      description: You are not authorized to complete this operation.
+    ServiceUnavailable:
+      description: The DNS service is not available.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: The request is missing one or more elements, or values are invalid.
+    Unauthorized:
+      description: You are not authorized to complete this operation.
       content:
         application/json:
           schema:
@@ -832,12 +794,52 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: The DNS service is not available.
+    BadRequest:
+      description: The request is missing one or more elements, or values are invalid.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+  parameters:
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
+      schema:
+        type: string
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    Limit:
+      in: query
+      name: limit
+      required: false
+      description: Maximum number of items to return (default 100).
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

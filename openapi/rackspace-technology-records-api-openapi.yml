@@ -135,6 +135,47 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
     Record:
       title: Record
       type: object
@@ -170,71 +211,6 @@ components:
         updated:
           type: string
           format: date-time
-    AddRecordsRequest:
-      title: AddRecordsRequest
-      type: object
-      required:
-      - records
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecordInput'
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    RecordInput:
-      title: RecordInput
-      type: object
-      required:
-      - type
-      - name
-      - data
-      properties:
-        type:
-          type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        name:
-          type: string
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-        comment:
-          type: string
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
     AsyncJob:
       title: AsyncJob
       type: object
@@ -259,14 +235,40 @@ components:
         response:
           type: object
           additionalProperties: true
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AddRecordsRequest:
+      title: AddRecordsRequest
+      type: object
+      required:
+      - records
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordInput'
   parameters:
-    DomainId:
-      in: path
-      name: domainId
-      required: true
-      description: The Rackspace Cloud DNS domain ID.
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
       schema:
-        type: string
+        type: integer
+        default: 0
+        minimum: 0
     Limit:
       in: query
       name: limit
@@ -277,15 +279,13 @@ components:
         default: 100
         minimum: 1
         maximum: 100
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
+    DomainId:
+      in: path
+      name: domainId
+      required: true
+      description: The Rackspace Cloud DNS domain ID.
       schema:
-        type: integer
-        default: 0
-        minimum: 0
+        type: string
     AccountId:
       in: path
       name: account

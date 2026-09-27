@@ -127,35 +127,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    VolumeGridList:
-      title: VolumeGridList
+    DiscountCalculationRequest:
+      title: DiscountCalculationRequest
       type: object
+      required:
+      - productCode
+      - quantity
       properties:
-        volumeGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeGrid'
-    CommitGrid:
-      title: CommitGrid
-      type: object
-      properties:
-        id:
+        productCode:
           type: string
-        name:
-          type: string
+        quantity:
+          type: number
         currency:
           type: string
-        tiers:
-          type: array
-          items:
-            type: object
-            properties:
-              minCommit:
-                type: number
-              maxCommit:
-                type: number
-              discountPercent:
-                type: number
+        commitGridId:
+          type: string
+        volumeGridId:
+          type: string
     CommitGridList:
       title: CommitGridList
       type: object
@@ -180,23 +168,35 @@ components:
           type: number
         currency:
           type: string
-    DiscountCalculationRequest:
-      title: DiscountCalculationRequest
+    CommitGrid:
+      title: CommitGrid
       type: object
-      required:
-      - productCode
-      - quantity
       properties:
-        productCode:
+        id:
           type: string
-        quantity:
-          type: number
+        name:
+          type: string
         currency:
           type: string
-        commitGridId:
-          type: string
-        volumeGridId:
-          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              minCommit:
+                type: number
+              maxCommit:
+                type: number
+              discountPercent:
+                type: number
+    VolumeGridList:
+      title: VolumeGridList
+      type: object
+      properties:
+        volumeGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeGrid'
     VolumeGrid:
       title: VolumeGrid
       type: object
@@ -219,13 +219,6 @@ components:
               discountPercent:
                 type: number
   parameters:
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
     Limit:
       in: query
       name: limit
@@ -234,6 +227,13 @@ components:
         type: integer
         default: 100
         maximum: 100
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -126,6 +126,59 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CustomerAccountList:
+      title: CustomerAccountList
+      type: object
+      properties:
+        customer_accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAccount'
+        totalEntries:
+          type: integer
+    CustomerHistory:
+      allOf:
+      - $ref: '#/components/schemas/AccountHistory'
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        category:
+          type: string
+    AccountHistory:
+      title: AccountHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              previousValue:
+                type: string
+              newValue:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     CustomerAccount:
       title: CustomerAccount
       type: object
@@ -155,19 +208,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    CustomerHistory:
-      allOf:
-      - $ref: '#/components/schemas/AccountHistory'
     Contact:
       title: Contact
       type: object
@@ -189,46 +229,6 @@ components:
             type: string
         primary:
           type: boolean
-    AccountHistory:
-      title: AccountHistory
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              previousValue:
-                type: string
-              newValue:
-                type: string
-              changedAt:
-                type: string
-                format: date-time
-              changedBy:
-                type: string
-    CustomerAccountList:
-      title: CustomerAccountList
-      type: object
-      properties:
-        customer_accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerAccount'
-        totalEntries:
-          type: integer
-    Metadata:
-      title: Metadata
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-        category:
-          type: string
     AccountStatusHistory:
       title: AccountStatusHistory
       type: object
@@ -248,6 +248,12 @@ components:
               reason:
                 type: string
   responses:
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
     NotFound:
       description: Not found.
       content:
@@ -260,12 +266,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     Forbidden:
       description: Forbidden.
       content:
@@ -273,17 +273,17 @@ components:
           schema:
             $ref: '#/components/schemas/Fault'
   parameters:
-    CustomerId:
-      in: path
-      name: customerId
-      required: true
-      schema:
-        type: string
     RCN:
       in: path
       name: rcn
       required: true
       description: The Rackspace Customer Number (RCN) identifying the customer account.
+      schema:
+        type: string
+    CustomerId:
+      in: path
+      name: customerId
+      required: true
       schema:
         type: string
   securitySchemes:

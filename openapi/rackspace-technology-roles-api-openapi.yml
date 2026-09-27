@@ -125,15 +125,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+    RoleId:
+      in: path
+      name: roleId
+      required: true
+      schema:
+        type: string
   schemas:
-    RoleList:
-      title: RoleList
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
     Role:
       title: Role
       type: object
@@ -148,19 +153,14 @@ components:
           type: string
         tenantId:
           type: string
-  parameters:
-    UserId:
-      in: path
-      name: userId
-      required: true
-      schema:
-        type: string
-    RoleId:
-      in: path
-      name: roleId
-      required: true
-      schema:
-        type: string
+    RoleList:
+      title: RoleList
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
   securitySchemes:
     AuthToken:
       type: apiKey

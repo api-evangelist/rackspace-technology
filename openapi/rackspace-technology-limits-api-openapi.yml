@@ -92,25 +92,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Limit:
-      title: Limit
-      type: object
-      properties:
-        verb:
-          type: string
-        URI:
-          type: string
-        regex:
-          type: string
-        value:
-          type: integer
-        remaining:
-          type: integer
-        unit:
-          type: string
-        resetTime:
-          type: integer
-          format: int64
     Fault:
       title: Fault
       type: object
@@ -142,6 +123,25 @@ components:
           type: object
           additionalProperties:
             type: integer
+    Limit:
+      title: Limit
+      type: object
+      properties:
+        verb:
+          type: string
+        URI:
+          type: string
+        regex:
+          type: string
+        value:
+          type: integer
+        remaining:
+          type: integer
+        unit:
+          type: string
+        resetTime:
+          type: integer
+          format: int64
     LimitTypes:
       title: LimitTypes
       type: object
@@ -151,14 +151,14 @@ components:
           items:
             type: string
   responses:
-    Unauthorized:
-      description: You are not authorized to complete this operation.
+    ServiceUnavailable:
+      description: The DNS service is not available.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: The DNS service is not available.
+    Unauthorized:
+      description: You are not authorized to complete this operation.
       content:
         application/json:
           schema:

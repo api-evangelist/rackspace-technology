@@ -45,6 +45,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
     Offering:
       title: Offering
       type: object
@@ -82,23 +91,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
   parameters:
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
     Limit:
       in: query
       name: limit
@@ -107,13 +100,6 @@ components:
         type: integer
         default: 100
         maximum: 100
-    LineOfBusiness:
-      in: query
-      name: lineOfBusiness
-      required: false
-      description: The Rackspace line of business associated with the offering (for example, US_CLOUD).
-      schema:
-        type: string
     Status:
       in: query
       name: status
@@ -124,6 +110,20 @@ components:
         - ACTIVE
         - INACTIVE
         default: ACTIVE
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
+    LineOfBusiness:
+      in: query
+      name: lineOfBusiness
+      required: false
+      description: The Rackspace line of business associated with the offering (for example, US_CLOUD).
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey
