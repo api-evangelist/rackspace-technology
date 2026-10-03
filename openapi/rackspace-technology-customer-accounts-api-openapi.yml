@@ -126,19 +126,24 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CustomerAccountList:
-      title: CustomerAccountList
+    AccountStatusHistory:
+      title: AccountStatusHistory
       type: object
       properties:
-        customer_accounts:
+        history:
           type: array
           items:
-            $ref: '#/components/schemas/CustomerAccount'
-        totalEntries:
-          type: integer
-    CustomerHistory:
-      allOf:
-      - $ref: '#/components/schemas/AccountHistory'
+            type: object
+            properties:
+              status:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+              reason:
+                type: string
     Metadata:
       title: Metadata
       type: object
@@ -148,6 +153,16 @@ components:
         value:
           type: string
         category:
+          type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
           type: string
     AccountHistory:
       title: AccountHistory
@@ -169,16 +184,40 @@ components:
                 format: date-time
               changedBy:
                 type: string
-    Fault:
-      title: Fault
+    CustomerAccountList:
+      title: CustomerAccountList
       type: object
       properties:
-        code:
+        customer_accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAccount'
+        totalEntries:
           type: integer
-        message:
+    Contact:
+      title: Contact
+      type: object
+      properties:
+        id:
           type: string
-        details:
+        firstName:
           type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        primary:
+          type: boolean
+    CustomerHistory:
+      allOf:
+      - $ref: '#/components/schemas/AccountHistory'
     CustomerAccount:
       title: CustomerAccount
       type: object
@@ -208,46 +247,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
-    Contact:
-      title: Contact
-      type: object
-      properties:
-        id:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        primary:
-          type: boolean
-    AccountStatusHistory:
-      title: AccountStatusHistory
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-              changedAt:
-                type: string
-                format: date-time
-              changedBy:
-                type: string
-              reason:
-                type: string
   responses:
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Bad request.
       content:
@@ -260,12 +266,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     Forbidden:
       description: Forbidden.
       content:
@@ -273,17 +273,17 @@ components:
           schema:
             $ref: '#/components/schemas/Fault'
   parameters:
+    CustomerId:
+      in: path
+      name: customerId
+      required: true
+      schema:
+        type: string
     RCN:
       in: path
       name: rcn
       required: true
       description: The Rackspace Customer Number (RCN) identifying the customer account.
-      schema:
-        type: string
-    CustomerId:
-      in: path
-      name: customerId
-      required: true
       schema:
         type: string
   securitySchemes:

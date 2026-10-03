@@ -126,6 +126,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Link:
       title: Link
       type: object
@@ -196,6 +210,30 @@ components:
         updated:
           type: string
           format: date-time
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
     RecordInput:
       title: RecordInput
       type: object
@@ -226,44 +264,6 @@ components:
           type: integer
         comment:
           type: string
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
   responses:
     AsyncJobAccepted:
       description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
@@ -272,18 +272,18 @@ components:
           schema:
             $ref: '#/components/schemas/AsyncJob'
   parameters:
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
     RecordId:
       in: path
       name: recordId
       required: true
       description: The Rackspace Cloud DNS record ID.
+      schema:
+        type: string
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
       schema:
         type: string
   securitySchemes:

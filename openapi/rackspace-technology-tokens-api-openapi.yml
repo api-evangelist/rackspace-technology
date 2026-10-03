@@ -133,109 +133,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EndpointList:
-      title: EndpointList
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
-    Tenant:
-      title: Tenant
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-    User:
-      title: User
-      type: object
-      properties:
-        id:
-          type: string
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        enabled:
-          type: boolean
-        domainId:
-          type: string
-        defaultRegion:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-    Token:
-      title: Token
-      type: object
-      properties:
-        id:
-          type: string
-        expires:
-          type: string
-          format: date-time
-        tenant:
-          $ref: '#/components/schemas/Tenant'
-    Role:
-      title: Role
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        serviceId:
-          type: string
-        tenantId:
-          type: string
-    ServiceCatalogEntry:
-      title: ServiceCatalogEntry
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    AuthenticateResponse:
-      title: AuthenticateResponse
-      type: object
-      properties:
-        access:
-          type: object
-          properties:
-            token:
-              $ref: '#/components/schemas/Token'
-            user:
-              $ref: '#/components/schemas/User'
-            serviceCatalog:
-              type: array
-              items:
-                $ref: '#/components/schemas/ServiceCatalogEntry'
     Endpoint:
       title: Endpoint
       type: object
@@ -257,6 +154,54 @@ components:
         tenantId:
           type: string
         versionId:
+          type: string
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        serviceId:
+          type: string
+        tenantId:
+          type: string
+    Tenant:
+      title: Tenant
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    ServiceCatalogEntry:
+      title: ServiceCatalogEntry
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
           type: string
     AuthenticateRequest:
       title: AuthenticateRequest
@@ -294,7 +239,68 @@ components:
               properties:
                 id:
                   type: string
+    EndpointList:
+      title: EndpointList
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    AuthenticateResponse:
+      title: AuthenticateResponse
+      type: object
+      properties:
+        access:
+          type: object
+          properties:
+            token:
+              $ref: '#/components/schemas/Token'
+            user:
+              $ref: '#/components/schemas/User'
+            serviceCatalog:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceCatalogEntry'
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        enabled:
+          type: boolean
+        domainId:
+          type: string
+        defaultRegion:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    Token:
+      title: Token
+      type: object
+      properties:
+        id:
+          type: string
+        expires:
+          type: string
+          format: date-time
+        tenant:
+          $ref: '#/components/schemas/Tenant'
   responses:
+    Unauthorized:
+      description: Invalid credentials or missing required MFA.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Missing or invalid request parameters.
       content:
@@ -303,12 +309,6 @@ components:
             $ref: '#/components/schemas/Fault'
     NotFound:
       description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Invalid credentials or missing required MFA.
       content:
         application/json:
           schema:

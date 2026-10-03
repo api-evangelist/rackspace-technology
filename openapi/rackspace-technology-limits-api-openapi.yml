@@ -91,6 +91,19 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
     Fault:
       title: Fault
@@ -102,6 +115,14 @@ components:
           type: string
         details:
           type: string
+    LimitTypes:
+      title: LimitTypes
+      type: object
+      properties:
+        limitTypes:
+          type: array
+          items:
+            type: string
     Limits:
       title: Limits
       type: object
@@ -142,27 +163,6 @@ components:
         resetTime:
           type: integer
           format: int64
-    LimitTypes:
-      title: LimitTypes
-      type: object
-      properties:
-        limitTypes:
-          type: array
-          items:
-            type: string
-  responses:
-    ServiceUnavailable:
-      description: The DNS service is not available.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: You are not authorized to complete this operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   parameters:
     AccountId:
       in: path

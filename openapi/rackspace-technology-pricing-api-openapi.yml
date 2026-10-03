@@ -127,6 +127,35 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VolumeGrid:
+      title: VolumeGrid
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              minVolume:
+                type: number
+              maxVolume:
+                type: number
+              discountPercent:
+                type: number
+    VolumeGridList:
+      title: VolumeGridList
+      type: object
+      properties:
+        volumeGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeGrid'
     DiscountCalculationRequest:
       title: DiscountCalculationRequest
       type: object
@@ -152,22 +181,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CommitGrid'
-    DiscountCalculationResponse:
-      title: DiscountCalculationResponse
-      type: object
-      properties:
-        productCode:
-          type: string
-        quantity:
-          type: number
-        listPrice:
-          type: number
-        discountPercent:
-          type: number
-        finalPrice:
-          type: number
-        currency:
-          type: string
     CommitGrid:
       title: CommitGrid
       type: object
@@ -189,36 +202,30 @@ components:
                 type: number
               discountPercent:
                 type: number
-    VolumeGridList:
-      title: VolumeGridList
+    DiscountCalculationResponse:
+      title: DiscountCalculationResponse
       type: object
       properties:
-        volumeGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeGrid'
-    VolumeGrid:
-      title: VolumeGrid
-      type: object
-      properties:
-        id:
+        productCode:
           type: string
-        name:
-          type: string
+        quantity:
+          type: number
+        listPrice:
+          type: number
+        discountPercent:
+          type: number
+        finalPrice:
+          type: number
         currency:
           type: string
-        tiers:
-          type: array
-          items:
-            type: object
-            properties:
-              minVolume:
-                type: number
-              maxVolume:
-                type: number
-              discountPercent:
-                type: number
   parameters:
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
     Limit:
       in: query
       name: limit
@@ -227,13 +234,6 @@ components:
         type: integer
         default: 100
         maximum: 100
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

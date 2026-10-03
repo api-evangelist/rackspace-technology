@@ -54,6 +54,18 @@ components:
         href:
           type: string
           format: uri
+    OfferingList:
+      title: OfferingList
+      type: object
+      properties:
+        offerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offering'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Offering:
       title: Offering
       type: object
@@ -79,19 +91,14 @@ components:
         endDate:
           type: string
           format: date
-    OfferingList:
-      title: OfferingList
-      type: object
-      properties:
-        offerings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offering'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
   parameters:
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
     Limit:
       in: query
       name: limit
@@ -110,13 +117,6 @@ components:
         - ACTIVE
         - INACTIVE
         default: ACTIVE
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
     LineOfBusiness:
       in: query
       name: lineOfBusiness

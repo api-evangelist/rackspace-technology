@@ -125,19 +125,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    UserId:
-      in: path
-      name: userId
-      required: true
-      schema:
-        type: string
-    RoleId:
-      in: path
-      name: roleId
-      required: true
-      schema:
-        type: string
   schemas:
     Role:
       title: Role
@@ -161,6 +148,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+  parameters:
+    RoleId:
+      in: path
+      name: roleId
+      required: true
+      schema:
+        type: string
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

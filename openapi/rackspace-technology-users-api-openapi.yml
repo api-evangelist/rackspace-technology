@@ -228,59 +228,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    BadRequest:
-      description: Missing or invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   schemas:
-    User:
-      title: User
-      type: object
-      properties:
-        id:
-          type: string
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        enabled:
-          type: boolean
-        domainId:
-          type: string
-        defaultRegion:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-    Domain:
-      title: Domain
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-    UserResponse:
-      title: UserResponse
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
     Role:
       title: Role
       type: object
@@ -295,6 +243,20 @@ components:
           type: string
         tenantId:
           type: string
+    UserResponse:
+      title: UserResponse
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
     Fault:
       title: Fault
       type: object
@@ -305,6 +267,11 @@ components:
           type: string
         details:
           type: string
+    Credential:
+      title: Credential
+      type: object
+      additionalProperties: true
+      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
     UserCreateRequest:
       title: UserCreateRequest
       type: object
@@ -329,35 +296,6 @@ components:
               type: string
             defaultRegion:
               type: string
-    Credential:
-      title: Credential
-      type: object
-      additionalProperties: true
-      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
-    CredentialList:
-      title: CredentialList
-      type: object
-      properties:
-        credentials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Credential'
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        RAX-AUTH:domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain'
-    UserList:
-      title: UserList
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     UserUpdateRequest:
       title: UserUpdateRequest
       type: object
@@ -372,6 +310,55 @@ components:
               format: email
             enabled:
               type: boolean
+    Domain:
+      title: Domain
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        enabled:
+          type: boolean
+        domainId:
+          type: string
+        defaultRegion:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    CredentialList:
+      title: CredentialList
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+    UserList:
+      title: UserList
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
   parameters:
     UserId:
       in: path
@@ -379,6 +366,19 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Missing or invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   securitySchemes:
     AuthToken:
       type: apiKey
