@@ -229,49 +229,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Role:
-      title: Role
+    UserList:
+      title: UserList
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        serviceId:
-          type: string
-        tenantId:
-          type: string
-    UserResponse:
-      title: UserResponse
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        RAX-AUTH:domains:
+        users:
           type: array
           items:
-            $ref: '#/components/schemas/Domain'
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    Credential:
-      title: Credential
-      type: object
-      additionalProperties: true
-      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
+            $ref: '#/components/schemas/User'
     UserCreateRequest:
       title: UserCreateRequest
       type: object
@@ -296,22 +261,8 @@ components:
               type: string
             defaultRegion:
               type: string
-    UserUpdateRequest:
-      title: UserUpdateRequest
-      type: object
-      properties:
-        user:
-          type: object
-          properties:
-            username:
-              type: string
-            email:
-              type: string
-              format: email
-            enabled:
-              type: boolean
-    Domain:
-      title: Domain
+    Role:
+      title: Role
       type: object
       properties:
         id:
@@ -320,8 +271,10 @@ components:
           type: string
         description:
           type: string
-        enabled:
-          type: boolean
+        serviceId:
+          type: string
+        tenantId:
+          type: string
     User:
       title: User
       type: object
@@ -343,6 +296,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    Credential:
+      title: Credential
+      type: object
+      additionalProperties: true
+      description: Identity credential blob; format depends on credential type (RAX-KSKEY, OS-KSADM, etc).
+    Domain:
+      title: Domain
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
     CredentialList:
       title: CredentialList
       type: object
@@ -351,21 +331,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Credential'
-    UserList:
-      title: UserList
+    UserUpdateRequest:
+      title: UserUpdateRequest
       type: object
       properties:
-        users:
+        user:
+          type: object
+          properties:
+            username:
+              type: string
+            email:
+              type: string
+              format: email
+            enabled:
+              type: boolean
+    UserResponse:
+      title: UserResponse
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
           type: array
           items:
-            $ref: '#/components/schemas/User'
-  parameters:
-    UserId:
-      in: path
-      name: userId
-      required: true
-      schema:
-        type: string
+            $ref: '#/components/schemas/Domain'
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -379,6 +372,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

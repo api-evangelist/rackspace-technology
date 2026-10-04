@@ -77,6 +77,13 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
   schemas:
     MobilePhone:
       title: MobilePhone
@@ -88,13 +95,6 @@ components:
           type: string
         verified:
           type: boolean
-  parameters:
-    UserId:
-      in: path
-      name: userId
-      required: true
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -126,44 +126,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AccountStatusHistory:
-      title: AccountStatusHistory
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-              changedAt:
-                type: string
-                format: date-time
-              changedBy:
-                type: string
-              reason:
-                type: string
-    Metadata:
-      title: Metadata
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-        category:
-          type: string
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     AccountHistory:
       title: AccountHistory
       type: object
@@ -184,6 +146,24 @@ components:
                 format: date-time
               changedBy:
                 type: string
+    AccountStatusHistory:
+      title: AccountStatusHistory
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              changedAt:
+                type: string
+                format: date-time
+              changedBy:
+                type: string
+              reason:
+                type: string
     CustomerAccountList:
       title: CustomerAccountList
       type: object
@@ -194,30 +174,29 @@ components:
             $ref: '#/components/schemas/CustomerAccount'
         totalEntries:
           type: integer
-    Contact:
-      title: Contact
-      type: object
-      properties:
-        id:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        primary:
-          type: boolean
     CustomerHistory:
       allOf:
       - $ref: '#/components/schemas/AccountHistory'
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        category:
+          type: string
     CustomerAccount:
       title: CustomerAccount
       type: object
@@ -247,13 +226,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
+    Contact:
+      title: Contact
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        primary:
+          type: boolean
   responses:
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     BadRequest:
       description: Bad request.
       content:
@@ -262,6 +256,12 @@ components:
             $ref: '#/components/schemas/Fault'
     NotFound:
       description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Unauthorized.
       content:
         application/json:
           schema:

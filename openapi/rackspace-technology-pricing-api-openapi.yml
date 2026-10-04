@@ -126,7 +126,47 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
   schemas:
+    CommitGridList:
+      title: CommitGridList
+      type: object
+      properties:
+        commitGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitGrid'
+    DiscountCalculationResponse:
+      title: DiscountCalculationResponse
+      type: object
+      properties:
+        productCode:
+          type: string
+        quantity:
+          type: number
+        listPrice:
+          type: number
+        discountPercent:
+          type: number
+        finalPrice:
+          type: number
+        currency:
+          type: string
     VolumeGrid:
       title: VolumeGrid
       type: object
@@ -173,14 +213,6 @@ components:
           type: string
         volumeGridId:
           type: string
-    CommitGridList:
-      title: CommitGridList
-      type: object
-      properties:
-        commitGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/CommitGrid'
     CommitGrid:
       title: CommitGrid
       type: object
@@ -202,38 +234,6 @@ components:
                 type: number
               discountPercent:
                 type: number
-    DiscountCalculationResponse:
-      title: DiscountCalculationResponse
-      type: object
-      properties:
-        productCode:
-          type: string
-        quantity:
-          type: number
-        listPrice:
-          type: number
-        discountPercent:
-          type: number
-        finalPrice:
-          type: number
-        currency:
-          type: string
-  parameters:
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
-    Limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-        default: 100
-        maximum: 100
   securitySchemes:
     AuthToken:
       type: apiKey

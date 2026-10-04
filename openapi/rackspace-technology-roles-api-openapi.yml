@@ -126,6 +126,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    RoleList:
+      title: RoleList
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
     Role:
       title: Role
       type: object
@@ -140,14 +148,6 @@ components:
           type: string
         tenantId:
           type: string
-    RoleList:
-      title: RoleList
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
   parameters:
     RoleId:
       in: path

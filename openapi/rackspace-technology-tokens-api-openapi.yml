@@ -155,6 +155,18 @@ components:
           type: string
         versionId:
           type: string
+    Tenant:
+      title: Tenant
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
     Role:
       title: Role
       type: object
@@ -169,18 +181,27 @@ components:
           type: string
         tenantId:
           type: string
-    Tenant:
-      title: Tenant
+    User:
+      title: User
       type: object
       properties:
         id:
           type: string
-        name:
+        username:
           type: string
-        description:
+        email:
           type: string
+          format: email
         enabled:
           type: boolean
+        domainId:
+          type: string
+        defaultRegion:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
     ServiceCatalogEntry:
       title: ServiceCatalogEntry
       type: object
@@ -203,6 +224,17 @@ components:
           type: string
         details:
           type: string
+    Token:
+      title: Token
+      type: object
+      properties:
+        id:
+          type: string
+        expires:
+          type: string
+          format: date-time
+        tenant:
+          $ref: '#/components/schemas/Tenant'
     AuthenticateRequest:
       title: AuthenticateRequest
       type: object
@@ -239,14 +271,6 @@ components:
               properties:
                 id:
                   type: string
-    EndpointList:
-      title: EndpointList
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
     AuthenticateResponse:
       title: AuthenticateResponse
       type: object
@@ -262,41 +286,17 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/ServiceCatalogEntry'
-    User:
-      title: User
+    EndpointList:
+      title: EndpointList
       type: object
       properties:
-        id:
-          type: string
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        enabled:
-          type: boolean
-        domainId:
-          type: string
-        defaultRegion:
-          type: string
-        roles:
+        endpoints:
           type: array
           items:
-            $ref: '#/components/schemas/Role'
-    Token:
-      title: Token
-      type: object
-      properties:
-        id:
-          type: string
-        expires:
-          type: string
-          format: date-time
-        tenant:
-          $ref: '#/components/schemas/Tenant'
+            $ref: '#/components/schemas/Endpoint'
   responses:
-    Unauthorized:
-      description: Invalid credentials or missing required MFA.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -307,8 +307,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Invalid credentials or missing required MFA.
       content:
         application/json:
           schema:

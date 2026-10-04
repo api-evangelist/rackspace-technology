@@ -75,6 +75,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
     Status:
       in: query
       name: status
@@ -92,15 +100,16 @@ components:
       description: Pagination marker (the starting point for the next batch of items).
       schema:
         type: string
-    Limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-        default: 100
-        maximum: 100
   schemas:
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
     Product:
       title: Product
       type: object
@@ -141,15 +150,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
   securitySchemes:
     AuthToken:
       type: apiKey

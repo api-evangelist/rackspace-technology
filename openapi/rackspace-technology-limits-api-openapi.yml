@@ -92,19 +92,54 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    Unauthorized:
-      description: You are not authorized to complete this operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     ServiceUnavailable:
       description: The DNS service is not available.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  parameters:
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
   schemas:
+    LimitTypes:
+      title: LimitTypes
+      type: object
+      properties:
+        limitTypes:
+          type: array
+          items:
+            type: string
+    Limit:
+      title: Limit
+      type: object
+      properties:
+        verb:
+          type: string
+        URI:
+          type: string
+        regex:
+          type: string
+        value:
+          type: integer
+        remaining:
+          type: integer
+        unit:
+          type: string
+        resetTime:
+          type: integer
+          format: int64
     Fault:
       title: Fault
       type: object
@@ -115,14 +150,6 @@ components:
           type: string
         details:
           type: string
-    LimitTypes:
-      title: LimitTypes
-      type: object
-      properties:
-        limitTypes:
-          type: array
-          items:
-            type: string
     Limits:
       title: Limits
       type: object
@@ -144,33 +171,6 @@ components:
           type: object
           additionalProperties:
             type: integer
-    Limit:
-      title: Limit
-      type: object
-      properties:
-        verb:
-          type: string
-        URI:
-          type: string
-        regex:
-          type: string
-        value:
-          type: integer
-        remaining:
-          type: integer
-        unit:
-          type: string
-        resetTime:
-          type: integer
-          format: int64
-  parameters:
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

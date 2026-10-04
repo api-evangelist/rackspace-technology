@@ -92,6 +92,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    ResourceType:
+      in: path
+      name: resourceType
+      required: true
+      description: Resource type the metadata is attached to (for example, customer_accounts).
+      schema:
+        type: string
+    ResourceId:
+      in: path
+      name: resourceId
+      required: true
+      schema:
+        type: string
   schemas:
     Metadata:
       title: Metadata
@@ -127,20 +141,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
-  parameters:
-    ResourceType:
-      in: path
-      name: resourceType
-      required: true
-      description: Resource type the metadata is attached to (for example, customer_accounts).
-      schema:
-        type: string
-    ResourceId:
-      in: path
-      name: resourceId
-      required: true
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -448,162 +448,6 @@ paths:
       description: Rackspace UK Cloud Identity endpoint.
 components:
   schemas:
-    UpdateDomainsRequest:
-      title: UpdateDomainsRequest
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            allOf:
-            - type: object
-              properties:
-                id:
-                  type: string
-            - $ref: '#/components/schemas/UpdateDomainRequest'
-    Domain:
-      title: Domain
-      type: object
-      description: A DNS zone manageable by the account.
-      properties:
-        id:
-          type: string
-          description: Domain identifier.
-        accountId:
-          type: string
-          description: Tenant identifier that owns the domain.
-        name:
-          type: string
-          description: Fully qualified domain name.
-        emailAddress:
-          type: string
-          format: email
-          description: Administrative email contact (used as SOA RNAME).
-        ttl:
-          type: integer
-          description: Default record TTL in seconds (>= 300).
-        comment:
-          type: string
-          description: Optional administrative comment.
-        nameservers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-        recordsList:
-          $ref: '#/components/schemas/RecordList'
-        subdomains:
-          $ref: '#/components/schemas/DomainList'
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-    DomainList:
-      title: DomainList
-      type: object
-      properties:
-        domains:
-          type: array
-          items:
-            $ref: '#/components/schemas/Domain'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
-    DomainChanges:
-      title: DomainChanges
-      type: object
-      properties:
-        from:
-          type: string
-          format: date-time
-        to:
-          type: string
-          format: date-time
-        totalEntries:
-          type: integer
-        changes:
-          type: array
-          items:
-            type: object
-            properties:
-              domain:
-                type: string
-              action:
-                type: string
-              targetType:
-                type: string
-              targetId:
-                type: string
-              accountId:
-                type: string
-              changeDetails:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                    originalValue:
-                      type: string
-                    newValue:
-                      type: string
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    UpdateDomainRequest:
-      title: UpdateDomainRequest
-      type: object
-      properties:
-        ttl:
-          type: integer
-          minimum: 300
-        emailAddress:
-          type: string
-          format: email
-        comment:
-          type: string
     Record:
       title: Record
       type: object
@@ -650,16 +494,62 @@ components:
           format: uri
         content:
           type: string
-    Fault:
-      title: Fault
+    UpdateDomainRequest:
+      title: UpdateDomainRequest
       type: object
       properties:
-        code:
+        ttl:
           type: integer
-        message:
+          minimum: 300
+        emailAddress:
           type: string
-        details:
+          format: email
+        comment:
           type: string
+    RecordInput:
+      title: RecordInput
+      type: object
+      required:
+      - type
+      - name
+      - data
+      properties:
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        name:
+          type: string
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+        comment:
+          type: string
+    DomainList:
+      title: DomainList
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     ImportDomainRequest:
       title: ImportDomainRequest
       type: object
@@ -681,6 +571,67 @@ components:
               contents:
                 type: string
                 description: BIND9-formatted zone file contents.
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    UpdateDomainsRequest:
+      title: UpdateDomainsRequest
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+            - $ref: '#/components/schemas/UpdateDomainRequest'
+    DomainChanges:
+      title: DomainChanges
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        totalEntries:
+          type: integer
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              action:
+                type: string
+              targetType:
+                type: string
+              targetId:
+                type: string
+              accountId:
+                type: string
+              changeDetails:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    originalValue:
+                      type: string
+                    newValue:
+                      type: string
     CreateDomainsRequest:
       title: CreateDomainsRequest
       type: object
@@ -719,44 +670,85 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/Domain'
-    RecordInput:
-      title: RecordInput
-      type: object
-      required:
-      - type
-      - name
-      - data
-      properties:
-        type:
-          type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        name:
-          type: string
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-        comment:
-          type: string
-    DomainList_2:
-      title: DomainList
+    RecordList:
+      title: RecordList
       type: object
       properties:
-        RAX-AUTH:domains:
+        records:
           type: array
           items:
-            $ref: '#/components/schemas/Domain_2'
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    Domain:
+      title: Domain
+      type: object
+      description: A DNS zone manageable by the account.
+      properties:
+        id:
+          type: string
+          description: Domain identifier.
+        accountId:
+          type: string
+          description: Tenant identifier that owns the domain.
+        name:
+          type: string
+          description: Fully qualified domain name.
+        emailAddress:
+          type: string
+          format: email
+          description: Administrative email contact (used as SOA RNAME).
+        ttl:
+          type: integer
+          description: Default record TTL in seconds (>= 300).
+        comment:
+          type: string
+          description: Optional administrative comment.
+        nameservers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+        recordsList:
+          $ref: '#/components/schemas/RecordList'
+        subdomains:
+          $ref: '#/components/schemas/DomainList'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
     Domain_2:
       title: Domain
       type: object
@@ -769,44 +761,31 @@ components:
           type: string
         enabled:
           type: boolean
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
-    NotFound:
-      description: The requested item was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    ServiceUnavailable:
-      description: The DNS service is not available.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    OverLimit:
-      description: The number of items returned is above the allowed limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: You are not authorized to complete this operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: The request is missing one or more elements, or values are invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    DomainList_2:
+      title: DomainList
+      type: object
+      properties:
+        RAX-AUTH:domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain_2'
   parameters:
+    Offset:
+      in: query
+      name: offset
+      required: false
+      description: Zero-based offset into the result set.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
     Limit:
       in: query
       name: limit
@@ -817,22 +796,6 @@ components:
         default: 100
         minimum: 1
         maximum: 100
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
-    Offset:
-      in: query
-      name: offset
-      required: false
-      description: Zero-based offset into the result set.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
     DomainId:
       in: path
       name: domainId
@@ -840,6 +803,43 @@ components:
       description: The Rackspace Cloud DNS domain ID.
       schema:
         type: string
+  responses:
+    OverLimit:
+      description: The number of items returned is above the allowed limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: The request is missing one or more elements, or values are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
+    Unauthorized:
+      description: You are not authorized to complete this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested item was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   securitySchemes:
     AuthToken:
       type: apiKey

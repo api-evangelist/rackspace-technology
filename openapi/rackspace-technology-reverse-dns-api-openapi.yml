@@ -125,56 +125,14 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
   schemas:
-    RecordList:
-      title: RecordList
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        totalEntries:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
-    AddPtrRecordsRequest:
-      title: AddPtrRecordsRequest
-      type: object
-      required:
-      - recordsList
-      - link
-      properties:
-        recordsList:
-          type: object
-          properties:
-            records:
-              type: array
-              items:
-                $ref: '#/components/schemas/RecordInput'
-        link:
-          type: object
-          properties:
-            content:
-              type: string
-            href:
-              type: string
-              format: uri
-            rel:
-              type: string
     Record:
       title: Record
       type: object
@@ -210,6 +168,17 @@ components:
         updated:
           type: string
           format: date-time
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
     AsyncJob:
       title: AsyncJob
       type: object
@@ -234,6 +203,30 @@ components:
         response:
           type: object
           additionalProperties: true
+    AddPtrRecordsRequest:
+      title: AddPtrRecordsRequest
+      type: object
+      required:
+      - recordsList
+      - link
+      properties:
+        recordsList:
+          type: object
+          properties:
+            records:
+              type: array
+              items:
+                $ref: '#/components/schemas/RecordInput'
+        link:
+          type: object
+          properties:
+            content:
+              type: string
+            href:
+              type: string
+              format: uri
+            rel:
+              type: string
     RecordInput:
       title: RecordInput
       type: object
@@ -264,26 +257,33 @@ components:
           type: integer
         comment:
           type: string
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
+    RecordList:
+      title: RecordList
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        totalEntries:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   parameters:
-    RecordId:
-      in: path
-      name: recordId
-      required: true
-      description: The Rackspace Cloud DNS record ID.
-      schema:
-        type: string
     AccountId:
       in: path
       name: account
       required: true
       description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+    RecordId:
+      in: path
+      name: recordId
+      required: true
+      description: The Rackspace Cloud DNS record ID.
       schema:
         type: string
   securitySchemes:

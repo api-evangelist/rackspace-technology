@@ -44,6 +44,39 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+    Status:
+      in: query
+      name: status
+      required: false
+      schema:
+        type: string
+        enum:
+        - ACTIVE
+        - INACTIVE
+        default: ACTIVE
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
+    LineOfBusiness:
+      in: query
+      name: lineOfBusiness
+      required: false
+      description: The Rackspace line of business associated with the offering (for example, US_CLOUD).
+      schema:
+        type: string
   schemas:
     Link:
       title: Link
@@ -54,18 +87,6 @@ components:
         href:
           type: string
           format: uri
-    OfferingList:
-      title: OfferingList
-      type: object
-      properties:
-        offerings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offering'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Offering:
       title: Offering
       type: object
@@ -91,39 +112,18 @@ components:
         endDate:
           type: string
           format: date
-  parameters:
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
-    Limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-        default: 100
-        maximum: 100
-    Status:
-      in: query
-      name: status
-      required: false
-      schema:
-        type: string
-        enum:
-        - ACTIVE
-        - INACTIVE
-        default: ACTIVE
-    LineOfBusiness:
-      in: query
-      name: lineOfBusiness
-      required: false
-      description: The Rackspace line of business associated with the offering (for example, US_CLOUD).
-      schema:
-        type: string
+    OfferingList:
+      title: OfferingList
+      type: object
+      properties:
+        offerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offering'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     AuthToken:
       type: apiKey
