@@ -1,0 +1,22 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=8bc3b944-fb5a-4b54-a3bb-9b699ba70b59
+  listing_count: 2
+  apps:
+  - Rackspace Elastic Engineering Platform
+  - VM Management Platform
+  seller_name: Rackspace Technology
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
