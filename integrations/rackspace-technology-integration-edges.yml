@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://aws.amazon.com/marketplace/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://storage.googleapis.com/tcfac/additional-consent-providers.csv
 marketplace_apps: []
 edges:
@@ -21,6 +22,38 @@ edges:
   seller_name: Rackspace Technology
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.rackspace-spot
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.rackspace-spot/spot-mcp
+    register_id: io.github.rackspace-spot/spot-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - io.github.rackspace-spot/spot-mcp
+    hosted_remote: 1
+    local_package: 1
+    transports:
+      stdio: 1
+      streamable-http: 1
+    auth_declared: 1
+    catalog_declared: false
+    namespace_domains:
+    - rackspace.com
+  matched_by:
+  - remote-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 - partner_name: Google Ad Tech Providers
   partner: null
   partner_match: domain
