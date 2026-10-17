@@ -117,6 +117,14 @@ components:
           type: string
         category:
           type: string
+    MetadataList:
+      title: MetadataList
+      type: object
+      properties:
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
     MetadataDetails:
       title: MetadataDetails
       allOf:
@@ -133,14 +141,6 @@ components:
             format: date-time
           updatedBy:
             type: string
-    MetadataList:
-      title: MetadataList
-      type: object
-      properties:
-        metadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/Metadata'
   securitySchemes:
     AuthToken:
       type: apiKey

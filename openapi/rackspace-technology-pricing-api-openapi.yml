@@ -126,31 +126,24 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-        default: 100
-        maximum: 100
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
   schemas:
-    CommitGridList:
-      title: CommitGridList
+    DiscountCalculationRequest:
+      title: DiscountCalculationRequest
       type: object
+      required:
+      - productCode
+      - quantity
       properties:
-        commitGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/CommitGrid'
+        productCode:
+          type: string
+        quantity:
+          type: number
+        currency:
+          type: string
+        commitGridId:
+          type: string
+        volumeGridId:
+          type: string
     DiscountCalculationResponse:
       title: DiscountCalculationResponse
       type: object
@@ -167,6 +160,14 @@ components:
           type: number
         currency:
           type: string
+    CommitGridList:
+      title: CommitGridList
+      type: object
+      properties:
+        commitGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitGrid'
     VolumeGrid:
       title: VolumeGrid
       type: object
@@ -188,31 +189,6 @@ components:
                 type: number
               discountPercent:
                 type: number
-    VolumeGridList:
-      title: VolumeGridList
-      type: object
-      properties:
-        volumeGrids:
-          type: array
-          items:
-            $ref: '#/components/schemas/VolumeGrid'
-    DiscountCalculationRequest:
-      title: DiscountCalculationRequest
-      type: object
-      required:
-      - productCode
-      - quantity
-      properties:
-        productCode:
-          type: string
-        quantity:
-          type: number
-        currency:
-          type: string
-        commitGridId:
-          type: string
-        volumeGridId:
-          type: string
     CommitGrid:
       title: CommitGrid
       type: object
@@ -234,6 +210,30 @@ components:
                 type: number
               discountPercent:
                 type: number
+    VolumeGridList:
+      title: VolumeGridList
+      type: object
+      properties:
+        volumeGrids:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeGrid'
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

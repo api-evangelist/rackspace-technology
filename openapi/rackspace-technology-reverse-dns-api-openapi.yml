@@ -125,84 +125,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    AsyncJobAccepted:
-      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsyncJob'
   schemas:
-    Record:
-      title: Record
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - A
-          - AAAA
-          - MX
-          - CNAME
-          - NS
-          - TXT
-          - SRV
-          - PTR
-        data:
-          type: string
-        ttl:
-          type: integer
-          minimum: 300
-        priority:
-          type: integer
-          description: Required for MX and SRV records.
-        comment:
-          type: string
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        content:
-          type: string
-    AsyncJob:
-      title: AsyncJob
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - RUNNING
-          - COMPLETED
-          - ERROR
-        requestUrl:
-          type: string
-          format: uri
-        verb:
-          type: string
-        jobId:
-          type: string
-        response:
-          type: object
-          additionalProperties: true
     AddPtrRecordsRequest:
       title: AddPtrRecordsRequest
       type: object
@@ -257,6 +180,76 @@ components:
           type: integer
         comment:
           type: string
+    AsyncJob:
+      title: AsyncJob
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - RUNNING
+          - COMPLETED
+          - ERROR
+        requestUrl:
+          type: string
+          format: uri
+        verb:
+          type: string
+        jobId:
+          type: string
+        response:
+          type: object
+          additionalProperties: true
+    Record:
+      title: Record
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - A
+          - AAAA
+          - MX
+          - CNAME
+          - NS
+          - TXT
+          - SRV
+          - PTR
+        data:
+          type: string
+        ttl:
+          type: integer
+          minimum: 300
+        priority:
+          type: integer
+          description: Required for MX and SRV records.
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        content:
+          type: string
     RecordList:
       title: RecordList
       type: object
@@ -272,13 +265,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
   parameters:
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
     RecordId:
       in: path
       name: recordId
@@ -286,6 +272,20 @@ components:
       description: The Rackspace Cloud DNS record ID.
       schema:
         type: string
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
+  responses:
+    AsyncJobAccepted:
+      description: The asynchronous job has been accepted; poll the callbackUrl until status is COMPLETED.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncJob'
   securitySchemes:
     AuthToken:
       type: apiKey

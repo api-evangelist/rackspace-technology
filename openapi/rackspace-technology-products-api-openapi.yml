@@ -74,42 +74,19 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-        default: 100
-        maximum: 100
-    Status:
-      in: query
-      name: status
-      required: false
-      schema:
-        type: string
-        enum:
-        - ACTIVE
-        - INACTIVE
-        default: ACTIVE
-    Marker:
-      in: query
-      name: marker
-      required: false
-      description: Pagination marker (the starting point for the next batch of items).
-      schema:
-        type: string
   schemas:
-    Link:
-      title: Link
+    ProductList:
+      title: ProductList
       type: object
       properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Product:
       title: Product
       type: object
@@ -138,18 +115,41 @@ components:
         listPrice:
           type: number
           format: float
-    ProductList:
-      title: ProductList
+    Link:
+      title: Link
       type: object
       properties:
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 100
+        maximum: 100
+    Marker:
+      in: query
+      name: marker
+      required: false
+      description: Pagination marker (the starting point for the next batch of items).
+      schema:
+        type: string
+    Status:
+      in: query
+      name: status
+      required: false
+      schema:
+        type: string
+        enum:
+        - ACTIVE
+        - INACTIVE
+        default: ACTIVE
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -65,7 +65,23 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    RCN:
+      in: path
+      name: rcn
+      required: true
+      description: The Rackspace Customer Number (RCN) identifying the customer account.
+      schema:
+        type: string
   schemas:
+    ContactList:
+      title: ContactList
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
     Contact:
       title: Contact
       type: object
@@ -87,22 +103,6 @@ components:
             type: string
         primary:
           type: boolean
-    ContactList:
-      title: ContactList
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-  parameters:
-    RCN:
-      in: path
-      name: rcn
-      required: true
-      description: The Rackspace Customer Number (RCN) identifying the customer account.
-      schema:
-        type: string
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -92,26 +92,18 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServiceUnavailable:
-      description: The DNS service is not available.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
     Unauthorized:
       description: You are not authorized to complete this operation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-  parameters:
-    AccountId:
-      in: path
-      name: account
-      required: true
-      description: The Rackspace Cloud account (tenant) ID.
-      schema:
-        type: string
+    ServiceUnavailable:
+      description: The DNS service is not available.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
     LimitTypes:
       title: LimitTypes
@@ -121,6 +113,16 @@ components:
           type: array
           items:
             type: string
+    Fault:
+      title: Fault
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     Limit:
       title: Limit
       type: object
@@ -140,16 +142,6 @@ components:
         resetTime:
           type: integer
           format: int64
-    Fault:
-      title: Fault
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     Limits:
       title: Limits
       type: object
@@ -171,6 +163,14 @@ components:
           type: object
           additionalProperties:
             type: integer
+  parameters:
+    AccountId:
+      in: path
+      name: account
+      required: true
+      description: The Rackspace Cloud account (tenant) ID.
+      schema:
+        type: string
   securitySchemes:
     AuthToken:
       type: apiKey
