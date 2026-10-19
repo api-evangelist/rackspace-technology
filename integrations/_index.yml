@@ -91,3 +91,149 @@
       latest_authorization: '2024-11-19'
   status: not-a-workflow
   arazzo: null
+- slug: rackspace-technology-aws-partner-network-services
+  label: AWS Partner Network (services)
+  partner: amazon-web-services
+  partner_name: AWS Partner Network (services)
+  category: Services partner
+  type: register
+  channel: standard-directory
+  evidence: https://partners.amazonaws.com/partners/001E0000018XK6cIAG
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: AWS Partner Solutions Finder (api.finder.partners.aws.a2z.com/search)
+    spec_file: null
+    standard: AWS Partner Network (services path)
+    role: aws-services-partner
+    registered_name: Rackspace Technology
+    register_id: 001E0000018XK6cIAG
+    partner_tier: Premier
+    matched_domain: rackspace.com
+    matched_by: domain
+    identity_source: the register's own website / profile URL for the firm (no lookup)
+    signal_note: listing = participation; certified_products = one entry per designation the program awards the
+      FIRM (lapsed flagged); partner_tier and context are never counted (breadth is not credit)
+    detected_by: sweep-professional-services.py
+    detected: '2026-10-19'
+    partner_paths:
+    - path_name: Services Path
+      path_tier: Premier
+      path_stage: Differentiated
+    - path_name: Training Path
+      path_tier: Select
+      path_stage: Validated
+    - path_name: Software Path
+      path_tier: null
+      path_stage: Differentiated
+    context:
+      service_deliveries: 15
+      professional_service_types:
+      - Cloud Migration Services
+      - Managed Service Provider
+      - Strategic / IT Consulting
+      - Systems Integration
+      - Training
+      - Other
+      - Assessments
+      programs:
+      - Authorized Training Partner
+      - Authorized Government Reseller
+      - AWS Managed Service Provider
+      - Authorized Commercial Reseller
+      - AWS Solution Provider Program
+      - AWS Public Sector Solution Provider
+      - ISV Accelerate
+      - Authority to Operate on AWS
+      - AWS ISV Workload Migration
+      - AWS Marketplace Skilled Consulting Partner
+      hq_country: United States
+    certified_products:
+    - product: AI Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Automotive Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Cloud Operations Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Data Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: DevOps Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Education Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Financial Services Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Healthcare Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: IoT Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Machine Learning Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Manufacturing and Industrial Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Microsoft Workloads Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Migration and Modernization Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Oracle Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Retail Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Small and Medium Business Services Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Storage Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Travel and Hospitality Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: AWS Managed Service Provider (MSP)
+      type: AWS program validation
+      lapsed: false
+  status: not-a-workflow
+  arazzo: null
+- slug: rackspace-technology-snowflake-services-partner-program
+  label: Snowflake Services Partner Program
+  partner: snowflake
+  partner_name: Snowflake Services Partner Program
+  category: Services partner
+  type: register
+  channel: standard-directory
+  evidence: https://www.snowflake.com/en/why-snowflake/partners/all-partners/rackspace-technology/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Snowflake partner directory (filterable_resources.filter.json + partner model.json)
+    spec_file: null
+    standard: Snowflake services partner
+    role: snowflake-services-partner
+    registered_name: Rackspace Technology
+    register_id: rackspace-technology
+    partner_tier: Select
+    matched_domain: rackspace.com
+    matched_by: domain
+    identity_source: the register's own website / profile URL for the firm (no lookup)
+    signal_note: listing = participation; certified_products = one entry per designation the program awards the
+      FIRM (lapsed flagged); partner_tier and context are never counted (breadth is not credit)
+    detected_by: sweep-professional-services.py
+    detected: '2026-10-19'
+    context:
+      badge: Snowflake AI Data Cloud Select Services Partner badge
+  status: not-a-workflow
+  arazzo: null
