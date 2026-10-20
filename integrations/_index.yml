@@ -38,59 +38,6 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
-- slug: rackspace-technology-mcp-registry
-  label: MCP Registry
-  partner: mcp
-  partner_name: MCP Registry
-  type: register
-  channel: standard-directory
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.rackspace-spot
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: io.github.rackspace-spot/spot-mcp
-    register_id: io.github.rackspace-spot/spot-mcp
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: rackspace-technology-govramp
-  label: GovRAMP
-  partner_name: GovRAMP
-  category: GovRAMP authorization
-  type: register
-  channel: standard-directory
-  evidence: https://govramp.org/program-participants
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: GovRAMP Program Participants (govramp.org/program-participants)
-    standard: GovRAMP
-    spec_file: null
-    role: govramp-authorized
-    registered_name: Rackspace Technology
-    register_id: SR22022
-    matched_domain: rackspace.com
-    matched_by: domain
-    domain_source: contact-email
-    statuses:
-    - Authorized
-    offerings:
-    - Rackspace Government Cloud
-    signal_note: certified_products = one entry per AUTHORIZED impact level (Authorized / Provisionally Authorized),
-      never per offering; Progressing / Pending / Ready / Core are participation only
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-    certified_products:
-    - product: GovRAMP Moderate
-      impact_level: Moderate
-      lapsed: false
-      latest_authorization: '2024-11-19'
-  status: not-a-workflow
-  arazzo: null
 - slug: rackspace-technology-aws-partner-network-services
   label: AWS Partner Network (services)
   partner: amazon-web-services
@@ -235,5 +182,89 @@
     detected: '2026-10-19'
     context:
       badge: Snowflake AI Data Cloud Select Services Partner badge
+  status: not-a-workflow
+  arazzo: null
+- slug: rackspace-technology-mcp-registry
+  label: MCP Registry
+  partner: mcp
+  partner_name: MCP Registry
+  type: register
+  channel: standard-directory
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.rackspace-spot
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.rackspace-spot/spot-mcp
+    register_id: io.github.rackspace-spot/spot-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: rackspace-technology-govramp
+  label: GovRAMP
+  partner_name: GovRAMP
+  category: GovRAMP authorization
+  type: register
+  channel: standard-directory
+  evidence: https://govramp.org/program-participants
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: GovRAMP Program Participants (govramp.org/program-participants)
+    standard: GovRAMP
+    spec_file: null
+    role: govramp-authorized
+    registered_name: Rackspace Technology
+    register_id: SR22022
+    matched_domain: rackspace.com
+    matched_by: domain
+    domain_source: contact-email
+    statuses:
+    - Authorized
+    offerings:
+    - Rackspace Government Cloud
+    signal_note: certified_products = one entry per AUTHORIZED impact level (Authorized / Provisionally Authorized),
+      never per offering; Progressing / Pending / Ready / Core are participation only
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: GovRAMP Moderate
+      impact_level: Moderate
+      lapsed: false
+      latest_authorization: '2024-11-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: rackspace-technology-peeringdb-interconnection-register
+  label: PeeringDB (interconnection register)
+  partner_name: PeeringDB (interconnection register)
+  category: network interconnection register
+  type: register
+  channel: standard-directory
+  evidence: https://www.peeringdb.com/net/22
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: PeeringDB (peeringdb.com/api net, ix, fac, org)
+    standard: null
+    spec_file: null
+    role: peeringdb-network
+    registered_name: Rackspace
+    register_id: https://www.peeringdb.com/net/22
+    matched_domain: rackspace.com
+    matched_by: domain
+    asns:
+    - 12200
+    info_types:
+    - Content
+    ix_presence: 15
+    exchanges_operated: []
+    facilities_operated: 0
+    signal_note: 'participation only: PeeringDB is self-registered by network operators; ASNs, IX presence and facility
+      counts are context, never counted'
+    detected_by: sweep-network-edge.py
+    detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
