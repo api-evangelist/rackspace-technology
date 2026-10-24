@@ -1,239 +1,254 @@
 {
+  "info": {
+    "_postman_id": "b71b2d4a-c58f-4654-bb1a-6cb730e83056",
+    "name": "Rackspace Customer Service Contacts API",
+    "description": "The Rackspace Customer Service API exposes customer account, contact, and metadata operations. It lets internal users and integrations look up customer accounts the caller has access to (via tenant assignment), inspect account and customer history, and read service-level metadata associated with a customer resource.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:02.000Z",
+    "updatedAt": "2026-10-22T02:09:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b71b2d4a-c58f-4654-bb1a-6cb730e83056"
+  },
   "item": [
     {
-      "id": "2b91f982-5e12-44cb-b0e7-65df2e1dbfa6",
-      "name": "Contacts",
-      "description": {
-        "content": "Customer contact operations.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "1932c3a0-db6a-4f78-ac8e-999620a649d5",
-          "name": "Get List Of Contacts",
-          "request": {
-            "name": "Get List Of Contacts",
-            "description": {
-              "content": "Returns the list of contacts associated with the customer account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "customer_accounts",
-                ":rcn",
-                "contacts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "rcn",
-                  "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "customer_accounts",
+          "item": [
             {
-              "id": "c9fcc3f3-2134-4fc5-9a41-d5a54ec06212",
-              "name": "Contacts returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "customer_accounts",
-                    ":rcn",
-                    "contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rcn",
-                      "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{rcn}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "contacts",
+                  "item": [
+                    {
+                      "name": "{contactId}",
+                      "item": [
+                        {
+                          "name": "Get Contact",
+                          "id": "8030aa4e-4e88-490d-bc47-ebadf40594db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/contacts/:contactId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer_accounts",
+                                ":rcn",
+                                "contacts",
+                                ":contactId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f0d9ab98-f9c8-407c-9901-5e8318d17dbd",
+                                  "key": "rcn",
+                                  "value": "<string>",
+                                  "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
+                                },
+                                {
+                                  "id": "baaf796a-b721-4238-9bcd-e13370e2cebe",
+                                  "key": "contactId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns a single contact by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "02e0baec-b65d-47a9-ab2c-5a267b0259d3",
+                              "name": "Contact returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/contacts/:contactId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "customer_accounts",
+                                    ":rcn",
+                                    "contacts",
+                                    ":contactId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "rcn"
+                                    },
+                                    {
+                                      "key": "contactId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primary\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T02:09:03.000Z",
+                              "updatedAt": "2026-10-22T02:09:03.000Z",
+                              "uid": "35240-02e0baec-b65d-47a9-ab2c-5a267b0259d3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:09:02.000Z",
+                          "updatedAt": "2026-10-22T02:09:02.000Z",
+                          "uid": "35240-8030aa4e-4e88-490d-bc47-ebadf40594db"
+                        }
+                      ],
+                      "id": "40654f51-e01b-4190-852e-023600ad3d46",
+                      "createdAt": "2026-10-22T02:09:02.000Z",
+                      "updatedAt": "2026-10-22T02:09:02.000Z",
+                      "uid": "35240-40654f51-e01b-4190-852e-023600ad3d46"
+                    },
+                    {
+                      "name": "Get List Of Contacts",
+                      "id": "8551fa9b-f443-4e35-a869-070fe083b292",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer_accounts",
+                            ":rcn",
+                            "contacts"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b2ac87eb-cfe1-4fba-aee6-27193a76c8e3",
+                              "key": "rcn",
+                              "value": "<string>",
+                              "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
+                            }
+                          ]
+                        },
+                        "description": "Returns the list of contacts associated with the customer account."
+                      },
+                      "response": [
+                        {
+                          "id": "9450707d-cae9-4ba2-8939-ca6fdb12d60a",
+                          "name": "Contacts returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/contacts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer_accounts",
+                                ":rcn",
+                                "contacts"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rcn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"contacts\": [\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primary\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primary\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:09:03.000Z",
+                          "updatedAt": "2026-10-22T02:09:03.000Z",
+                          "uid": "35240-9450707d-cae9-4ba2-8939-ca6fdb12d60a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:09:02.000Z",
+                      "updatedAt": "2026-10-22T02:09:02.000Z",
+                      "uid": "35240-8551fa9b-f443-4e35-a869-070fe083b292"
+                    }
+                  ],
+                  "id": "1b4850ed-2ae2-438c-a1bb-950e5a040d6a",
+                  "createdAt": "2026-10-22T02:09:02.000Z",
+                  "updatedAt": "2026-10-22T02:09:02.000Z",
+                  "uid": "35240-1b4850ed-2ae2-438c-a1bb-950e5a040d6a"
                 }
               ],
-              "body": "{\n  \"contacts\": [\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"UsPHi45f1B7IL@PdLIMGKkpKEPtFXOkDLbAHuhJKIi.rjbj\",\n      \"phone\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"primary\": true\n    },\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"vg9@Enka.dq\",\n      \"phone\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"primary\": false\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "faf606e7-15b5-4c96-ba00-3f636b73d05b",
+              "createdAt": "2026-10-22T02:09:02.000Z",
+              "updatedAt": "2026-10-22T02:09:02.000Z",
+              "uid": "35240-faf606e7-15b5-4c96-ba00-3f636b73d05b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4d51a10a-3257-46cc-b707-99d846d07c48",
-          "name": "Get Contact",
-          "request": {
-            "name": "Get Contact",
-            "description": {
-              "content": "Returns a single contact by ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "customer_accounts",
-                ":rcn",
-                "contacts",
-                ":contactId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "rcn",
-                  "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "contactId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1aa44d1e-6e0b-48e9-bbfe-1b3c73c1c2e1",
-              "name": "Contact returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "customer_accounts",
-                    ":rcn",
-                    "contacts",
-                    ":contactId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rcn",
-                      "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "contactId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"email\": \"Jx5KUrrlSD@nzc.yz\",\n  \"phone\": \"string\",\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"primary\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "83e48af0-89e7-4723-9dbc-daaa9377ae57",
+          "createdAt": "2026-10-22T02:09:02.000Z",
+          "updatedAt": "2026-10-22T02:09:02.000Z",
+          "uid": "35240-83e48af0-89e7-4723-9dbc-daaa9377ae57"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "55893159-0c45-4ca4-859a-18695ba48319",
+      "createdAt": "2026-10-22T02:09:02.000Z",
+      "updatedAt": "2026-10-22T02:09:02.000Z",
+      "uid": "35240-55893159-0c45-4ca4-859a-18695ba48319"
     }
   ],
   "auth": {
@@ -241,25 +256,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "692b93fe-08ea-40c1-8878-f74efbc4e7f8",
-    "name": "Rackspace Cloud DNS Contacts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://accounts.api.rackspacecloud.com"
     }
-  }
+  ]
 }

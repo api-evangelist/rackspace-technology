@@ -1,620 +1,649 @@
 {
+  "info": {
+    "_postman_id": "e9e0cd5d-a72e-4ac5-b557-63d15579281c",
+    "name": "Rackspace Cloud Identity Roles API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:10:19.000Z",
+    "updatedAt": "2026-10-22T02:10:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9e0cd5d-a72e-4ac5-b557-63d15579281c"
+  },
   "item": [
     {
-      "id": "b160fbb9-1fc2-402d-bafc-9dc451c82c50",
-      "name": "Roles",
-      "description": {
-        "content": "Global and tenant role assignments.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "d7d0d81c-792a-4a6b-924c-5f88f0964242",
-          "name": "List Global Roles Assigned To User",
-          "request": {
-            "name": "List Global Roles Assigned To User",
-            "description": {
-              "content": "Lists global roles assigned to the specified user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "roles"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "users",
+          "item": [
             {
-              "id": "0e81c4d8-b82d-4dd6-b93c-0d26ed59ce88",
-              "name": "Global roles returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "roles"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{userId}",
+              "item": [
+                {
+                  "name": "roles",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "name": "OS-KSADM",
+                      "item": [
+                        {
+                          "name": "{roleId}",
+                          "item": [
+                            {
+                              "name": "Add Role To User",
+                              "id": "2b5e3109-56d0-455f-b7d7-ac57b66c43ca",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "roles",
+                                    "OS-KSADM",
+                                    ":roleId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6034da2f-0007-41b8-b542-75537aa0048e",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "71e70659-33c2-49a9-b9b7-c44310c33c30",
+                                      "key": "roleId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Assigns the role to the user."
+                              },
+                              "response": [
+                                {
+                                  "id": "fbe70d50-8dd6-4ac1-be86-b98f7a81cefd",
+                                  "name": "Role assigned.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "roles",
+                                        "OS-KSADM",
+                                        ":roleId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        },
+                                        {
+                                          "key": "roleId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:10:20.000Z",
+                                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                                  "uid": "35240-fbe70d50-8dd6-4ac1-be86-b98f7a81cefd"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:10:20.000Z",
+                              "updatedAt": "2026-10-22T02:10:20.000Z",
+                              "uid": "35240-2b5e3109-56d0-455f-b7d7-ac57b66c43ca"
+                            },
+                            {
+                              "name": "Delete Global Role From User",
+                              "id": "6883c706-5805-47eb-b6e0-9a8fdd7b30dc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "roles",
+                                    "OS-KSADM",
+                                    ":roleId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "65bbc498-24dd-412b-b270-e9333a7e1128",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "b18524d9-e908-49eb-a555-a3117efd30f4",
+                                      "key": "roleId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "0969acfc-45d9-4b7e-8f0a-9a0bcefd2d53",
+                                  "name": "Role removed.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/roles/OS-KSADM/:roleId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "roles",
+                                        "OS-KSADM",
+                                        ":roleId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        },
+                                        {
+                                          "key": "roleId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:10:20.000Z",
+                                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                                  "uid": "35240-0969acfc-45d9-4b7e-8f0a-9a0bcefd2d53"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:10:20.000Z",
+                              "updatedAt": "2026-10-22T02:10:20.000Z",
+                              "uid": "35240-6883c706-5805-47eb-b6e0-9a8fdd7b30dc"
+                            }
+                          ],
+                          "id": "45566049-5c1d-45b4-93cf-906353ef8c93",
+                          "createdAt": "2026-10-22T02:10:20.000Z",
+                          "updatedAt": "2026-10-22T02:10:20.000Z",
+                          "uid": "35240-45566049-5c1d-45b4-93cf-906353ef8c93"
+                        }
+                      ],
+                      "id": "71ac55a0-44d1-48bd-ae28-d5efcf11c971",
+                      "createdAt": "2026-10-22T02:10:20.000Z",
+                      "updatedAt": "2026-10-22T02:10:20.000Z",
+                      "uid": "35240-71ac55a0-44d1-48bd-ae28-d5efcf11c971"
                     },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                    {
+                      "name": "List Global Roles Assigned To User",
+                      "id": "d94e1fa7-6bca-4fe2-be88-8f34561a5c86",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/users/:userId/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "users",
+                            ":userId",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ae2382c8-aab4-4d4c-be06-134f469d9580",
+                              "key": "userId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Lists global roles assigned to the specified user."
+                      },
+                      "response": [
+                        {
+                          "id": "088c2b03-f7aa-44a4-897f-d34beb08da8d",
+                          "name": "Global roles returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "roles"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"roles\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:10:20.000Z",
+                          "updatedAt": "2026-10-22T02:10:20.000Z",
+                          "uid": "35240-088c2b03-f7aa-44a4-897f-d34beb08da8d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:20.000Z",
+                      "updatedAt": "2026-10-22T02:10:20.000Z",
+                      "uid": "35240-d94e1fa7-6bca-4fe2-be88-8f34561a5c86"
+                    }
+                  ],
+                  "id": "d1f9e318-1e57-4b5e-a068-d8a9d5f081fd",
+                  "createdAt": "2026-10-22T02:10:20.000Z",
+                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                  "uid": "35240-d1f9e318-1e57-4b5e-a068-d8a9d5f081fd"
+                },
+                {
+                  "name": "RAX-AUTH",
+                  "item": [
+                    {
+                      "name": "effective-roles",
+                      "item": [
+                        {
+                          "name": "List Effective Roles",
+                          "id": "1388c434-3d5d-4f28-beba-f5030249bd65",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/effective-roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "RAX-AUTH",
+                                "effective-roles"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f0b02cf6-e28f-4505-9b3d-009ef97f0845",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Lists effective roles assigned to a user, including roles inherited from RCN."
+                          },
+                          "response": [
+                            {
+                              "id": "4378438b-3201-46c3-b661-69191dcde66a",
+                              "name": "Effective roles returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/effective-roles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "effective-roles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"roles\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T02:10:20.000Z",
+                              "updatedAt": "2026-10-22T02:10:20.000Z",
+                              "uid": "35240-4378438b-3201-46c3-b661-69191dcde66a"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:10:20.000Z",
+                          "updatedAt": "2026-10-22T02:10:20.000Z",
+                          "uid": "35240-1388c434-3d5d-4f28-beba-f5030249bd65"
+                        }
+                      ],
+                      "id": "4ac34977-b2f0-4083-92c5-7706393abc2f",
+                      "createdAt": "2026-10-22T02:10:20.000Z",
+                      "updatedAt": "2026-10-22T02:10:20.000Z",
+                      "uid": "35240-4ac34977-b2f0-4083-92c5-7706393abc2f"
+                    }
+                  ],
+                  "id": "dafbd7f4-1cd5-4c2a-a463-00010c577c3d",
+                  "createdAt": "2026-10-22T02:10:20.000Z",
+                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                  "uid": "35240-dafbd7f4-1cd5-4c2a-a463-00010c577c3d"
+                }
+              ],
+              "id": "2a655250-efde-4f72-b2c8-3bea5e2a6dd4",
+              "createdAt": "2026-10-22T02:10:20.000Z",
+              "updatedAt": "2026-10-22T02:10:20.000Z",
+              "uid": "35240-2a655250-efde-4f72-b2c8-3bea5e2a6dd4"
+            }
+          ],
+          "id": "5c1be358-d40d-45c5-8462-3a6d7014022d",
+          "createdAt": "2026-10-22T02:10:20.000Z",
+          "updatedAt": "2026-10-22T02:10:20.000Z",
+          "uid": "35240-5c1be358-d40d-45c5-8462-3a6d7014022d"
+        },
+        {
+          "name": "OS-KSADM",
+          "item": [
+            {
+              "name": "roles",
+              "item": [
+                {
+                  "name": "{roleId}",
+                  "item": [
+                    {
+                      "name": "Get Role By Id",
+                      "id": "59cf245f-bf9a-464c-a514-1c44abdc04c5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/OS-KSADM/roles/:roleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "OS-KSADM",
+                            "roles",
+                            ":roleId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cfa13451-5469-4de7-bb36-93b78023fcdd",
+                              "key": "roleId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns details for a single role."
+                      },
+                      "response": [
+                        {
+                          "id": "c1e3b85e-fa1a-4724-abb7-6973b973e8cf",
+                          "name": "Role returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/OS-KSADM/roles/:roleId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "OS-KSADM",
+                                "roles",
+                                ":roleId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "roleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"serviceId\": \"<string>\",\n  \"tenantId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:10:20.000Z",
+                          "updatedAt": "2026-10-22T02:10:20.000Z",
+                          "uid": "35240-c1e3b85e-fa1a-4724-abb7-6973b973e8cf"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:20.000Z",
+                      "updatedAt": "2026-10-22T02:10:20.000Z",
+                      "uid": "35240-59cf245f-bf9a-464c-a514-1c44abdc04c5"
+                    }
+                  ],
+                  "id": "dbf637a6-82c3-4168-90fa-335f5bc5374a",
+                  "createdAt": "2026-10-22T02:10:20.000Z",
+                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                  "uid": "35240-dbf637a6-82c3-4168-90fa-335f5bc5374a"
+                },
+                {
+                  "name": "List Roles",
+                  "id": "41505538-7659-49e8-87d2-ba38adff797e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6f8c0f16-9c52-4007-959b-0a3319f2be49",
-          "name": "List Effective Roles",
-          "request": {
-            "name": "List Effective Roles",
-            "description": {
-              "content": "Lists effective roles assigned to a user, including roles inherited from RCN.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "effective-roles"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a6b1a57f-2919-4875-aa30-21f1dc106ef5",
-              "name": "Effective roles returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "effective-roles"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/OS-KSADM/roles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "OS-KSADM",
+                        "roles"
+                      ]
                     },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                    "description": "Lists all roles available in the Identity service."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d1e0fd11-4ddf-4908-9fc9-3c0671b11b8b",
-          "name": "Add Role To User",
-          "request": {
-            "name": "Add Role To User",
-            "description": {
-              "content": "Assigns the role to the user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "roles",
-                "OS-KSADM",
-                ":roleId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "roleId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "05399443-82a9-41ec-add7-d621ca905259",
-              "name": "Role assigned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "roles",
-                    "OS-KSADM",
-                    ":roleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "roleId",
-                      "description": "(Required) "
+                      "id": "429f015f-eea5-478a-b9a0-5bd7418c7a06",
+                      "name": "Roles list returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/OS-KSADM/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "OS-KSADM",
+                            "roles"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"roles\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"serviceId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:10:20.000Z",
+                      "updatedAt": "2026-10-22T02:10:20.000Z",
+                      "uid": "35240-429f015f-eea5-478a-b9a0-5bd7418c7a06"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T02:10:20.000Z",
+                  "updatedAt": "2026-10-22T02:10:20.000Z",
+                  "uid": "35240-41505538-7659-49e8-87d2-ba38adff797e"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "7d335c72-86b3-4ae9-9721-15977c3b52df",
+              "createdAt": "2026-10-22T02:10:20.000Z",
+              "updatedAt": "2026-10-22T02:10:20.000Z",
+              "uid": "35240-7d335c72-86b3-4ae9-9721-15977c3b52df"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e1152507-60ca-4d88-9963-77923d8456c7",
-          "name": "Delete Global Role From User",
-          "request": {
-            "name": "Delete Global Role From User",
-            "description": {},
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "roles",
-                "OS-KSADM",
-                ":roleId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "roleId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e168bbb2-1385-4d75-b4fd-9621426dfee1",
-              "name": "Role removed.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "roles",
-                    "OS-KSADM",
-                    ":roleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "roleId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "50253d89-0ca2-41e1-9a47-c74f84344d82",
-          "name": "List Roles",
-          "request": {
-            "name": "List Roles",
-            "description": {
-              "content": "Lists all roles available in the Identity service.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "OS-KSADM",
-                "roles"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "95842fc9-a1da-4e74-85e4-d088b495a594",
-              "name": "Roles list returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "OS-KSADM",
-                    "roles"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"serviceId\": \"string\",\n      \"tenantId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8b8e4e2b-ffe3-4fbc-b0cc-9cbe689e3d28",
-          "name": "Get Role By Id",
-          "request": {
-            "name": "Get Role By Id",
-            "description": {
-              "content": "Returns details for a single role.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "OS-KSADM",
-                "roles",
-                ":roleId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "roleId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e1e8135c-d77e-4c30-914c-e635fad3db74",
-              "name": "Role returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "OS-KSADM",
-                    "roles",
-                    ":roleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "roleId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"serviceId\": \"string\",\n  \"tenantId\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e86482cc-c71c-490e-8678-c95c7a2608ae",
+          "createdAt": "2026-10-22T02:10:20.000Z",
+          "updatedAt": "2026-10-22T02:10:20.000Z",
+          "uid": "35240-e86482cc-c71c-490e-8678-c95c7a2608ae"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "d9e50ee4-ca9a-456d-879c-2e5c17b310a5",
+      "createdAt": "2026-10-22T02:10:20.000Z",
+      "updatedAt": "2026-10-22T02:10:20.000Z",
+      "uid": "35240-d9e50ee4-ca9a-456d-879c-2e5c17b310a5"
     }
   ],
   "auth": {
@@ -622,25 +651,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3850d137-1c71-410e-aa9f-7322383a13e6",
-    "name": "Rackspace Cloud DNS Contacts Roles API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }

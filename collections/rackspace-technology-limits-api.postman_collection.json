@@ -1,486 +1,472 @@
 {
+  "info": {
+    "_postman_id": "2a8b90fc-1340-49d9-82b5-d91834797352",
+    "name": "Rackspace Cloud DNS Limits API",
+    "description": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:20.000Z",
+    "updatedAt": "2026-10-22T02:09:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a8b90fc-1340-49d9-82b5-d91834797352"
+  },
   "item": [
     {
-      "id": "fc4e6c06-3039-4ee7-b3f2-f95185114213",
-      "name": "Limits",
-      "description": {
-        "content": "Per-account usage limits and rate caps.",
-        "type": "text/plain"
-      },
+      "name": "{account}",
       "item": [
         {
-          "id": "1a7109a7-5cbb-47f8-8b37-0345ab72bf2c",
-          "name": "List Limits",
-          "request": {
-            "name": "List Limits",
-            "description": {
-              "content": "Provides a list of all applicable limits (rate and absolute) for the specified account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":account",
-                "limits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "account",
-                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "limits",
+          "item": [
             {
-              "id": "9efec021-417a-4db0-8e7a-3a5be1ec96d1",
-              "name": "Limits returned.",
-              "originalRequest": {
+              "name": "types",
+              "item": [
+                {
+                  "name": "List Limit Types",
+                  "id": "5b6e3566-c390-4c51-be12-e2f13f446c82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:account/limits/types",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":account",
+                        "limits",
+                        "types"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d7a8b466-08d2-4c9d-99c8-599fb39a35d1",
+                          "key": "account",
+                          "value": "<string>",
+                          "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                        }
+                      ]
+                    },
+                    "description": "Returns the list of limit types (rate and absolute) supported by the DNS service for this account."
+                  },
+                  "response": [
+                    {
+                      "id": "8718c6fc-b43c-4181-87fd-7f3e538bbd64",
+                      "name": "Limit types returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:account/limits/types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":account",
+                            "limits",
+                            "types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limitTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-22T02:09:20.000Z",
+                      "updatedAt": "2026-10-22T02:09:20.000Z",
+                      "uid": "35240-8718c6fc-b43c-4181-87fd-7f3e538bbd64"
+                    },
+                    {
+                      "id": "334785d5-c27c-4735-aa28-b077b22d2cd7",
+                      "name": "You are not authorized to complete this operation.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:account/limits/types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":account",
+                            "limits",
+                            "types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:09:20.000Z",
+                      "updatedAt": "2026-10-22T02:09:20.000Z",
+                      "uid": "35240-334785d5-c27c-4735-aa28-b077b22d2cd7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-5b6e3566-c390-4c51-be12-e2f13f446c82"
+                }
+              ],
+              "id": "52c1d6ab-b3fd-44c6-bd29-84754d129ba9",
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-52c1d6ab-b3fd-44c6-bd29-84754d129ba9"
+            },
+            {
+              "name": "{type}",
+              "item": [
+                {
+                  "name": "Show Limit",
+                  "id": "68bb9417-e877-4813-8225-31f45a3fe54e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:account/limits/:type",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":account",
+                        "limits",
+                        ":type"
+                      ],
+                      "variable": [
+                        {
+                          "id": "510ffed7-4a0f-4256-b445-a0e27f410c3f",
+                          "key": "account",
+                          "value": "<string>",
+                          "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                        },
+                        {
+                          "id": "b922210d-2ff3-4c2d-a6a8-e0b83a5e5f97",
+                          "key": "type",
+                          "value": "<string>",
+                          "description": "(Required) The specific limit type to retrieve (for example, RATE_LIMIT or DOMAIN_LIMIT)."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves details for a single named limit type."
+                  },
+                  "response": [
+                    {
+                      "id": "e257b3f0-71b3-416c-8543-b7df8d02edbe",
+                      "name": "Limit details returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:account/limits/:type",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":account",
+                            "limits",
+                            ":type"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account"
+                            },
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"verb\": \"<string>\",\n  \"URI\": \"<string>\",\n  \"regex\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"remaining\": \"<integer>\",\n  \"unit\": \"<string>\",\n  \"resetTime\": \"<long>\"\n}",
+                      "createdAt": "2026-10-22T02:09:20.000Z",
+                      "updatedAt": "2026-10-22T02:09:20.000Z",
+                      "uid": "35240-e257b3f0-71b3-416c-8543-b7df8d02edbe"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-68bb9417-e877-4813-8225-31f45a3fe54e"
+                }
+              ],
+              "id": "e962438a-3f37-43ed-82cf-b06f54d7de34",
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-e962438a-3f37-43ed-82cf-b06f54d7de34"
+            },
+            {
+              "name": "List Limits",
+              "id": "c1729393-0d83-4e86-8841-677646a95e7a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/:account/limits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":account",
                     "limits"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "3c68d030-3f2d-47ce-a9dc-b12598625751",
                       "key": "account",
+                      "value": "<string>",
                       "description": "(Required) The Rackspace Cloud account (tenant) ID."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Provides a list of all applicable limits (rate and absolute) for the specified account."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"rate\": [\n    {\n      \"uri\": \"string\",\n      \"regex\": \"string\",\n      \"limit\": [\n        {\n          \"verb\": \"string\",\n          \"URI\": \"string\",\n          \"regex\": \"string\",\n          \"value\": 3142,\n          \"remaining\": 5764,\n          \"unit\": \"string\",\n          \"resetTime\": 8018\n        },\n        {\n          \"verb\": \"string\",\n          \"URI\": \"string\",\n          \"regex\": \"string\",\n          \"value\": 8353,\n          \"remaining\": 4081,\n          \"unit\": \"string\",\n          \"resetTime\": 8543\n        }\n      ]\n    },\n    {\n      \"uri\": \"string\",\n      \"regex\": \"string\",\n      \"limit\": [\n        {\n          \"verb\": \"string\",\n          \"URI\": \"string\",\n          \"regex\": \"string\",\n          \"value\": 3401,\n          \"remaining\": 4504,\n          \"unit\": \"string\",\n          \"resetTime\": 8314\n        },\n        {\n          \"verb\": \"string\",\n          \"URI\": \"string\",\n          \"regex\": \"string\",\n          \"value\": 3714,\n          \"remaining\": 2636,\n          \"unit\": \"string\",\n          \"resetTime\": 2444\n        }\n      ]\n    }\n  ],\n  \"absolute\": {\n    \"key_0\": 1968\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4c6374c2-9f21-4b6a-8ece-3f8b861f784b",
-              "name": "You are not authorized to complete this operation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":account",
-                    "limits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account",
-                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                  "id": "1cbd2268-1fb0-4066-9c26-b48192e0a4f2",
+                  "name": "Limits returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:account/limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":account",
+                        "limits"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 9246,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "56dcd7d0-050f-436c-b29c-68bbb2eb097f",
-              "name": "The DNS service is not available.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":account",
-                    "limits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account",
-                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"rate\": [\n    {\n      \"uri\": \"<string>\",\n      \"regex\": \"<string>\",\n      \"limit\": [\n        {\n          \"verb\": \"<string>\",\n          \"URI\": \"<string>\",\n          \"regex\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"remaining\": \"<integer>\",\n          \"unit\": \"<string>\",\n          \"resetTime\": \"<long>\"\n        },\n        {\n          \"verb\": \"<string>\",\n          \"URI\": \"<string>\",\n          \"regex\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"remaining\": \"<integer>\",\n          \"unit\": \"<string>\",\n          \"resetTime\": \"<long>\"\n        }\n      ]\n    },\n    {\n      \"uri\": \"<string>\",\n      \"regex\": \"<string>\",\n      \"limit\": [\n        {\n          \"verb\": \"<string>\",\n          \"URI\": \"<string>\",\n          \"regex\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"remaining\": \"<integer>\",\n          \"unit\": \"<string>\",\n          \"resetTime\": \"<long>\"\n        },\n        {\n          \"verb\": \"<string>\",\n          \"URI\": \"<string>\",\n          \"regex\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"remaining\": \"<integer>\",\n          \"unit\": \"<string>\",\n          \"resetTime\": \"<long>\"\n        }\n      ]\n    }\n  ],\n  \"absolute\": {\n    \"officiab5\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-1cbd2268-1fb0-4066-9c26-b48192e0a4f2"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Service Unavailable",
-              "code": 503,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e5636fa5-0138-41a0-a215-a5f30cef3061",
+                  "name": "You are not authorized to complete this operation.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:account/limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":account",
+                        "limits"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-e5636fa5-0138-41a0-a215-a5f30cef3061"
+                },
+                {
+                  "id": "be35c506-b833-4c57-bef6-59453563f72e",
+                  "name": "The DNS service is not available.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:account/limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":account",
+                        "limits"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-be35c506-b833-4c57-bef6-59453563f72e"
                 }
               ],
-              "body": "{\n  \"code\": 9246,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-c1729393-0d83-4e86-8841-677646a95e7a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "de08d1ec-8c75-49e7-8d73-c11fb7ebca6c",
-          "name": "List Limit Types",
-          "request": {
-            "name": "List Limit Types",
-            "description": {
-              "content": "Returns the list of limit types (rate and absolute) supported by the DNS service for this account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":account",
-                "limits",
-                "types"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "account",
-                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "750a57e3-91f4-444d-a649-2d93f1cb9b10",
-              "name": "Limit types returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":account",
-                    "limits",
-                    "types"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account",
-                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"limitTypes\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cfd14c2e-c047-40ee-8580-782af4c6a91f",
-              "name": "You are not authorized to complete this operation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":account",
-                    "limits",
-                    "types"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account",
-                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 9246,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d8ccdc82-1a7c-43e6-9a66-528692a866d6",
-          "name": "Show Limit",
-          "request": {
-            "name": "Show Limit",
-            "description": {
-              "content": "Retrieves details for a single named limit type.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":account",
-                "limits",
-                ":type"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "account",
-                  "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "type",
-                  "description": "(Required) The specific limit type to retrieve (for example, RATE_LIMIT or DOMAIN_LIMIT)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "50e2a122-d03b-48e2-b7cb-6455086e01c1",
-              "name": "Limit details returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":account",
-                    "limits",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account",
-                      "description": "(Required) The Rackspace Cloud account (tenant) ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) The specific limit type to retrieve (for example, RATE_LIMIT or DOMAIN_LIMIT)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"verb\": \"string\",\n  \"URI\": \"string\",\n  \"regex\": \"string\",\n  \"value\": 8386,\n  \"remaining\": 7812,\n  \"unit\": \"string\",\n  \"resetTime\": 8993\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6feb6b78-8673-4ac9-b319-87b96e6e9f10",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-6feb6b78-8673-4ac9-b319-87b96e6e9f10"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "f102c8dd-62a2-4e7d-9883-f1bde4f328c3",
+      "createdAt": "2026-10-22T02:09:20.000Z",
+      "updatedAt": "2026-10-22T02:09:20.000Z",
+      "uid": "35240-f102c8dd-62a2-4e7d-9883-f1bde4f328c3"
     }
   ],
   "auth": {
@@ -488,25 +474,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b432f46f-d27f-4363-a6ca-177162a11976",
-    "name": "Rackspace Cloud DNS Contacts Limits API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dns.api.rackspacecloud.com/v1.0"
     }
-  }
+  ]
 }

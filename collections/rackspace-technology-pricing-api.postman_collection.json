@@ -1,66 +1,141 @@
 {
+  "info": {
+    "_postman_id": "f7438219-d7ff-45d7-81fc-56e888fa65cf",
+    "name": "Rackspace Offer Pricing API",
+    "description": "The Rackspace Offer API (v2) exposes the Rackspace offerings catalog, including offerings, products, currency, and pricing grids (commit grids, volume grids). It supports listing offerings by line-of-business and status, retrieving products, and computing discounts via commit and volume grids.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:57.000Z",
+    "updatedAt": "2026-10-22T02:09:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f7438219-d7ff-45d7-81fc-56e888fa65cf"
+  },
   "item": [
     {
-      "id": "333e9fe5-eab1-4f39-b013-d0f10081c786",
-      "name": "Pricing",
-      "description": {
-        "content": "Commit and volume pricing grid operations.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "e929958d-9f0e-406b-801f-b8f7efce7f2d",
-          "name": "Get Commit Grids",
-          "request": {
-            "name": "Get Commit Grids",
-            "description": {
-              "content": "Lists commit-pricing grids.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "commitGrids"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "commitGrids",
+          "item": [
+            {
+              "name": "{gridId}",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                },
-                {
-                  "disabled": false,
-                  "key": "marker",
-                  "value": "<string>",
-                  "description": "Pagination marker (the starting point for the next batch of items)."
+                  "name": "Get Commit Grid",
+                  "id": "f28858de-fa38-4ea1-9970-672d8e519c85",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/commitGrids/:gridId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "commitGrids",
+                        ":gridId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7867207d-fdd2-4374-8dab-c1288e432c15",
+                          "key": "gridId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e7e494cb-1045-4489-a6fe-60ad41da59cc",
+                      "name": "Commit grid returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/commitGrids/:gridId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "commitGrids",
+                            ":gridId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gridId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tiers\": [\n    {\n      \"minCommit\": \"<number>\",\n      \"maxCommit\": \"<number>\",\n      \"discountPercent\": \"<number>\"\n    },\n    {\n      \"minCommit\": \"<number>\",\n      \"maxCommit\": \"<number>\",\n      \"discountPercent\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:09:58.000Z",
+                      "updatedAt": "2026-10-22T02:09:58.000Z",
+                      "uid": "35240-e7e494cb-1045-4489-a6fe-60ad41da59cc"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:09:57.000Z",
+                  "updatedAt": "2026-10-22T02:09:57.000Z",
+                  "uid": "35240-f28858de-fa38-4ea1-9970-672d8e519c85"
                 }
               ],
-              "variable": []
+              "id": "f4d790d7-620c-43af-bc12-045200cfb8ec",
+              "createdAt": "2026-10-22T02:09:57.000Z",
+              "updatedAt": "2026-10-22T02:09:57.000Z",
+              "uid": "35240-f4d790d7-620c-43af-bc12-045200cfb8ec"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "784ac489-b8af-4438-96e1-123f90d56a11",
-              "name": "Commit grids returned.",
-              "originalRequest": {
+              "name": "Get Commit Grids",
+              "id": "4b58c9f4-9c95-46de-a12e-566d04eac105",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2/commitGrids?limit=100&marker=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "commitGrids"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
@@ -68,430 +143,390 @@
                       "value": "100"
                     },
                     {
+                      "description": "Pagination marker (the starting point for the next batch of items).",
                       "key": "marker",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                "description": "Lists commit-pricing grids."
+              },
+              "response": [
+                {
+                  "id": "c73064ea-0b3e-4623-9ad9-c877723448c9",
+                  "name": "Commit grids returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/commitGrids?limit=100&marker=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "commitGrids"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination marker (the starting point for the next batch of items).",
+                          "key": "marker",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"commitGrids\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"tiers\": [\n        {\n          \"minCommit\": \"<number>\",\n          \"maxCommit\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        },\n        {\n          \"minCommit\": \"<number>\",\n          \"maxCommit\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"tiers\": [\n        {\n          \"minCommit\": \"<number>\",\n          \"maxCommit\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        },\n        {\n          \"minCommit\": \"<number>\",\n          \"maxCommit\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:09:58.000Z",
+                  "updatedAt": "2026-10-22T02:09:58.000Z",
+                  "uid": "35240-c73064ea-0b3e-4623-9ad9-c877723448c9"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:57.000Z",
+              "updatedAt": "2026-10-22T02:09:57.000Z",
+              "uid": "35240-4b58c9f4-9c95-46de-a12e-566d04eac105"
+            }
+          ],
+          "id": "a6564ec8-2ed5-4077-ae13-c1962fa37ccb",
+          "createdAt": "2026-10-22T02:09:57.000Z",
+          "updatedAt": "2026-10-22T02:09:57.000Z",
+          "uid": "35240-a6564ec8-2ed5-4077-ae13-c1962fa37ccb"
+        },
+        {
+          "name": "volumeGrids",
+          "item": [
+            {
+              "name": "{gridId}",
+              "item": [
+                {
+                  "name": "Get Volume Grid",
+                  "id": "4247d45e-2f12-4c43-ba61-b66b51f5ce6a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/volumeGrids/:gridId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "volumeGrids",
+                        ":gridId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f8029689-1c83-47ec-a534-562dceb4e5dd",
+                          "key": "gridId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f3a8c057-ef42-48b4-8a2d-7f7ca07cd2a0",
+                      "name": "Volume grid returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/volumeGrids/:gridId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "volumeGrids",
+                            ":gridId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gridId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tiers\": [\n    {\n      \"minVolume\": \"<number>\",\n      \"maxVolume\": \"<number>\",\n      \"discountPercent\": \"<number>\"\n    },\n    {\n      \"minVolume\": \"<number>\",\n      \"maxVolume\": \"<number>\",\n      \"discountPercent\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:09:58.000Z",
+                      "updatedAt": "2026-10-22T02:09:58.000Z",
+                      "uid": "35240-f3a8c057-ef42-48b4-8a2d-7f7ca07cd2a0"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:09:57.000Z",
+                  "updatedAt": "2026-10-22T02:09:57.000Z",
+                  "uid": "35240-4247d45e-2f12-4c43-ba61-b66b51f5ce6a"
+                }
+              ],
+              "id": "b406be66-ec4b-4d14-bb97-296ab99432d8",
+              "createdAt": "2026-10-22T02:09:57.000Z",
+              "updatedAt": "2026-10-22T02:09:57.000Z",
+              "uid": "35240-b406be66-ec4b-4d14-bb97-296ab99432d8"
+            },
+            {
+              "name": "Get Volume Grids",
+              "id": "33d44305-bd29-4a3b-b72b-4e7c8c465127",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"commitGrids\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minCommit\": 5433.301887810361,\n          \"maxCommit\": 1236.279357704848,\n          \"discountPercent\": 4525.081740127362\n        },\n        {\n          \"minCommit\": 7162.9929070464195,\n          \"maxCommit\": 7289.566456218989,\n          \"discountPercent\": 1151.6709066054475\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minCommit\": 727.5814605715569,\n          \"maxCommit\": 5938.726598705417,\n          \"discountPercent\": 7096.650068385938\n        },\n        {\n          \"minCommit\": 7854.446916487868,\n          \"maxCommit\": 9901.401869504098,\n          \"discountPercent\": 8433.487983928044\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ef28c579-20e7-49fb-94f8-c237dd83c9da",
-          "name": "Get Commit Grid",
-          "request": {
-            "name": "Get Commit Grid",
-            "description": {},
-            "url": {
-              "path": [
-                "v2",
-                "commitGrids",
-                ":gridId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gridId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "06320980-6023-490a-be9c-4e15716773eb",
-              "name": "Commit grid returned.",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "v2",
-                    "commitGrids",
-                    ":gridId"
-                  ],
+                  "raw": "{{baseUrl}}/v2/volumeGrids",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gridId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"tiers\": [\n    {\n      \"minCommit\": 4295.989526266044,\n      \"maxCommit\": 4677.752836599067,\n      \"discountPercent\": 5574.309552994293\n    },\n    {\n      \"minCommit\": 327.9889586168649,\n      \"maxCommit\": 3228.9155389943303,\n      \"discountPercent\": 9185.180990319264\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "466ea279-0bf1-4d04-b469-99102d7f9a5f",
-          "name": "Get Volume Grids",
-          "request": {
-            "name": "Get Volume Grids",
-            "description": {
-              "content": "Lists volume-pricing grids.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "volumeGrids"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c8744c87-088a-4bbe-96cd-68b718f9758a",
-              "name": "Volume grids returned.",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v2",
                     "volumeGrids"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"volumeGrids\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minVolume\": 7432.72962421359,\n          \"maxVolume\": 3107.6394003569876,\n          \"discountPercent\": 8768.174934634522\n        },\n        {\n          \"minVolume\": 6248.001876913259,\n          \"maxVolume\": 5505.074545491274,\n          \"discountPercent\": 6661.63071860551\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"tiers\": [\n        {\n          \"minVolume\": 139.83800271988534,\n          \"maxVolume\": 1566.3453884501878,\n          \"discountPercent\": 4022.649299786023\n        },\n        {\n          \"minVolume\": 9386.53659380322,\n          \"maxVolume\": 5039.461990262932,\n          \"discountPercent\": 7292.512641960828\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e9e0bd8d-7831-4a9c-addc-55d41d3ad00f",
-          "name": "Get Volume Grid",
-          "request": {
-            "name": "Get Volume Grid",
-            "description": {},
-            "url": {
-              "path": [
-                "v2",
-                "volumeGrids",
-                ":gridId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gridId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "120c9bc2-acb5-4c1c-886b-b9699dc0a170",
-              "name": "Volume grid returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "volumeGrids",
-                    ":gridId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gridId",
-                      "description": "(Required) "
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Lists volume-pricing grids."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "bd937ba0-6052-4971-905e-5a835f926235",
+                  "name": "Volume grids returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/volumeGrids",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "volumeGrids"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"volumeGrids\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"tiers\": [\n        {\n          \"minVolume\": \"<number>\",\n          \"maxVolume\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        },\n        {\n          \"minVolume\": \"<number>\",\n          \"maxVolume\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"tiers\": [\n        {\n          \"minVolume\": \"<number>\",\n          \"maxVolume\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        },\n        {\n          \"minVolume\": \"<number>\",\n          \"maxVolume\": \"<number>\",\n          \"discountPercent\": \"<number>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:09:58.000Z",
+                  "updatedAt": "2026-10-22T02:09:58.000Z",
+                  "uid": "35240-bd937ba0-6052-4971-905e-5a835f926235"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"tiers\": [\n    {\n      \"minVolume\": 294.3760463116707,\n      \"maxVolume\": 938.5096585198149,\n      \"discountPercent\": 680.3406711267701\n    },\n    {\n      \"minVolume\": 6864.783345364851,\n      \"maxVolume\": 119.18298884700751,\n      \"discountPercent\": 9212.157119349597\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:09:57.000Z",
+              "updatedAt": "2026-10-22T02:09:57.000Z",
+              "uid": "35240-33d44305-bd29-4a3b-b72b-4e7c8c465127"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "24ac0d7f-09f5-4fcc-a3fe-524d85c4317a",
+          "createdAt": "2026-10-22T02:09:57.000Z",
+          "updatedAt": "2026-10-22T02:09:57.000Z",
+          "uid": "35240-24ac0d7f-09f5-4fcc-a3fe-524d85c4317a"
         },
         {
-          "id": "031fd864-c6e7-4e38-8aa5-cdd814139f6e",
-          "name": "Calculate Discount",
-          "request": {
-            "name": "Calculate Discount",
-            "description": {
-              "content": "Computes the discounted price for a quantity given the applicable commit/volume grids.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "calculate",
-                "discount"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "calculate",
+          "item": [
             {
-              "id": "d04a1047-32c9-458b-8a63-30f0f52182f2",
-              "name": "Discount calculation result returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "calculate",
-                    "discount"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "discount",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Calculate Discount",
+                  "id": "1f35d99f-c244-488f-9af9-e2688eb4b748",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/calculate/discount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "calculate",
+                        "discount"
+                      ]
+                    },
+                    "description": "Computes the discounted price for a quantity given the applicable commit/volume grids."
+                  },
+                  "response": [
+                    {
+                      "id": "2ddbf4dd-c39c-45c1-a072-92f2a241410b",
+                      "name": "Discount calculation result returned.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commitGridId\": \"<string>\",\n  \"volumeGridId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/calculate/discount",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "calculate",
+                            "discount"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"productCode\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"listPrice\": \"<number>\",\n  \"discountPercent\": \"<number>\",\n  \"finalPrice\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:09:58.000Z",
+                      "updatedAt": "2026-10-22T02:09:58.000Z",
+                      "uid": "35240-2ddbf4dd-c39c-45c1-a072-92f2a241410b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:09:57.000Z",
+                  "updatedAt": "2026-10-22T02:09:57.000Z",
+                  "uid": "35240-1f35d99f-c244-488f-9af9-e2688eb4b748"
                 }
               ],
-              "body": "{\n  \"productCode\": \"string\",\n  \"quantity\": 3048.4052976272856,\n  \"listPrice\": 966.4479725069697,\n  \"discountPercent\": 7292.094546500562,\n  \"finalPrice\": 9515.486226782801,\n  \"currency\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "39179541-d12a-44c6-98bb-9879c609d3fb",
+              "createdAt": "2026-10-22T02:09:57.000Z",
+              "updatedAt": "2026-10-22T02:09:57.000Z",
+              "uid": "35240-39179541-d12a-44c6-98bb-9879c609d3fb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "04b89c5a-7c68-43ae-b919-e3c235a914ed",
+          "createdAt": "2026-10-22T02:09:57.000Z",
+          "updatedAt": "2026-10-22T02:09:57.000Z",
+          "uid": "35240-04b89c5a-7c68-43ae-b919-e3c235a914ed"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "864b9f59-5ea1-4a6e-ba94-296b3fb8c0c1",
+      "createdAt": "2026-10-22T02:09:57.000Z",
+      "updatedAt": "2026-10-22T02:09:57.000Z",
+      "uid": "35240-864b9f59-5ea1-4a6e-ba94-296b3fb8c0c1"
     }
   ],
   "auth": {
@@ -499,25 +534,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "769f180c-f9a7-4234-9311-9f63e1c525ec",
-    "name": "Rackspace Cloud DNS Contacts Pricing API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://offerings.api.rackspacecloud.com"
     }
-  }
+  ]
 }

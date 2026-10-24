@@ -1,1244 +1,1238 @@
 {
+  "info": {
+    "_postman_id": "9c58b3c5-8a77-45ae-9470-88ea190f70d6",
+    "name": "Rackspace Cloud Identity Users API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:10:46.000Z",
+    "updatedAt": "2026-10-22T02:10:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c58b3c5-8a77-45ae-9470-88ea190f70d6"
+  },
   "item": [
     {
-      "id": "9bd29a33-dc12-4193-9d60-99851e49f0ee",
-      "name": "Users",
-      "description": {
-        "content": "User account operations.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "adb5133b-8490-4352-a4fc-2903b3787d7e",
-          "name": "List Users",
-          "request": {
-            "name": "List Users",
-            "description": {
-              "content": "Lists all users accessible to the caller.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "users",
+          "item": [
+            {
+              "name": "{userId}",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "name",
-                  "value": "<string>",
-                  "description": "Filter to a specific username."
+                  "name": "RAX-AUTH",
+                  "item": [
+                    {
+                      "name": "domains",
+                      "item": [
+                        {
+                          "name": "Get Accessible Domains For User",
+                          "id": "e90e471c-c7d0-48cf-9201-32f812dca528",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/domains",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "RAX-AUTH",
+                                "domains"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "73c7cfa3-1ada-43d0-b94f-bf13af902187",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Lists the identity domains accessible to a user."
+                          },
+                          "response": [
+                            {
+                              "id": "ef872724-eeff-43d0-8fc7-b938b835fa25",
+                              "name": "Accessible domains returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/domains",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "domains"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"RAX-AUTH:domains\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T02:10:47.000Z",
+                              "updatedAt": "2026-10-22T02:10:47.000Z",
+                              "uid": "35240-ef872724-eeff-43d0-8fc7-b938b835fa25"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:10:46.000Z",
+                          "updatedAt": "2026-10-22T02:10:46.000Z",
+                          "uid": "35240-e90e471c-c7d0-48cf-9201-32f812dca528"
+                        }
+                      ],
+                      "id": "0c48f999-daee-40ad-922c-c7c3ba70efd0",
+                      "createdAt": "2026-10-22T02:10:46.000Z",
+                      "updatedAt": "2026-10-22T02:10:46.000Z",
+                      "uid": "35240-0c48f999-daee-40ad-922c-c7c3ba70efd0"
+                    }
+                  ],
+                  "id": "93df4de1-b343-4caf-bf74-8c736804c676",
+                  "createdAt": "2026-10-22T02:10:46.000Z",
+                  "updatedAt": "2026-10-22T02:10:46.000Z",
+                  "uid": "35240-93df4de1-b343-4caf-bf74-8c736804c676"
+                },
+                {
+                  "name": "OS-KSADM",
+                  "item": [
+                    {
+                      "name": "credentials",
+                      "item": [
+                        {
+                          "name": "RAX-KSKEY:apiKeyCredentials",
+                          "item": [
+                            {
+                              "name": "Get User API Key Credentials",
+                              "id": "8da8cfe3-ced0-4eda-972d-51821d150be6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "OS-KSADM",
+                                    "credentials",
+                                    "RAX-KSKEY:apiKeyCredentials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "02da30b9-dc1e-463d-a632-329e8ba9564d",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the user's RAX-KSKEY API-key credential."
+                              },
+                              "response": [
+                                {
+                                  "id": "114addb6-5c40-45f4-95a2-447e581c054b",
+                                  "name": "API-key credential returned.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "OS-KSADM",
+                                        "credentials",
+                                        "RAX-KSKEY:apiKeyCredentials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"minim_7\": -24333280.76914209,\n  \"nulla6e\": false\n}",
+                                  "createdAt": "2026-10-22T02:10:47.000Z",
+                                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                                  "uid": "35240-114addb6-5c40-45f4-95a2-447e581c054b"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:10:46.000Z",
+                              "updatedAt": "2026-10-22T02:10:46.000Z",
+                              "uid": "35240-8da8cfe3-ced0-4eda-972d-51821d150be6"
+                            },
+                            {
+                              "name": "Reset API Key For User",
+                              "id": "f84cc717-0b68-4056-bf49-14796aff8462",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "OS-KSADM",
+                                    "credentials",
+                                    "RAX-KSKEY:apiKeyCredentials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3183d590-8934-437c-ae46-c77a9c3fea22",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Resets the user's RAX-KSKEY API-key credential."
+                              },
+                              "response": [
+                                {
+                                  "id": "bd0f1eef-2231-4f6d-8f59-ea93f2f88109",
+                                  "name": "API key reset.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "OS-KSADM",
+                                        "credentials",
+                                        "RAX-KSKEY:apiKeyCredentials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"minim_7\": -24333280.76914209,\n  \"nulla6e\": false\n}",
+                                  "createdAt": "2026-10-22T02:10:47.000Z",
+                                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                                  "uid": "35240-bd0f1eef-2231-4f6d-8f59-ea93f2f88109"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:10:46.000Z",
+                              "updatedAt": "2026-10-22T02:10:46.000Z",
+                              "uid": "35240-f84cc717-0b68-4056-bf49-14796aff8462"
+                            },
+                            {
+                              "name": "Delete User API Key Credentials",
+                              "id": "b079658f-f054-449e-9ed5-da8121d9ed09",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "OS-KSADM",
+                                    "credentials",
+                                    "RAX-KSKEY:apiKeyCredentials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2afe16b3-251a-4120-be37-1465538ddcd1",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "43ab000e-5096-4e9d-b9e8-6a3d1ff9f42f",
+                                  "name": "Credential deleted.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials/RAX-KSKEY:apiKeyCredentials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "OS-KSADM",
+                                        "credentials",
+                                        "RAX-KSKEY:apiKeyCredentials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:10:47.000Z",
+                                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                                  "uid": "35240-43ab000e-5096-4e9d-b9e8-6a3d1ff9f42f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:10:46.000Z",
+                              "updatedAt": "2026-10-22T02:10:46.000Z",
+                              "uid": "35240-b079658f-f054-449e-9ed5-da8121d9ed09"
+                            }
+                          ],
+                          "id": "a0c68471-e407-4eb7-bf94-4853cbf5bd0a",
+                          "createdAt": "2026-10-22T02:10:46.000Z",
+                          "updatedAt": "2026-10-22T02:10:46.000Z",
+                          "uid": "35240-a0c68471-e407-4eb7-bf94-4853cbf5bd0a"
+                        },
+                        {
+                          "name": "List User Credentials",
+                          "id": "6e79ea41-c34d-4398-8bc6-cade238a2c69",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "OS-KSADM",
+                                "credentials"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f5da3c7c-2773-46f3-a2fc-93cd34833e27",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Lists credentials assigned to a user."
+                          },
+                          "response": [
+                            {
+                              "id": "66ee3b04-f9c3-4f36-b570-7efcea0c64c3",
+                              "name": "Credentials list returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "OS-KSADM",
+                                    "credentials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"credentials\": [\n    {\n      \"commodob3\": -44815329,\n      \"non_4ef\": 93127696,\n      \"occaecat_c4\": -67097984\n    },\n    {\n      \"fugiat41\": true,\n      \"nisifcb\": -63611214,\n      \"in2\": true\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T02:10:47.000Z",
+                              "updatedAt": "2026-10-22T02:10:47.000Z",
+                              "uid": "35240-66ee3b04-f9c3-4f36-b570-7efcea0c64c3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:10:46.000Z",
+                          "updatedAt": "2026-10-22T02:10:46.000Z",
+                          "uid": "35240-6e79ea41-c34d-4398-8bc6-cade238a2c69"
+                        },
+                        {
+                          "name": "Add User Credential",
+                          "id": "90caf5e9-e788-448a-81f9-3aa4500c51ce",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"minim_7\": -24333280.76914209,\n  \"nulla6e\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "OS-KSADM",
+                                "credentials"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e52f200b-1319-4286-b4e6-a64497222918",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Adds a credential to a user."
+                          },
+                          "response": [
+                            {
+                              "id": "ead862cd-5bb4-48b0-bdcb-c679565e8d14",
+                              "name": "Credential added.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"minim_7\": -24333280.76914209,\n  \"nulla6e\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/OS-KSADM/credentials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "OS-KSADM",
+                                    "credentials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:10:47.000Z",
+                              "updatedAt": "2026-10-22T02:10:47.000Z",
+                              "uid": "35240-ead862cd-5bb4-48b0-bdcb-c679565e8d14"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:10:46.000Z",
+                          "updatedAt": "2026-10-22T02:10:46.000Z",
+                          "uid": "35240-90caf5e9-e788-448a-81f9-3aa4500c51ce"
+                        }
+                      ],
+                      "id": "b79e8c2b-955d-4b02-99a5-299fb8c4dd47",
+                      "createdAt": "2026-10-22T02:10:46.000Z",
+                      "updatedAt": "2026-10-22T02:10:46.000Z",
+                      "uid": "35240-b79e8c2b-955d-4b02-99a5-299fb8c4dd47"
+                    }
+                  ],
+                  "id": "cde24ad0-2be0-4bf6-b360-1e3fa1f1c76f",
+                  "createdAt": "2026-10-22T02:10:46.000Z",
+                  "updatedAt": "2026-10-22T02:10:46.000Z",
+                  "uid": "35240-cde24ad0-2be0-4bf6-b360-1e3fa1f1c76f"
+                },
+                {
+                  "name": "Get User By Id",
+                  "id": "2a320b3b-5b22-4d0e-b987-fb7ee9507a05",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4add7253-251d-4240-9eb7-2a63001cd957",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a single user."
+                  },
+                  "response": [
+                    {
+                      "id": "8d24e18b-6be7-4c78-819b-1dd3db148ef8",
+                      "name": "User returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\",\n    \"roles\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:10:47.000Z",
+                      "updatedAt": "2026-10-22T02:10:47.000Z",
+                      "uid": "35240-8d24e18b-6be7-4c78-819b-1dd3db148ef8"
+                    },
+                    {
+                      "id": "365797b2-ae03-4e8f-bf39-bd0999b028ed",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:10:47.000Z",
+                      "updatedAt": "2026-10-22T02:10:47.000Z",
+                      "uid": "35240-365797b2-ae03-4e8f-bf39-bd0999b028ed"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:46.000Z",
+                  "updatedAt": "2026-10-22T02:10:46.000Z",
+                  "uid": "35240-2a320b3b-5b22-4d0e-b987-fb7ee9507a05"
+                },
+                {
+                  "name": "Update User",
+                  "id": "ace060ac-1600-4191-b0b1-801d1f23d104",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba4e3197-9c48-41f6-9a90-603b8bc07716",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Updates information for the specified user, including password."
+                  },
+                  "response": [
+                    {
+                      "id": "1531086a-f32b-4912-b3e8-26230641c6e5",
+                      "name": "User updated.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\",\n    \"roles\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:10:47.000Z",
+                      "updatedAt": "2026-10-22T02:10:47.000Z",
+                      "uid": "35240-1531086a-f32b-4912-b3e8-26230641c6e5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:46.000Z",
+                  "updatedAt": "2026-10-22T02:10:46.000Z",
+                  "uid": "35240-ace060ac-1600-4191-b0b1-801d1f23d104"
+                },
+                {
+                  "name": "Delete User",
+                  "id": "98cc0420-6d91-4ee1-9af2-8da211338e34",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3f96be2-5a08-4750-8a2b-d1316f2b1b9d",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified user."
+                  },
+                  "response": [
+                    {
+                      "id": "4d277f0e-2c5b-4dbd-9953-73560b8bb3ba",
+                      "name": "User deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:10:47.000Z",
+                      "updatedAt": "2026-10-22T02:10:47.000Z",
+                      "uid": "35240-4d277f0e-2c5b-4dbd-9953-73560b8bb3ba"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:46.000Z",
+                  "updatedAt": "2026-10-22T02:10:46.000Z",
+                  "uid": "35240-98cc0420-6d91-4ee1-9af2-8da211338e34"
                 }
               ],
-              "variable": []
+              "id": "c733452c-041d-458d-a327-2b1531c277b1",
+              "createdAt": "2026-10-22T02:10:46.000Z",
+              "updatedAt": "2026-10-22T02:10:46.000Z",
+              "uid": "35240-c733452c-041d-458d-a327-2b1531c277b1"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "92fd8f8c-98d7-41ff-8b9a-3ef29d1c0476",
-              "name": "Users returned.",
-              "originalRequest": {
+              "name": "List Users",
+              "id": "cd4fecaa-cb58-4ec2-9382-b24117e0e456",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2.0/users?name=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2.0",
                     "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
+                      "description": "Filter to a specific username.",
                       "key": "name",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Lists all users accessible to the caller."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "94043b50-7009-4653-a977-3d1c497fd737",
+                  "name": "Users returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users?name=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific username.",
+                          "key": "name",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"enabled\": \"<boolean>\",\n      \"domainId\": \"<string>\",\n      \"defaultRegion\": \"<string>\",\n      \"roles\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"enabled\": \"<boolean>\",\n      \"domainId\": \"<string>\",\n      \"defaultRegion\": \"<string>\",\n      \"roles\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:10:47.000Z",
+                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                  "uid": "35240-94043b50-7009-4653-a977-3d1c497fd737"
                 }
               ],
-              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"username\": \"string\",\n      \"email\": \"xULAB-2@npsyoAIEhfpZbfc.ex\",\n      \"enabled\": false,\n      \"domainId\": \"string\",\n      \"defaultRegion\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"username\": \"string\",\n      \"email\": \"AxuIyuM@tegqwbLGOx.rg\",\n      \"enabled\": true,\n      \"domainId\": \"string\",\n      \"defaultRegion\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "112f409c-6fa0-40e3-bd86-e3a09a0c7de5",
-          "name": "Add User",
-          "request": {
-            "name": "Add User",
-            "description": {
-              "content": "Creates a user.",
-              "type": "text/plain"
+              "createdAt": "2026-10-22T02:10:46.000Z",
+              "updatedAt": "2026-10-22T02:10:46.000Z",
+              "uid": "35240-cd4fecaa-cb58-4ec2-9382-b24117e0e456"
             },
-            "url": {
-              "path": [
-                "v2.0",
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": true,\n    \"OS-KSADM:password\": \"<string>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
             {
-              "id": "b4a78cea-79db-41b3-9598-51e59b2f5c55",
-              "name": "User created.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Add User",
+              "id": "a6edbf6c-340a-484f-b131-7db2b1f99818",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": true,\n    \"OS-KSADM:password\": \"<string>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"GKlUARAsQe@XyENZRyQiOc.kagh\",\n    \"enabled\": true,\n    \"domainId\": \"string\",\n    \"defaultRegion\": \"string\",\n    \"roles\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0e0134f4-9a96-4281-a0e9-ff83eea5a07e",
-              "name": "Missing or invalid request parameters.",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/v2.0/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2.0",
                     "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                "description": "Creates a user."
+              },
+              "response": [
+                {
+                  "id": "9e01d733-c41b-4ffc-86c9-2d168b00dae2",
+                  "name": "User created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": true,\n    \"OS-KSADM:password\": \"<string>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users"
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": true,\n    \"OS-KSADM:password\": \"<string>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 442,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "63fb8790-784b-4485-8bcc-64223b3e7943",
-          "name": "Get User By Id",
-          "request": {
-            "name": "Get User By Id",
-            "description": {
-              "content": "Returns details for a single user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "daf89859-fd14-4095-b0df-f5ee4991ed70",
-              "name": "User returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\",\n    \"roles\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"serviceId\": \"<string>\",\n        \"tenantId\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:10:47.000Z",
+                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                  "uid": "35240-9e01d733-c41b-4ffc-86c9-2d168b00dae2"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                {
+                  "id": "476aeb03-e5e4-4778-9d78-c013f5066876",
+                  "name": "Missing or invalid request parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": true,\n    \"OS-KSADM:password\": \"<string>\",\n    \"domainId\": \"<string>\",\n    \"defaultRegion\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "users"
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"GKlUARAsQe@XyENZRyQiOc.kagh\",\n    \"enabled\": true,\n    \"domainId\": \"string\",\n    \"defaultRegion\": \"string\",\n    \"roles\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a655187b-6c5b-4081-abcd-e72a39e1c60e",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:47.000Z",
+                  "updatedAt": "2026-10-22T02:10:47.000Z",
+                  "uid": "35240-476aeb03-e5e4-4778-9d78-c013f5066876"
                 }
               ],
-              "body": "{\n  \"code\": 442,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:10:46.000Z",
+              "updatedAt": "2026-10-22T02:10:46.000Z",
+              "uid": "35240-a6edbf6c-340a-484f-b131-7db2b1f99818"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5b63e9e1-ab28-4f6f-a183-819c82b7a57b",
-          "name": "Update User",
-          "request": {
-            "name": "Update User",
-            "description": {
-              "content": "Updates information for the specified user, including password.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "48a98b61-7ed9-4246-b207-4b7aa384e56f",
-              "name": "User updated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<email>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"GKlUARAsQe@XyENZRyQiOc.kagh\",\n    \"enabled\": true,\n    \"domainId\": \"string\",\n    \"defaultRegion\": \"string\",\n    \"roles\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"serviceId\": \"string\",\n        \"tenantId\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0c252b4e-fcd2-4be5-aac7-7aeae1c5c53f",
-          "name": "Delete User",
-          "request": {
-            "name": "Delete User",
-            "description": {
-              "content": "Deletes the specified user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "77688019-3690-4baa-8d21-6b8ad485972e",
-              "name": "User deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "de03e688-3047-4a07-a9d6-9f8b50535c1a",
-          "name": "Get Accessible Domains For User",
-          "request": {
-            "name": "Get Accessible Domains For User",
-            "description": {
-              "content": "Lists the identity domains accessible to a user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "domains"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9c5145d1-d6e4-414d-92c5-a438194ebbf2",
-              "name": "Accessible domains returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "domains"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"RAX-AUTH:domains\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "45e5db97-1383-41f6-9852-a8669e032e17",
-          "name": "List User Credentials",
-          "request": {
-            "name": "List User Credentials",
-            "description": {
-              "content": "Lists credentials assigned to a user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "OS-KSADM",
-                "credentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "aa2e60f7-6f60-4857-8641-95efe7a1a601",
-              "name": "Credentials list returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "OS-KSADM",
-                    "credentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"credentials\": [\n    {\n      \"key_0\": 1701.066692553953\n    },\n    {\n      \"key_0\": 3353.0335326794016,\n      \"key_1\": 6498,\n      \"key_2\": \"string\",\n      \"key_3\": false,\n      \"key_4\": 380.5534209424688\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "73f60360-b801-46e6-ab7d-ecbaa4d155cb",
-          "name": "Add User Credential",
-          "request": {
-            "name": "Add User Credential",
-            "description": {
-              "content": "Adds a credential to a user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "OS-KSADM",
-                "credentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 866.0625862803828\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3aa05349-4830-4477-b5b2-051babea54ae",
-              "name": "Credential added.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "OS-KSADM",
-                    "credentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 2652.485040791608\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ce2fa163-18a5-4af2-9f89-a6eb606ae36c",
-          "name": "Get User API Key Credentials",
-          "request": {
-            "name": "Get User API Key Credentials",
-            "description": {
-              "content": "Returns the user's RAX-KSKEY API-key credential.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "OS-KSADM",
-                "credentials",
-                "RAX-KSKEY:apiKeyCredentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "94905a61-071b-441a-a529-85f9c0fa279c",
-              "name": "API-key credential returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "OS-KSADM",
-                    "credentials",
-                    "RAX-KSKEY:apiKeyCredentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 2652.485040791608\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fa8aecb6-d60e-48cc-8314-fc8d8bc9c227",
-          "name": "Reset API Key For User",
-          "request": {
-            "name": "Reset API Key For User",
-            "description": {
-              "content": "Resets the user's RAX-KSKEY API-key credential.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "OS-KSADM",
-                "credentials",
-                "RAX-KSKEY:apiKeyCredentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d4b87ae0-7414-492d-992b-84276f17355d",
-              "name": "API key reset.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "OS-KSADM",
-                    "credentials",
-                    "RAX-KSKEY:apiKeyCredentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 2652.485040791608\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0a89ef69-3a3c-4f91-8c05-8d3e500b578a",
-          "name": "Delete User API Key Credentials",
-          "request": {
-            "name": "Delete User API Key Credentials",
-            "description": {},
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "OS-KSADM",
-                "credentials",
-                "RAX-KSKEY:apiKeyCredentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "403dd590-0cba-478c-a5b1-f99567c3aa0f",
-              "name": "Credential deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "OS-KSADM",
-                    "credentials",
-                    "RAX-KSKEY:apiKeyCredentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "3b0b8dc3-da99-4154-90ee-01132b917663",
+          "createdAt": "2026-10-22T02:10:46.000Z",
+          "updatedAt": "2026-10-22T02:10:46.000Z",
+          "uid": "35240-3b0b8dc3-da99-4154-90ee-01132b917663"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "1defa09c-3be6-4723-89f6-ed3d844cabe0",
+      "createdAt": "2026-10-22T02:10:46.000Z",
+      "updatedAt": "2026-10-22T02:10:46.000Z",
+      "uid": "35240-1defa09c-3be6-4723-89f6-ed3d844cabe0"
     }
   ],
   "auth": {
@@ -1246,25 +1240,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "13595d72-d509-4e1b-83df-60c009301e63",
-    "name": "Rackspace Cloud DNS Contacts Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }

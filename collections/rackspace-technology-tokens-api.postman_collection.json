@@ -1,87 +1,404 @@
 {
+  "info": {
+    "_postman_id": "8f936961-cbea-4474-9481-c629ba59d2db",
+    "name": "Rackspace Cloud Identity Tokens API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:10:39.000Z",
+    "updatedAt": "2026-10-22T02:10:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f936961-cbea-4474-9481-c629ba59d2db"
+  },
   "item": [
     {
-      "id": "f5816c3e-e1fa-496a-a0e3-85b5c1f395c9",
-      "name": "Tokens",
-      "description": {
-        "content": "Authentication and token validation operations.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "9e14face-b3b2-41d2-bede-95642ea863fd",
-          "name": "Authenticate",
-          "request": {
-            "name": "Authenticate",
-            "description": {
-              "content": "Authenticates as a user with password or API-key credentials, or as a tenant with an existing token, and returns an access token, the user's roles, and the service catalog of endpoints they may access.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "tokens"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "apply_rcn_roles",
-                  "value": "false",
-                  "description": "When true, returns any roles and endpoints accessible due to RCN roles."
-                },
-                {
-                  "disabled": false,
-                  "key": "include_accessible_domains",
-                  "value": "false"
-                },
-                {
-                  "disabled": false,
-                  "key": "include_endpoints",
-                  "value": "true"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "tokens",
+          "item": [
             {
-              "id": "a7ab99d1-54c6-4a75-bb60-fd243869801d",
-              "name": "Authenticated successfully.",
-              "originalRequest": {
+              "name": "{tokenId}",
+              "item": [
+                {
+                  "name": "endpoints",
+                  "item": [
+                    {
+                      "name": "List Endpoints For Token",
+                      "id": "e55ce379-d6e9-4591-a15c-c581ebb9c299",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/tokens/:tokenId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "tokens",
+                            ":tokenId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d9b5a8db-54f0-4c2c-acde-aa992f5834a1",
+                              "key": "tokenId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the list of endpoints accessible by the supplied token."
+                      },
+                      "response": [
+                        {
+                          "id": "e973ceb1-ff83-4bfd-b35e-4c405affe09c",
+                          "name": "Endpoint list returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/tokens/:tokenId/endpoints",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "tokens",
+                                ":tokenId",
+                                "endpoints"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"region\": \"<string>\",\n      \"publicURL\": \"<uri>\",\n      \"internalURL\": \"<uri>\",\n      \"tenantId\": \"<string>\",\n      \"versionId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"region\": \"<string>\",\n      \"publicURL\": \"<uri>\",\n      \"internalURL\": \"<uri>\",\n      \"tenantId\": \"<string>\",\n      \"versionId\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:10:40.000Z",
+                          "updatedAt": "2026-10-22T02:10:40.000Z",
+                          "uid": "35240-e973ceb1-ff83-4bfd-b35e-4c405affe09c"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:40.000Z",
+                      "updatedAt": "2026-10-22T02:10:40.000Z",
+                      "uid": "35240-e55ce379-d6e9-4591-a15c-c581ebb9c299"
+                    }
+                  ],
+                  "id": "182aa9aa-452e-42ef-83eb-8b88c6a756c8",
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-182aa9aa-452e-42ef-83eb-8b88c6a756c8"
+                },
+                {
+                  "name": "Validate Token",
+                  "id": "2ee0ed07-cacc-41ca-973b-407f2413e690",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens/:tokenId?belongsTo=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens",
+                        ":tokenId"
+                      ],
+                      "query": [
+                        {
+                          "key": "belongsTo",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "21a03414-b66f-4db3-889c-43dcbdf74ed4",
+                          "key": "tokenId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Validates a token and returns the user, roles, and tenants associated with it."
+                  },
+                  "response": [
+                    {
+                      "id": "a45e354a-ec35-43b9-8495-a00c97c80e58",
+                      "name": "Token validated.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/tokens/:tokenId?belongsTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "tokens",
+                            ":tokenId"
+                          ],
+                          "query": [
+                            {
+                              "key": "belongsTo",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access\": {\n    \"token\": {\n      \"id\": \"<string>\",\n      \"expires\": \"<dateTime>\",\n      \"tenant\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"enabled\": \"<boolean>\"\n      }\n    },\n    \"user\": {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"enabled\": \"<boolean>\",\n      \"domainId\": \"<string>\",\n      \"defaultRegion\": \"<string>\",\n      \"roles\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        }\n      ]\n    },\n    \"serviceCatalog\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"endpoints\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"endpoints\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:10:40.000Z",
+                      "updatedAt": "2026-10-22T02:10:40.000Z",
+                      "uid": "35240-a45e354a-ec35-43b9-8495-a00c97c80e58"
+                    },
+                    {
+                      "id": "8d5f7650-3d9a-4014-8adb-71aaf7d0a69d",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/tokens/:tokenId?belongsTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "tokens",
+                            ":tokenId"
+                          ],
+                          "query": [
+                            {
+                              "key": "belongsTo",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:10:40.000Z",
+                      "updatedAt": "2026-10-22T02:10:40.000Z",
+                      "uid": "35240-8d5f7650-3d9a-4014-8adb-71aaf7d0a69d"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-2ee0ed07-cacc-41ca-973b-407f2413e690"
+                },
+                {
+                  "name": "Revoke Token",
+                  "id": "9be38941-0b49-4834-bae9-1fb51e1dd10a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens/:tokenId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens",
+                        ":tokenId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "871326a4-29ee-4f72-a906-42c29f512267",
+                          "key": "tokenId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Revokes the specified token."
+                  },
+                  "response": [
+                    {
+                      "id": "60575011-c48e-4ab9-99ff-d7148d38bbf5",
+                      "name": "Token revoked.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/tokens/:tokenId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "tokens",
+                            ":tokenId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tokenId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:10:40.000Z",
+                      "updatedAt": "2026-10-22T02:10:40.000Z",
+                      "uid": "35240-60575011-c48e-4ab9-99ff-d7148d38bbf5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-9be38941-0b49-4834-bae9-1fb51e1dd10a"
+                }
+              ],
+              "id": "f8cb1640-a6f9-423c-b24a-b669873c78d0",
+              "createdAt": "2026-10-22T02:10:40.000Z",
+              "updatedAt": "2026-10-22T02:10:40.000Z",
+              "uid": "35240-f8cb1640-a6f9-423c-b24a-b669873c78d0"
+            },
+            {
+              "name": "Authenticate",
+              "id": "da5361a8-1f1b-4339-b857-c4d4fdc6c804",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/v2.0/tokens?apply_rcn_roles=false&include_accessible_domains=false&include_endpoints=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2.0",
                     "tokens"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "When true, returns any roles and endpoints accessible due to RCN roles.",
                       "key": "apply_rcn_roles",
                       "value": "false"
                     },
@@ -93,612 +410,315 @@
                       "key": "include_endpoints",
                       "value": "true"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"access\": {\n    \"token\": {\n      \"id\": \"string\",\n      \"expires\": \"1994-05-18T00:44:52.652Z\",\n      \"tenant\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"enabled\": true\n      }\n    },\n    \"user\": {\n      \"id\": \"string\",\n      \"username\": \"string\",\n      \"email\": \"gf6U@UqqhBzPsyjSqDhBPMIXShtAwFrh.pncq\",\n      \"enabled\": false,\n      \"domainId\": \"string\",\n      \"defaultRegion\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        }\n      ]\n    },\n    \"serviceCatalog\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"http://OaszxxPiVjLODPIjWLbXrwPWqkSi.fpkxpTFQhuDbJF.sFQWGWEJSumEd\",\n            \"internalURL\": \"http://sgYMRBrCPHAME.hcD72NGkbTFBO2wPq+ntUQ459s8gFhlOLeP3PSn88.iAm\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"https://xq.gtTx5vAkVzGpzDd5GKB3WRf2n6RNymDWnWT1eTDjBS7csFgEPiz\",\n            \"internalURL\": \"http://FrulbTpvNhRtZFlLMpPDNFsNsg.hyc9D6FLfZY-l\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"https://iOPQmUDBUBsycctbr.xkhojuzR.pPAd3a.4.V9iUAYSv-cm\",\n            \"internalURL\": \"http://WN.gidmQNT4TwUUyzRb4iNUZyp+NKKYB\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"https://tLeGGkLrsBIKbBfXTBcBSbxMYBpRCT.dcaxws70m24x4\",\n            \"internalURL\": \"http://ArwCZQWRZNlVNJdoswBwvUC.xqllpJW9RCoLBI8UzEVI0I7qFyn4Ir\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "659e6ff4-96fc-4886-b15b-f4e073c8e2c8",
-              "name": "Missing or invalid request parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "apply_rcn_roles",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_accessible_domains",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_endpoints",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5060,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "395f5eac-0502-48ab-8cfa-653fca71ce70",
-              "name": "Invalid credentials or missing required MFA.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "apply_rcn_roles",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_accessible_domains",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_endpoints",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5060,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "58b8d169-c194-44b6-bef8-36f839606f44",
-              "name": "User disabled or missing required role.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "apply_rcn_roles",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_accessible_domains",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_endpoints",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5060,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "134307a8-e61a-43c1-9281-a49222fd7d30",
-          "name": "Validate Token",
-          "request": {
-            "name": "Validate Token",
-            "description": {
-              "content": "Validates a token and returns the user, roles, and tenants associated with it.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "tokens",
-                ":tokenId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "belongsTo",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tokenId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "22609c0f-8f9b-45b5-9750-3cb7b9693729",
-              "name": "Token validated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens",
-                    ":tokenId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "belongsTo",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tokenId",
-                      "description": "(Required) "
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Authenticates as a user with password or API-key credentials, or as a tenant with an existing token, and returns an access token, the user's roles, and the service catalog of endpoints they may access."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"access\": {\n    \"token\": {\n      \"id\": \"string\",\n      \"expires\": \"2002-06-22T16:35:03.739Z\",\n      \"tenant\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"enabled\": true\n      }\n    },\n    \"user\": {\n      \"id\": \"string\",\n      \"username\": \"string\",\n      \"email\": \"JwYHJR@MmAVZGsOhgYVJzWxWBCKfpzVFtvPxpd.dk\",\n      \"enabled\": false,\n      \"domainId\": \"string\",\n      \"defaultRegion\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"serviceId\": \"string\",\n          \"tenantId\": \"string\"\n        }\n      ]\n    },\n    \"serviceCatalog\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"http://CvskSTkJAaYp.ivsRvSjZvT1M\",\n            \"internalURL\": \"https://UyLaHGz.vifiFtzedP7GGZypYnWZ5YsRa,xcO\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"http://XhelsXkuIkgei.zkhJ-ay0BlWqK\",\n            \"internalURL\": \"http://pVUpEDfVnEtERgXGM.kgjc4q4y,Rq9e4kLN2Me\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"http://bqG.lhkfi0dVnma0tQx6T8z+xR2V50MELggZkLpTW-NOePWi2Err\",\n            \"internalURL\": \"https://iWQmjDcua.atvtVUACmLpr\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"region\": \"string\",\n            \"publicURL\": \"https://KgOhdScgCccwPCw.imkF58g8-6CWSJQvKikR\",\n            \"internalURL\": \"http://ZXThGwnXArHTX.wjuPwEsar6ufB6OKvMmcH,+dPztGkFCuvRbSulkCK4z9\",\n            \"tenantId\": \"string\",\n            \"versionId\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7c7d555c-c4d2-45af-bff6-f06f8e0c455b",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens",
-                    ":tokenId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "144ebeca-07d8-4eec-80bb-8c34b939c59a",
+                  "name": "Authenticated successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens?apply_rcn_roles=false&include_accessible_domains=false&include_endpoints=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, returns any roles and endpoints accessible due to RCN roles.",
+                          "key": "apply_rcn_roles",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_accessible_domains",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_endpoints",
+                          "value": "true"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "belongsTo",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tokenId",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access\": {\n    \"token\": {\n      \"id\": \"<string>\",\n      \"expires\": \"<dateTime>\",\n      \"tenant\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"enabled\": \"<boolean>\"\n      }\n    },\n    \"user\": {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"enabled\": \"<boolean>\",\n      \"domainId\": \"<string>\",\n      \"defaultRegion\": \"<string>\",\n      \"roles\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceId\": \"<string>\",\n          \"tenantId\": \"<string>\"\n        }\n      ]\n    },\n    \"serviceCatalog\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"endpoints\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"endpoints\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"name\": \"<string>\",\n            \"region\": \"<string>\",\n            \"publicURL\": \"<uri>\",\n            \"internalURL\": \"<uri>\",\n            \"tenantId\": \"<string>\",\n            \"versionId\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-144ebeca-07d8-4eec-80bb-8c34b939c59a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "d51a1f59-7dd9-42eb-bff6-7f6bb46f0d7e",
+                  "name": "Missing or invalid request parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens?apply_rcn_roles=false&include_accessible_domains=false&include_endpoints=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, returns any roles and endpoints accessible due to RCN roles.",
+                          "key": "apply_rcn_roles",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_accessible_domains",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_endpoints",
+                          "value": "true"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-d51a1f59-7dd9-42eb-bff6-7f6bb46f0d7e"
+                },
+                {
+                  "id": "1977188e-e727-48bd-b42f-b567d695bbc2",
+                  "name": "Invalid credentials or missing required MFA.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens?apply_rcn_roles=false&include_accessible_domains=false&include_endpoints=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, returns any roles and endpoints accessible due to RCN roles.",
+                          "key": "apply_rcn_roles",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_accessible_domains",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_endpoints",
+                          "value": "true"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-1977188e-e727-48bd-b42f-b567d695bbc2"
+                },
+                {
+                  "id": "5303cdc4-f6a9-4d3e-97e1-da79cdd752b0",
+                  "name": "User disabled or missing required role.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auth\": {\n    \"tenantName\": \"<string>\",\n    \"tenantId\": \"<string>\",\n    \"passwordCredentials\": {\n      \"username\": \"<string>\",\n      \"password\": \"<string>\"\n    },\n    \"RAX-KSKEY:apiKeyCredentials\": {\n      \"username\": \"<string>\",\n      \"apiKey\": \"<string>\"\n    },\n    \"token\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tokens?apply_rcn_roles=false&include_accessible_domains=false&include_endpoints=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, returns any roles and endpoints accessible due to RCN roles.",
+                          "key": "apply_rcn_roles",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_accessible_domains",
+                          "value": "false"
+                        },
+                        {
+                          "key": "include_endpoints",
+                          "value": "true"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:40.000Z",
+                  "updatedAt": "2026-10-22T02:10:40.000Z",
+                  "uid": "35240-5303cdc4-f6a9-4d3e-97e1-da79cdd752b0"
                 }
               ],
-              "body": "{\n  \"code\": 5060,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:10:40.000Z",
+              "updatedAt": "2026-10-22T02:10:40.000Z",
+              "uid": "35240-da5361a8-1f1b-4339-b857-c4d4fdc6c804"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "778cb4ef-e7b5-414d-8190-53ca4294770c",
-          "name": "Revoke Token",
-          "request": {
-            "name": "Revoke Token",
-            "description": {
-              "content": "Revokes the specified token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "tokens",
-                ":tokenId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tokenId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "110bc8f9-fdf2-40db-9a7b-c63bb2c244a8",
-              "name": "Token revoked.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens",
-                    ":tokenId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tokenId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a19da2ff-1770-4ce7-ad5a-f5f2897b3f7d",
-          "name": "List Endpoints For Token",
-          "request": {
-            "name": "List Endpoints For Token",
-            "description": {
-              "content": "Returns the list of endpoints accessible by the supplied token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "tokens",
-                ":tokenId",
-                "endpoints"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tokenId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c3ec709d-8ee8-4765-abe6-53f337dd1bdf",
-              "name": "Endpoint list returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tokens",
-                    ":tokenId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tokenId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"publicURL\": \"http://OSaGpZuUMiCpglBS.qxhsDC.Xmbh4h5Suwvfvh87a,ZG8Wu1uHP,.sMYvw\",\n      \"internalURL\": \"https://rBUQDSCxHirUUPyZUrhBLhnxolkaMher.mdzDOSCjDZY-zK1dBmEN3GHi.-KG1fIczC2YFY8dzb\",\n      \"tenantId\": \"string\",\n      \"versionId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"publicURL\": \"https://OKdNZqvbTagtUOabwRbWfPEtosJgGPmS.wfZf6WKEcKODSZQuHjfXRSv2\",\n      \"internalURL\": \"http://ceTDssGjAivzkuRFyxETcrosLbfJbDjR.xzzEfYsh-dMIQ7b1tDaeGq72o\",\n      \"tenantId\": \"string\",\n      \"versionId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "99397baa-d0ec-4947-bac2-8a85ddd87d7a",
+          "createdAt": "2026-10-22T02:10:40.000Z",
+          "updatedAt": "2026-10-22T02:10:40.000Z",
+          "uid": "35240-99397baa-d0ec-4947-bac2-8a85ddd87d7a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "a4ee4efd-d4f3-4748-8114-364812351030",
+      "createdAt": "2026-10-22T02:10:40.000Z",
+      "updatedAt": "2026-10-22T02:10:40.000Z",
+      "uid": "35240-a4ee4efd-d4f3-4748-8114-364812351030"
     }
   ],
   "auth": {
@@ -706,25 +726,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "014eccb1-6eaa-4a0f-a2db-d8e5d83cab1c",
-    "name": "Rackspace Cloud DNS Contacts Tokens API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }

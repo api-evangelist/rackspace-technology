@@ -1,198 +1,205 @@
 {
+  "info": {
+    "_postman_id": "d67d366d-bbe1-4b2e-9b6b-0778baeb932e",
+    "name": "Rackspace Cloud Identity Tenants API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:10:27.000Z",
+    "updatedAt": "2026-10-22T02:10:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d67d366d-bbe1-4b2e-9b6b-0778baeb932e"
+  },
   "item": [
     {
-      "id": "987ccbe9-c079-468f-aebe-d16465ac9833",
-      "name": "Tenants",
-      "description": {
-        "content": "Tenant (account) operations.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "4c6ed99b-ca89-4e82-8f53-708774897e07",
-          "name": "List Tenants",
-          "request": {
-            "name": "List Tenants",
-            "description": {
-              "content": "Lists all tenants accessible to the caller.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "tenants"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "tenants",
+          "item": [
             {
-              "id": "729eb539-2ccb-404c-b310-a68ce1a462a8",
-              "name": "Tenants returned.",
-              "originalRequest": {
+              "name": "{tenantId}",
+              "item": [
+                {
+                  "name": "Get Tenant By Id",
+                  "id": "7de99377-0cfd-465b-8818-942706619909",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "792d6aa2-dbe4-4106-a7df-04fee6860a6c",
+                          "key": "tenantId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d39d16ad-cf87-4be8-9ddc-13e70734bda6",
+                      "name": "Tenant returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2.0/tenants/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2.0",
+                            "tenants",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenantId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T02:10:28.000Z",
+                      "updatedAt": "2026-10-22T02:10:28.000Z",
+                      "uid": "35240-d39d16ad-cf87-4be8-9ddc-13e70734bda6"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:28.000Z",
+                  "updatedAt": "2026-10-22T02:10:28.000Z",
+                  "uid": "35240-7de99377-0cfd-465b-8818-942706619909"
+                }
+              ],
+              "id": "dc6366e4-8873-4c45-bc41-5b0be3d526c1",
+              "createdAt": "2026-10-22T02:10:28.000Z",
+              "updatedAt": "2026-10-22T02:10:28.000Z",
+              "uid": "35240-dc6366e4-8873-4c45-bc41-5b0be3d526c1"
+            },
+            {
+              "name": "List Tenants",
+              "id": "a76c17aa-b815-4e33-a670-27949e4be52f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2.0/tenants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2.0",
                     "tenants"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"tenants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": false\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "522b28ae-035e-4190-9e95-cb633e31b3e3",
-          "name": "Get Tenant By Id",
-          "request": {
-            "name": "Get Tenant By Id",
-            "description": {},
-            "url": {
-              "path": [
-                "v2.0",
-                "tenants",
-                ":tenantId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2801ca7d-05dc-473d-82e2-62af87035f13",
-              "name": "Tenant returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "tenants",
-                    ":tenantId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenantId",
-                      "description": "(Required) "
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Lists all tenants accessible to the caller."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "861fa429-3bab-4e5d-aee6-02ba975d1856",
+                  "name": "Tenants returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2.0/tenants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2.0",
+                        "tenants"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"tenants\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:10:28.000Z",
+                  "updatedAt": "2026-10-22T02:10:28.000Z",
+                  "uid": "35240-861fa429-3bab-4e5d-aee6-02ba975d1856"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:10:28.000Z",
+              "updatedAt": "2026-10-22T02:10:28.000Z",
+              "uid": "35240-a76c17aa-b815-4e33-a670-27949e4be52f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9cac2c2c-0fa4-4197-bca5-6b36516a4884",
+          "createdAt": "2026-10-22T02:10:28.000Z",
+          "updatedAt": "2026-10-22T02:10:28.000Z",
+          "uid": "35240-9cac2c2c-0fa4-4197-bca5-6b36516a4884"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "b8f26f85-bdf4-4ab1-833d-cf4226436466",
+      "createdAt": "2026-10-22T02:10:28.000Z",
+      "updatedAt": "2026-10-22T02:10:28.000Z",
+      "uid": "35240-b8f26f85-bdf4-4ab1-833d-cf4226436466"
     }
   ],
   "auth": {
@@ -200,25 +207,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d82fc6b9-ed00-4c3a-a8bd-5545f25526ec",
-    "name": "Rackspace Cloud DNS Contacts Tenants API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }

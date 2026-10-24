@@ -1,399 +1,395 @@
 {
+  "info": {
+    "_postman_id": "a68d0695-d289-4e83-a107-bfec546533ca",
+    "name": "Rackspace Customer Service Metadata API",
+    "description": "The Rackspace Customer Service API exposes customer account, contact, and metadata operations. It lets internal users and integrations look up customer accounts the caller has access to (via tenant assignment), inspect account and customer history, and read service-level metadata associated with a customer resource.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:34.000Z",
+    "updatedAt": "2026-10-22T02:09:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a68d0695-d289-4e83-a107-bfec546533ca"
+  },
   "item": [
     {
-      "id": "04a9a5ae-9e8d-4d62-b1a6-fb9b64ebc55d",
-      "name": "Metadata",
-      "description": {
-        "content": "Resource-level customer metadata.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "f7af9a67-c1d9-4c28-b397-e6e7717fc563",
-          "name": "Get List Of All Metadata For Resource",
-          "request": {
-            "name": "Get List Of All Metadata For Resource",
-            "description": {
-              "content": "Returns all metadata key-value pairs attached to the specified resource.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                ":resourceType",
-                ":resourceId",
-                "metadata"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceType",
-                  "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{resourceType}",
+          "item": [
             {
-              "id": "b2122ed2-c0e6-4693-bfbc-d2de5790d553",
-              "name": "Metadata returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    ":resourceType",
-                    ":resourceId",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceType",
-                      "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{resourceId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "metadata",
+                  "item": [
+                    {
+                      "name": "{key}",
+                      "item": [
+                        {
+                          "name": "details",
+                          "item": [
+                            {
+                              "name": "Get Details For Specific Metadata",
+                              "id": "9eda4d29-5acd-4e73-bb02-2619b6b11276",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata/:key/details",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":resourceType",
+                                    ":resourceId",
+                                    "metadata",
+                                    ":key",
+                                    "details"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "682b5cc0-90f0-4f1a-84c1-0027fd1bfd72",
+                                      "key": "resourceType",
+                                      "value": "<string>",
+                                      "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
+                                    },
+                                    {
+                                      "id": "7c6e01e0-ed8f-4290-a717-c87361d402ac",
+                                      "key": "resourceId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "bb1f25d6-b251-409c-91e6-7331db4ad488",
+                                      "key": "key",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns extended detail about the metadata entry, including who created it and when."
+                              },
+                              "response": [
+                                {
+                                  "id": "06c04b5d-5782-45ca-a5b5-97a0037d263b",
+                                  "name": "Metadata details returned.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata/:key/details",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":resourceType",
+                                        ":resourceId",
+                                        "metadata",
+                                        ":key",
+                                        "details"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "resourceType"
+                                        },
+                                        {
+                                          "key": "resourceId"
+                                        },
+                                        {
+                                          "key": "key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"category\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"updatedBy\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T02:09:34.000Z",
+                                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                                  "uid": "35240-06c04b5d-5782-45ca-a5b5-97a0037d263b"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:09:34.000Z",
+                              "updatedAt": "2026-10-22T02:09:34.000Z",
+                              "uid": "35240-9eda4d29-5acd-4e73-bb02-2619b6b11276"
+                            }
+                          ],
+                          "id": "1dfe507d-1004-4343-a212-a56d101c3ecd",
+                          "createdAt": "2026-10-22T02:09:34.000Z",
+                          "updatedAt": "2026-10-22T02:09:34.000Z",
+                          "uid": "35240-1dfe507d-1004-4343-a212-a56d101c3ecd"
+                        },
+                        {
+                          "name": "Get Specific Metadata",
+                          "id": "aa550a5f-3e37-420f-825c-fab1ed4f6e8a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":resourceType",
+                                ":resourceId",
+                                "metadata",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6868275c-cf45-4f8a-836d-9f61888d9475",
+                                  "key": "resourceType",
+                                  "value": "<string>",
+                                  "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
+                                },
+                                {
+                                  "id": "e9c3bac1-1fcb-4417-80de-9f8c8e5d3b73",
+                                  "key": "resourceId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "fb92f0d7-e694-4ab0-8442-e96b55af9f90",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the metadata entry identified by the supplied key."
+                          },
+                          "response": [
+                            {
+                              "id": "ea2e6702-b8f3-45e5-9113-3610fd9cded2",
+                              "name": "Metadata entry returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":resourceType",
+                                    ":resourceId",
+                                    "metadata",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "resourceType"
+                                    },
+                                    {
+                                      "key": "resourceId"
+                                    },
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:09:34.000Z",
+                              "updatedAt": "2026-10-22T02:09:34.000Z",
+                              "uid": "35240-ea2e6702-b8f3-45e5-9113-3610fd9cded2"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:09:34.000Z",
+                          "updatedAt": "2026-10-22T02:09:34.000Z",
+                          "uid": "35240-aa550a5f-3e37-420f-825c-fab1ed4f6e8a"
+                        }
+                      ],
+                      "id": "cf5a93ef-6218-4e7e-b6e4-cc9b76590bc8",
+                      "createdAt": "2026-10-22T02:09:34.000Z",
+                      "updatedAt": "2026-10-22T02:09:34.000Z",
+                      "uid": "35240-cf5a93ef-6218-4e7e-b6e4-cc9b76590bc8"
+                    },
+                    {
+                      "name": "Get List Of All Metadata For Resource",
+                      "id": "5ee85473-5df6-4959-8950-85a1553d55dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":resourceType",
+                            ":resourceId",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7cb857f7-d00e-47cc-b638-a023522429e8",
+                              "key": "resourceType",
+                              "value": "<string>",
+                              "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
+                            },
+                            {
+                              "id": "140905ac-f581-4e97-91cc-47a7c5dd092e",
+                              "key": "resourceId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns all metadata key-value pairs attached to the specified resource."
+                      },
+                      "response": [
+                        {
+                          "id": "fef83885-0457-4aaf-8a0f-c9d8eea6d20d",
+                          "name": "Metadata returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:resourceType/:resourceId/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":resourceType",
+                                ":resourceId",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "resourceType"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"metadata\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"category\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"category\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:09:34.000Z",
+                          "updatedAt": "2026-10-22T02:09:34.000Z",
+                          "uid": "35240-fef83885-0457-4aaf-8a0f-c9d8eea6d20d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:09:34.000Z",
+                      "updatedAt": "2026-10-22T02:09:34.000Z",
+                      "uid": "35240-5ee85473-5df6-4959-8950-85a1553d55dc"
+                    }
+                  ],
+                  "id": "0707b8c9-82d5-45ea-a10b-fb60f5ac3ca2",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-0707b8c9-82d5-45ea-a10b-fb60f5ac3ca2"
                 }
               ],
-              "body": "{\n  \"metadata\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"category\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"category\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "e1fa53b4-fe16-4dbd-a342-60f3798ff81f",
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-e1fa53b4-fe16-4dbd-a342-60f3798ff81f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fecea921-6d46-461e-a545-edaf875a159c",
-          "name": "Get Specific Metadata",
-          "request": {
-            "name": "Get Specific Metadata",
-            "description": {
-              "content": "Returns the metadata entry identified by the supplied key.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                ":resourceType",
-                ":resourceId",
-                "metadata",
-                ":key"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceType",
-                  "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "key",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b70b1736-0bf0-4465-ac71-25756c3329c1",
-              "name": "Metadata entry returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    ":resourceType",
-                    ":resourceId",
-                    "metadata",
-                    ":key"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceType",
-                      "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "key",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key\": \"string\",\n  \"value\": \"string\",\n  \"category\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3bbf2cf9-a4f2-416c-a2e7-468bb7aa20a0",
-          "name": "Get Details For Specific Metadata",
-          "request": {
-            "name": "Get Details For Specific Metadata",
-            "description": {
-              "content": "Returns extended detail about the metadata entry, including who created it and when.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                ":resourceType",
-                ":resourceId",
-                "metadata",
-                ":key",
-                "details"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceType",
-                  "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "key",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2e6e8a74-cf96-4067-bd32-173d8c510d28",
-              "name": "Metadata details returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    ":resourceType",
-                    ":resourceId",
-                    "metadata",
-                    ":key",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceType",
-                      "description": "(Required) Resource type the metadata is attached to (for example, customer_accounts)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "key",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key\": \"string\",\n  \"value\": \"string\",\n  \"category\": \"string\",\n  \"createdAt\": \"2021-02-15T10:54:09.511Z\",\n  \"createdBy\": \"string\",\n  \"updatedAt\": \"1950-01-12T05:49:34.601Z\",\n  \"updatedBy\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4df53ec3-2339-4869-80f8-f5bfc6f82042",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-4df53ec3-2339-4869-80f8-f5bfc6f82042"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "a7b44e48-2ba7-44d6-a282-bd721726b528",
+      "createdAt": "2026-10-22T02:09:34.000Z",
+      "updatedAt": "2026-10-22T02:09:34.000Z",
+      "uid": "35240-a7b44e48-2ba7-44d6-a282-bd721726b528"
     }
   ],
   "auth": {
@@ -401,25 +397,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "86c8561b-df84-420f-9465-37be0a2f4bd7",
-    "name": "Rackspace Cloud DNS Contacts Metadata API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://accounts.api.rackspacecloud.com"
     }
-  }
+  ]
 }

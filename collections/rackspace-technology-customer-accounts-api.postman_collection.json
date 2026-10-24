@@ -1,0 +1,774 @@
+{
+  "info": {
+    "_postman_id": "e18b09b5-8b27-436f-9017-61df8a581e3b",
+    "name": "Rackspace Customer Service Customer Accounts API",
+    "description": "The Rackspace Customer Service API exposes customer account, contact, and metadata operations. It lets internal users and integrations look up customer accounts the caller has access to (via tenant assignment), inspect account and customer history, and read service-level metadata associated with a customer resource.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:10:58.000Z",
+    "updatedAt": "2026-10-22T02:10:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e18b09b5-8b27-436f-9017-61df8a581e3b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "customer_accounts",
+          "item": [
+            {
+              "name": "{rcn}",
+              "item": [
+                {
+                  "name": "status_history",
+                  "item": [
+                    {
+                      "name": "Get List Of Customer Account Status History",
+                      "id": "bc8e650c-7f5b-477b-a50d-1159036baeeb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/status_history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer_accounts",
+                            ":rcn",
+                            "status_history"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5621a26f-785f-4984-b638-045ca9dc7d08",
+                              "key": "rcn",
+                              "value": "<string>",
+                              "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
+                            }
+                          ]
+                        },
+                        "description": "Returns the status-change history for the customer account."
+                      },
+                      "response": [
+                        {
+                          "id": "4042f135-10b8-4896-982b-332c4d749527",
+                          "name": "Status history returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/status_history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer_accounts",
+                                ":rcn",
+                                "status_history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rcn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"history\": [\n    {\n      \"status\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\",\n      \"reason\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\",\n      \"reason\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:10:59.000Z",
+                          "updatedAt": "2026-10-22T02:10:59.000Z",
+                          "uid": "35240-4042f135-10b8-4896-982b-332c4d749527"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:59.000Z",
+                      "updatedAt": "2026-10-22T02:10:59.000Z",
+                      "uid": "35240-bc8e650c-7f5b-477b-a50d-1159036baeeb"
+                    }
+                  ],
+                  "id": "a7782da7-96df-4212-b125-a9f6fc207fa9",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-a7782da7-96df-4212-b125-a9f6fc207fa9"
+                },
+                {
+                  "name": "history",
+                  "item": [
+                    {
+                      "name": "Get List Of Customer Account History",
+                      "id": "ee1e875b-9f85-4212-9846-e50087176f3a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer_accounts",
+                            ":rcn",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8038a2d1-7997-4116-83f8-5130960b9ec1",
+                              "key": "rcn",
+                              "value": "<string>",
+                              "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
+                            }
+                          ]
+                        },
+                        "description": "Returns the change history for the customer account."
+                      },
+                      "response": [
+                        {
+                          "id": "e5af4417-41aa-4700-a0e2-82da68c8d508",
+                          "name": "Account history returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer_accounts/:rcn/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer_accounts",
+                                ":rcn",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rcn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"history\": [\n    {\n      \"field\": \"<string>\",\n      \"previousValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"previousValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:10:59.000Z",
+                          "updatedAt": "2026-10-22T02:10:59.000Z",
+                          "uid": "35240-e5af4417-41aa-4700-a0e2-82da68c8d508"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:59.000Z",
+                      "updatedAt": "2026-10-22T02:10:59.000Z",
+                      "uid": "35240-ee1e875b-9f85-4212-9846-e50087176f3a"
+                    }
+                  ],
+                  "id": "fb3cbfb1-ffa3-4510-9943-fc31a08728fc",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-fb3cbfb1-ffa3-4510-9943-fc31a08728fc"
+                },
+                {
+                  "name": "Get Customer Account",
+                  "id": "40f32917-73f8-4a74-92a2-09d3a426a711",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts/:rcn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts",
+                        ":rcn"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e384359-635e-4e3f-b9ae-3de060433685",
+                          "key": "rcn",
+                          "value": "<string>",
+                          "description": "(Required) The Rackspace Customer Number (RCN) identifying the customer account."
+                        }
+                      ]
+                    },
+                    "description": "Returns details about a single customer account."
+                  },
+                  "response": [
+                    {
+                      "id": "a33137e0-6729-4198-a85d-8874d2ba0d27",
+                      "name": "Customer account returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer_accounts/:rcn",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer_accounts",
+                            ":rcn"
+                          ],
+                          "variable": [
+                            {
+                              "key": "rcn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"rcn\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"customerSegment\": \"<string>\",\n  \"billingCountry\": \"<string>\",\n  \"contacts\": [\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primary\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"category\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"category\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:10:59.000Z",
+                      "updatedAt": "2026-10-22T02:10:59.000Z",
+                      "uid": "35240-a33137e0-6729-4198-a85d-8874d2ba0d27"
+                    },
+                    {
+                      "id": "c3df613a-0ad4-44b0-a5e1-624535418f53",
+                      "name": "Not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Auth-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer_accounts/:rcn",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer_accounts",
+                            ":rcn"
+                          ],
+                          "variable": [
+                            {
+                              "key": "rcn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:10:59.000Z",
+                      "updatedAt": "2026-10-22T02:10:59.000Z",
+                      "uid": "35240-c3df613a-0ad4-44b0-a5e1-624535418f53"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-40f32917-73f8-4a74-92a2-09d3a426a711"
+                }
+              ],
+              "id": "0eff7726-a938-42d9-9d03-198ada93cf6d",
+              "createdAt": "2026-10-22T02:10:59.000Z",
+              "updatedAt": "2026-10-22T02:10:59.000Z",
+              "uid": "35240-0eff7726-a938-42d9-9d03-198ada93cf6d"
+            },
+            {
+              "name": "Get List Of Customer Accounts",
+              "id": "bb7e154a-8d8a-49a5-ab5e-4bfcc305ffe2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/customer_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "customer_accounts"
+                  ]
+                },
+                "description": "Returns the list of customer accounts the caller has access to based on their tenants."
+              },
+              "response": [
+                {
+                  "id": "da632783-9371-4345-8eb9-3417f3081464",
+                  "name": "Customer accounts returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer_accounts\": [\n    {\n      \"rcn\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"customerSegment\": \"<string>\",\n      \"billingCountry\": \"<string>\",\n      \"contacts\": [\n        {\n          \"id\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"primary\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"primary\": \"<boolean>\"\n        }\n      ],\n      \"metadata\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"rcn\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"customerSegment\": \"<string>\",\n      \"billingCountry\": \"<string>\",\n      \"contacts\": [\n        {\n          \"id\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"primary\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"primary\": \"<boolean>\"\n        }\n      ],\n      \"metadata\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalEntries\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-da632783-9371-4345-8eb9-3417f3081464"
+                },
+                {
+                  "id": "a7ea8077-4353-453f-aa09-245cc3e41907",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-a7ea8077-4353-453f-aa09-245cc3e41907"
+                },
+                {
+                  "id": "e5faf1bc-150e-4760-a85f-3a16ca7d8dfa",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-e5faf1bc-150e-4760-a85f-3a16ca7d8dfa"
+                },
+                {
+                  "id": "3bdbf49c-92c2-49ee-94fe-e98867adfa25",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-3bdbf49c-92c2-49ee-94fe-e98867adfa25"
+                },
+                {
+                  "id": "cd5f8f11-c602-4bd1-8d19-6bc2bef3b5ad",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer_accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer_accounts"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-cd5f8f11-c602-4bd1-8d19-6bc2bef3b5ad"
+                }
+              ],
+              "createdAt": "2026-10-22T02:10:59.000Z",
+              "updatedAt": "2026-10-22T02:10:59.000Z",
+              "uid": "35240-bb7e154a-8d8a-49a5-ab5e-4bfcc305ffe2"
+            }
+          ],
+          "id": "b46e5484-bc10-4df6-a03c-fecbe8f910c3",
+          "createdAt": "2026-10-22T02:10:59.000Z",
+          "updatedAt": "2026-10-22T02:10:59.000Z",
+          "uid": "35240-b46e5484-bc10-4df6-a03c-fecbe8f910c3"
+        },
+        {
+          "name": "customers",
+          "item": [
+            {
+              "name": "{customerId}",
+              "item": [
+                {
+                  "name": "history",
+                  "item": [
+                    {
+                      "name": "Get List Of Customer History",
+                      "id": "7c79598a-74f3-4276-aa87-367e760abeaf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customerId/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customerId",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b1769d96-4c76-4f38-8fe3-dd9b456c617f",
+                              "key": "customerId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the change history for the customer."
+                      },
+                      "response": [
+                        {
+                          "id": "e3f2187d-449b-402a-b3f9-14b281963033",
+                          "name": "Customer history returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Auth-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customers/:customerId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customers",
+                                ":customerId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "customerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"history\": [\n    {\n      \"field\": \"<string>\",\n      \"previousValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"previousValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedAt\": \"<dateTime>\",\n      \"changedBy\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:10:59.000Z",
+                          "updatedAt": "2026-10-22T02:10:59.000Z",
+                          "uid": "35240-e3f2187d-449b-402a-b3f9-14b281963033"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:10:59.000Z",
+                      "updatedAt": "2026-10-22T02:10:59.000Z",
+                      "uid": "35240-7c79598a-74f3-4276-aa87-367e760abeaf"
+                    }
+                  ],
+                  "id": "f03df867-9b1f-4b4a-a772-711a9de57370",
+                  "createdAt": "2026-10-22T02:10:59.000Z",
+                  "updatedAt": "2026-10-22T02:10:59.000Z",
+                  "uid": "35240-f03df867-9b1f-4b4a-a772-711a9de57370"
+                }
+              ],
+              "id": "ea02899f-c3fd-4e2c-9f2d-93d968e29e9f",
+              "createdAt": "2026-10-22T02:10:59.000Z",
+              "updatedAt": "2026-10-22T02:10:59.000Z",
+              "uid": "35240-ea02899f-c3fd-4e2c-9f2d-93d968e29e9f"
+            }
+          ],
+          "id": "b9d64e92-92b4-4d66-b200-0b14c551ffee",
+          "createdAt": "2026-10-22T02:10:59.000Z",
+          "updatedAt": "2026-10-22T02:10:59.000Z",
+          "uid": "35240-b9d64e92-92b4-4d66-b200-0b14c551ffee"
+        }
+      ],
+      "id": "3abc1169-0ddf-4ba6-b79e-29728c3c6ee0",
+      "createdAt": "2026-10-22T02:10:59.000Z",
+      "updatedAt": "2026-10-22T02:10:59.000Z",
+      "uid": "35240-3abc1169-0ddf-4ba6-b79e-29728c3c6ee0"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://accounts.api.rackspacecloud.com"
+    }
+  ]
+}

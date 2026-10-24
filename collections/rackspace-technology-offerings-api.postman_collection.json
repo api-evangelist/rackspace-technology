@@ -1,80 +1,47 @@
 {
+  "info": {
+    "_postman_id": "d65b301d-c98e-402e-a3b5-ac4814e3bbf4",
+    "name": "Rackspace Offer Offerings API",
+    "description": "The Rackspace Offer API (v2) exposes the Rackspace offerings catalog, including offerings, products, currency, and pricing grids (commit grids, volume grids). It supports listing offerings by line-of-business and status, retrieving products, and computing discounts via commit and volume grids.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:44.000Z",
+    "updatedAt": "2026-10-22T02:09:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d65b301d-c98e-402e-a3b5-ac4814e3bbf4"
+  },
   "item": [
     {
-      "id": "f8a7aaf4-57c1-4c2b-9c74-e4f14ed79ff8",
-      "name": "Offerings",
-      "description": {
-        "content": "Offering catalog operations.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "754512f9-b850-4881-9c14-a6af0a6a27ba",
-          "name": "Get Offerings",
-          "request": {
-            "name": "Get Offerings",
-            "description": {
-              "content": "Lists Rackspace offerings available in the product catalog.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "offerings"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "lineOfBusiness",
-                  "value": "<string>",
-                  "description": "The Rackspace line of business associated with the offering (for example, US_CLOUD)."
-                },
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "ACTIVE"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                },
-                {
-                  "disabled": false,
-                  "key": "marker",
-                  "value": "<string>",
-                  "description": "Pagination marker (the starting point for the next batch of items)."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "offerings",
+          "item": [
             {
-              "id": "b9373bec-469e-4f23-887a-3288c8b6acf1",
-              "name": "Offerings returned.",
-              "originalRequest": {
+              "name": "Get Offerings",
+              "id": "4bd4ce34-48c2-4f1f-8880-eda236ca9747",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2/offerings?lineOfBusiness=<string>&status=ACTIVE&limit=100&marker=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "offerings"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "The Rackspace line of business associated with the offering (for example, US_CLOUD).",
                       "key": "lineOfBusiness",
                       "value": "<string>"
                     },
@@ -87,57 +54,94 @@
                       "value": "100"
                     },
                     {
+                      "description": "Pagination marker (the starting point for the next batch of items).",
                       "key": "marker",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Lists Rackspace offerings available in the product catalog."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "01a5ef60-46f6-4286-a37a-24a9e8472637",
+                  "name": "Offerings returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Auth-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/offerings?lineOfBusiness=<string>&status=ACTIVE&limit=100&marker=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "offerings"
+                      ],
+                      "query": [
+                        {
+                          "description": "The Rackspace line of business associated with the offering (for example, US_CLOUD).",
+                          "key": "lineOfBusiness",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "ACTIVE"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Pagination marker (the starting point for the next batch of items).",
+                          "key": "marker",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"offerings\": [\n    {\n      \"offeringCode\": \"<string>\",\n      \"offeringVersion\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"INACTIVE\",\n      \"lineOfBusiness\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\"\n    },\n    {\n      \"offeringCode\": \"<string>\",\n      \"offeringVersion\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"ACTIVE\",\n      \"lineOfBusiness\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:09:44.000Z",
+                  "updatedAt": "2026-10-22T02:09:44.000Z",
+                  "uid": "35240-01a5ef60-46f6-4286-a37a-24a9e8472637"
                 }
               ],
-              "body": "{\n  \"offerings\": [\n    {\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 509,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"INACTIVE\",\n      \"lineOfBusiness\": \"string\",\n      \"startDate\": \"1957-05-28\",\n      \"endDate\": \"2012-04-21\"\n    },\n    {\n      \"offeringCode\": \"string\",\n      \"offeringVersion\": 3526,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"lineOfBusiness\": \"string\",\n      \"startDate\": \"1955-08-08\",\n      \"endDate\": \"1989-04-03\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://mjsAhVwDASSfEUBywXtplSBtE.gjuAI-MvugCiA6QkqnkM3SnIjDGIXirE.LcjBIUjBU.GKhfEmo\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://GSbtEkDAAlFDVsZwPvUPop.wkuhIRsXC2PbP-qTCQnI,v9Zl1m8hHbh,rdmuumKMRP53uthpj\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:09:44.000Z",
+              "updatedAt": "2026-10-22T02:09:44.000Z",
+              "uid": "35240-4bd4ce34-48c2-4f1f-8880-eda236ca9747"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f35384a0-6ae7-45f2-b96a-a020bf5b0755",
+          "createdAt": "2026-10-22T02:09:44.000Z",
+          "updatedAt": "2026-10-22T02:09:44.000Z",
+          "uid": "35240-f35384a0-6ae7-45f2-b96a-a020bf5b0755"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "c4b994e5-b1cb-4e24-8040-9e4c03c9559b",
+      "createdAt": "2026-10-22T02:09:44.000Z",
+      "updatedAt": "2026-10-22T02:09:44.000Z",
+      "uid": "35240-c4b994e5-b1cb-4e24-8040-9e4c03c9559b"
     }
   ],
   "auth": {
@@ -145,25 +149,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "95252aa6-2403-4101-bd81-956e6009331a",
-    "name": "Rackspace Cloud DNS Contacts Offerings API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://offerings.api.rackspacecloud.com"
     }
-  }
+  ]
 }

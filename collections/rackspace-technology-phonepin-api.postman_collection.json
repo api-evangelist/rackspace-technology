@@ -1,237 +1,261 @@
 {
+  "info": {
+    "_postman_id": "9900bf4f-5743-4aa2-8dba-ba2b0133109c",
+    "name": "Rackspace Cloud Identity Phone Pin API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:50.000Z",
+    "updatedAt": "2026-10-22T02:09:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9900bf4f-5743-4aa2-8dba-ba2b0133109c"
+  },
   "item": [
     {
-      "id": "61083118-c373-4862-84de-0fe95aef120d",
-      "name": "PhonePin",
-      "description": {
-        "content": "Phone PIN operations for verbal account verification.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "7d72486e-3a54-4a7e-9442-3b83ad1f7c8a",
-          "name": "Get Phone Pin",
-          "request": {
-            "name": "Get Phone Pin",
-            "description": {
-              "content": "Returns the user's phone PIN, used for verbal account verification.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "phone-pin"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "users",
+          "item": [
             {
-              "id": "6dcbb8cb-5727-4ded-bcd0-79aa601e05cf",
-              "name": "Phone PIN returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "phone-pin"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{userId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "RAX-AUTH",
+                  "item": [
+                    {
+                      "name": "phone-pin",
+                      "item": [
+                        {
+                          "name": "Get Phone Pin",
+                          "id": "2fc46e75-8550-4790-9ee1-e1149166f3de",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/phone-pin",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "RAX-AUTH",
+                                "phone-pin"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aac73327-2054-42b0-ac87-91e180e6e5c5",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the user's phone PIN, used for verbal account verification."
+                          },
+                          "response": [
+                            {
+                              "id": "c4090f85-0c0f-4c50-a4ff-25966c7c9532",
+                              "name": "Phone PIN returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/phone-pin",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "phone-pin"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pin\": \"<string>\",\n  \"state\": \"LOCKED\"\n}",
+                              "createdAt": "2026-10-22T02:09:50.000Z",
+                              "updatedAt": "2026-10-22T02:09:50.000Z",
+                              "uid": "35240-c4090f85-0c0f-4c50-a4ff-25966c7c9532"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:09:50.000Z",
+                          "updatedAt": "2026-10-22T02:09:50.000Z",
+                          "uid": "35240-2fc46e75-8550-4790-9ee1-e1149166f3de"
+                        },
+                        {
+                          "name": "Update Phone Pin",
+                          "id": "58abc70b-64fa-4423-9097-ca93ee314854",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pin\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/phone-pin",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "RAX-AUTH",
+                                "phone-pin"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "61ccf335-a67a-4949-8c35-d09a68626021",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "dfbd4d2e-5d3b-42f1-bcc0-9b65524743a2",
+                              "name": "PIN updated.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pin\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/phone-pin",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "phone-pin"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:09:50.000Z",
+                              "updatedAt": "2026-10-22T02:09:50.000Z",
+                              "uid": "35240-dfbd4d2e-5d3b-42f1-bcc0-9b65524743a2"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:09:50.000Z",
+                          "updatedAt": "2026-10-22T02:09:50.000Z",
+                          "uid": "35240-58abc70b-64fa-4423-9097-ca93ee314854"
+                        }
+                      ],
+                      "id": "49395470-9abb-40b7-976c-ab4e953076a5",
+                      "createdAt": "2026-10-22T02:09:50.000Z",
+                      "updatedAt": "2026-10-22T02:09:50.000Z",
+                      "uid": "35240-49395470-9abb-40b7-976c-ab4e953076a5"
+                    }
+                  ],
+                  "id": "21937fb7-af11-408a-99e4-0ce58b90b61b",
+                  "createdAt": "2026-10-22T02:09:50.000Z",
+                  "updatedAt": "2026-10-22T02:09:50.000Z",
+                  "uid": "35240-21937fb7-af11-408a-99e4-0ce58b90b61b"
                 }
               ],
-              "body": "{\n  \"pin\": \"string\",\n  \"state\": \"ACTIVE\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "be0a5c81-7077-41c0-b61e-c48e63411638",
+              "createdAt": "2026-10-22T02:09:50.000Z",
+              "updatedAt": "2026-10-22T02:09:50.000Z",
+              "uid": "35240-be0a5c81-7077-41c0-b61e-c48e63411638"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7957f517-5019-491b-a6fc-2468bc4a7a6e",
-          "name": "Update Phone Pin",
-          "request": {
-            "name": "Update Phone Pin",
-            "description": {},
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "phone-pin"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"pin\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "cd08d809-69ca-4274-9f36-3cbf02677115",
-              "name": "PIN updated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "phone-pin"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pin\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d7bda920-e663-4f4a-ab16-0e4065c19f06",
+          "createdAt": "2026-10-22T02:09:50.000Z",
+          "updatedAt": "2026-10-22T02:09:50.000Z",
+          "uid": "35240-d7bda920-e663-4f4a-ab16-0e4065c19f06"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "350460a1-98e2-4497-b005-68d9a7583803",
+      "createdAt": "2026-10-22T02:09:50.000Z",
+      "updatedAt": "2026-10-22T02:09:50.000Z",
+      "uid": "35240-350460a1-98e2-4497-b005-68d9a7583803"
     }
   ],
   "auth": {
@@ -239,25 +263,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "51b0a378-e863-42a1-8435-35b7be6a8c43",
-    "name": "Rackspace Cloud DNS Contacts PhonePin API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }

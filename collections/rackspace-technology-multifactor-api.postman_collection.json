@@ -1,260 +1,300 @@
 {
+  "info": {
+    "_postman_id": "042e5c1b-7178-4ca5-9076-416d950aba02",
+    "name": "Rackspace Cloud Identity Multi Factor API",
+    "description": "The Rackspace Cloud Identity API (v2.0) issues authentication tokens and manages users, tenants, roles, domains, identity providers, multi-factor authentication, secret questions, and phone PINs. It is the access-control plane for all Rackspace Cloud APIs and supports password, API-key, token, SAML federation, and multi-factor credential flows.\n\nContact Support:\n Name: Rackspace Technology",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:37.000Z",
+    "updatedAt": "2026-10-22T02:09:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-042e5c1b-7178-4ca5-9076-416d950aba02"
+  },
   "item": [
     {
-      "id": "12316757-0e3f-4104-9add-6488353208e8",
-      "name": "MultiFactor",
-      "description": {
-        "content": "Multi-factor authentication setup and operations.",
-        "type": "text/plain"
-      },
+      "name": "v2.0",
       "item": [
         {
-          "id": "7a6f9396-947c-4f36-98f5-2aa82d948349",
-          "name": "Update Multi-Factor Settings",
-          "request": {
-            "name": "Update Multi-Factor Settings",
-            "description": {
-              "content": "Enables, disables, or unlocks multi-factor authentication for a user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "multi-factor"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"multiFactor\": {\n    \"enabled\": \"<boolean>\",\n    \"unlock\": \"<boolean>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "users",
+          "item": [
             {
-              "id": "191dbabe-5365-4294-b718-26090df00886",
-              "name": "Multi-factor settings updated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "multi-factor"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"multiFactor\": {\n    \"enabled\": \"<boolean>\",\n    \"unlock\": \"<boolean>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "name": "{userId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "RAX-AUTH",
+                  "item": [
+                    {
+                      "name": "multi-factor",
+                      "item": [
+                        {
+                          "name": "mobile-phones",
+                          "item": [
+                            {
+                              "name": "Add Mobile Phone",
+                              "id": "2299eafa-d130-45a8-8362-e98903263ef4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/multi-factor/mobile-phones",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "multi-factor",
+                                    "mobile-phones"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "583cfaee-4800-4d65-90c0-e77f5fc7c538",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "37c18205-10ed-4c55-b5a8-9c1f9656d647",
+                                  "name": "Mobile phone added.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Auth-Token",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/multi-factor/mobile-phones",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2.0",
+                                        "users",
+                                        ":userId",
+                                        "RAX-AUTH",
+                                        "multi-factor",
+                                        "mobile-phones"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T02:09:38.000Z",
+                                  "updatedAt": "2026-10-22T02:09:38.000Z",
+                                  "uid": "35240-37c18205-10ed-4c55-b5a8-9c1f9656d647"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:09:38.000Z",
+                              "updatedAt": "2026-10-22T02:09:38.000Z",
+                              "uid": "35240-2299eafa-d130-45a8-8362-e98903263ef4"
+                            }
+                          ],
+                          "id": "0ceebf20-2a7d-4fc6-839b-3d618a66df01",
+                          "createdAt": "2026-10-22T02:09:38.000Z",
+                          "updatedAt": "2026-10-22T02:09:38.000Z",
+                          "uid": "35240-0ceebf20-2a7d-4fc6-839b-3d618a66df01"
+                        },
+                        {
+                          "name": "Update Multi-Factor Settings",
+                          "id": "66483009-e1b1-4505-a859-25885956789d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"multiFactor\": {\n    \"enabled\": \"<boolean>\",\n    \"unlock\": \"<boolean>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/multi-factor",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2.0",
+                                "users",
+                                ":userId",
+                                "RAX-AUTH",
+                                "multi-factor"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ad2b6045-e07a-4327-903d-8a2e2063abca",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Enables, disables, or unlocks multi-factor authentication for a user."
+                          },
+                          "response": [
+                            {
+                              "id": "268aecc0-405e-4934-85b5-7fdeacf0d5d4",
+                              "name": "Multi-factor settings updated.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Auth-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"multiFactor\": {\n    \"enabled\": \"<boolean>\",\n    \"unlock\": \"<boolean>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2.0/users/:userId/RAX-AUTH/multi-factor",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2.0",
+                                    "users",
+                                    ":userId",
+                                    "RAX-AUTH",
+                                    "multi-factor"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:09:38.000Z",
+                              "updatedAt": "2026-10-22T02:09:38.000Z",
+                              "uid": "35240-268aecc0-405e-4934-85b5-7fdeacf0d5d4"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:09:38.000Z",
+                          "updatedAt": "2026-10-22T02:09:38.000Z",
+                          "uid": "35240-66483009-e1b1-4505-a859-25885956789d"
+                        }
+                      ],
+                      "id": "79b5bc5d-e250-4790-948b-e3334aa5615d",
+                      "createdAt": "2026-10-22T02:09:38.000Z",
+                      "updatedAt": "2026-10-22T02:09:38.000Z",
+                      "uid": "35240-79b5bc5d-e250-4790-948b-e3334aa5615d"
+                    }
+                  ],
+                  "id": "26b4c11f-2d1b-4e42-ad11-8f9043b40129",
+                  "createdAt": "2026-10-22T02:09:38.000Z",
+                  "updatedAt": "2026-10-22T02:09:38.000Z",
+                  "uid": "35240-26b4c11f-2d1b-4e42-ad11-8f9043b40129"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "34c6b8fa-789d-4ebe-80be-40332e80af70",
+              "createdAt": "2026-10-22T02:09:38.000Z",
+              "updatedAt": "2026-10-22T02:09:38.000Z",
+              "uid": "35240-34c6b8fa-789d-4ebe-80be-40332e80af70"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cbe85ec5-147b-4055-b708-749b6cb9a7e7",
-          "name": "Add Mobile Phone",
-          "request": {
-            "name": "Add Mobile Phone",
-            "description": {},
-            "url": {
-              "path": [
-                "v2.0",
-                "users",
-                ":userId",
-                "RAX-AUTH",
-                "multi-factor",
-                "mobile-phones"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0ee359e1-39e5-4462-b5a3-f01146eb8451",
-              "name": "Mobile phone added.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2.0",
-                    "users",
-                    ":userId",
-                    "RAX-AUTH",
-                    "multi-factor",
-                    "mobile-phones"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Auth-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"verified\": \"<boolean>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8fffd01e-c5ea-48e4-875d-b9f28ffed737",
+          "createdAt": "2026-10-22T02:09:38.000Z",
+          "updatedAt": "2026-10-22T02:09:38.000Z",
+          "uid": "35240-8fffd01e-c5ea-48e4-875d-b9f28ffed737"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dns.api.rackspacecloud.com/v1.0",
-      "key": "baseUrl"
+      "id": "1586cfcd-ecb9-4064-ba55-74c71da21f20",
+      "createdAt": "2026-10-22T02:09:38.000Z",
+      "updatedAt": "2026-10-22T02:09:38.000Z",
+      "uid": "35240-1586cfcd-ecb9-4064-ba55-74c71da21f20"
     }
   ],
   "auth": {
@@ -262,25 +302,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Auth-Token"
+        "value": "X-Auth-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "af39c978-1237-412b-a454-8e64bacbf219",
-    "name": "Rackspace Cloud DNS Contacts MultiFactor API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Rackspace Cloud DNS API (v1.0) provides programmatic management of DNS zones and records hosted on the Rackspace Cloud. Operations include listing, creating, updating, importing, exporting, and cloning domains, plus full CRUD on standard DNS records and reverse DNS PTR records, with support for paginated listings, asynchronous job tracking, and per-account usage limits.\n\nContact Support:\n Name: Rackspace Technology",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.api.rackspacecloud.com"
     }
-  }
+  ]
 }
